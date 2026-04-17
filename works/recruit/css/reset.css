@@ -1,0 +1,238 @@
+/* ============================================================
+   reset.css — 2026年版
+   design-token.css に依存しない。var() 参照なし。
+   フォント・カラー・行間は base.css 側で上書きする。
+
+   読み込み順: reset.css → token.css → base.css → components.css
+   @layer 優先順位: reset → tokens → components
+============================================================ */
+@layer reset, tokens, components;
+
+
+@layer reset {
+
+  /* ============================================================
+     ボックスモデル統一
+  ============================================================ */
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+  /* ============================================================
+     hidden属性の標準挙動を保証
+     until-found は除外（ブラウザ検索ヒット用）
+  ============================================================ */
+  :where([hidden]:not([hidden="until-found"])) {
+    display: none !important;
+  }
+
+
+  /* ============================================================
+     html 初期設定
+  ============================================================ */
+  :where(html) {
+    -webkit-text-size-adjust: none; /* iOSの自動文字拡大防止 */
+    color-scheme: light dark;       /* token.css と順序を統一（light優先） */
+
+    /* height: auto / fit-content 等へのアニメーションを有効化
+       GSAPのアコーディオン・ドロワーで必要になる
+       Chrome 129+ / Safari 18+ / Firefox 131+
+       未対応ブラウザはアニメーションなしで動作する */
+    interpolate-size: allow-keywords;
+  }
+
+  /* dvb未対応ブラウザへのフォールバック */
+  @supports not (min-block-size: 100dvb) {
+    :where(html) {
+      block-size: 100%;
+    }
+  }
+
+  /* スムーススクロール（モーション低減設定を尊重） */
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html:focus-within) {
+      scroll-behavior: smooth;
+    }
+  }
+
+
+  /* ============================================================
+     body 初期設定
+     reset.css は単体で完結させる。design-token.css に依存しない。
+     フォント・カラー・行間は base.css 側で上書きする。
+  ============================================================ */
+  :where(body) {
+    block-size: 100%;                   /* フォールバック */
+    block-size: 100dvb;                 /* モバイル含むビューポート高さ */
+    line-height: 1.5;                   /* ベースライン。base.css で上書き */
+    font-family: system-ui, sans-serif; /* OSデフォルト。base.css で上書き */
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+  /* ============================================================
+     フォーム要素
+  ============================================================ */
+
+  /* フォント・カラーを親から継承 */
+  :where(input, button, textarea, select) {
+    font:  inherit;
+    color: inherit;
+  }
+
+  /* textarea: 縦方向のみリサイズ */
+  :where(textarea) {
+    resize: vertical;
+    resize: block; /* logical properties対応ブラウザ優先 */
+  }
+
+  /* select / search: ネイティブUIを除去してカスタムデザインを可能にする */
+  :where(select, input[type="search"]) {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  /* button: ブラウザデフォルトを完全リセット */
+  :where(button) {
+    border: none;
+    background: none;
+  }
+
+
+  /* ============================================================
+     カーソル制御
+  ============================================================ */
+  :where(button, label, select, summary, [role="button"], [role="option"]) {
+    cursor: pointer;
+  }
+
+  :where(:disabled) {
+    cursor: not-allowed;
+  }
+
+  /* label連動のdisabled対応 */
+  :where(label:has(> input:disabled), label:has(+ input:disabled)) {
+    cursor: not-allowed;
+  }
+
+
+  /* ============================================================
+     リンク
+  ============================================================ */
+  :where(a) {
+    text-underline-offset: 0.2ex;
+  }
+
+
+  /* ============================================================
+     リスト
+  ============================================================ */
+  :where(ul, ol) {
+    list-style: none;
+  }
+
+
+  /* ============================================================
+     メディア要素
+  ============================================================ */
+  :where(img, svg, video, canvas, audio, iframe, embed, object) {
+    display: block;
+  }
+
+  :where(img, picture, svg) {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+
+  /* ============================================================
+     テキスト
+  ============================================================ */
+
+  /* 長いテキストの折り返し */
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+  }
+
+  /* 見出しの行間（h4〜h6 も対象に追加）
+     base.css の --lh-tight でまとめて上書きされる */
+  :where(h1, h2, h3, h4, h5, h6) {
+    line-height: calc(1em + 0.5rem);
+  }
+
+  /* text-wrap: 見出しを均等折り返し / 段落の孤立ワードを防ぐ
+     Chrome 114+ / Safari 17.5+ / Firefox 121+
+     未対応ブラウザは通常の折り返しにフォールバックする */
+  :where(h1, h2, h3, h4, h5, h6) {
+    text-wrap: balance;
+  }
+
+  :where(p) {
+    text-wrap: pretty;
+  }
+
+
+  /* ============================================================
+     テーブル
+  ============================================================ */
+  :where(table) {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+
+  /* ============================================================
+     区切り線
+  ============================================================ */
+  :where(hr) {
+    border: none;
+    border-block-start: 1px solid currentColor;
+    block-size: 0;
+    overflow: visible;
+  }
+
+
+  /* ============================================================
+     アンカーターゲットのスクロールマージン
+     固定ヘッダーがある場合にジャンプ先が隠れるのを防ぐ汎用対策。
+     nav.js のスムーズスクロール補正と併用できる。
+  ============================================================ */
+  :where(:target) {
+    scroll-margin-block: 5ex;
+  }
+
+
+  /* ============================================================
+     フォーカスアウトライン
+     currentColor でテーマに追従。
+     base.css で --color-primary に上書きされる。
+  ============================================================ */
+  :where(:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+
+  /* ============================================================
+     visually-hidden（アクセシビリティ）
+     スクリーンリーダー向け非表示テキスト。
+     フォーカス・アクティブ時は表示を復元する。
+  ============================================================ */
+  :where(
+    .visually-hidden:not(:focus, :active, :focus-within, .not-visually-hidden)
+  ) {
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+} /* end @layer reset */

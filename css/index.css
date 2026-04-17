@@ -1,0 +1,13 @@
+/* ============================================================
+   index.css — エントリーポイント
+   HTML で読み込むのはこのファイルのみ。
+   <link rel="stylesheet" href="./css/index.css">
+
+   読み込み順序 = カスケードの優先順位。触らない。
+============================================================ */
+@layer reset, tokens, components;
+
+@import "./reset.css";
+@import "./token.css";
+@import "./base.css";
+@import "./components.css";

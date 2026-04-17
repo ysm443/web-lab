@@ -1,0 +1,212 @@
+/* ============================================================
+   token.css — 東都中央歯科医院 Design Tokens
+   M3準拠。Primary / Secondary / Tertiary のみ差し替え。
+   それ以外は触らない。
+
+   Primary   : #1a73b5 — 信頼・清潔感の青
+   Secondary : #4a6572 — 補助色（フッター等）
+   Tertiary  : #c05040 — CTA・必須マーク用アクセント
+============================================================ */
+
+@layer tokens {
+
+  :root {
+    color-scheme: light;
+  }
+
+  :root {
+
+    /* -------------------------------------------------------
+       Primary — メインブランドカラー（信頼感の青）
+    ------------------------------------------------------- */
+    --color-primary:              #1a73b5;
+    --color-on-primary:           #ffffff;
+    --color-primary-container:    #d4e8f7;
+    --color-on-primary-container: #002b4a;
+
+    /* -------------------------------------------------------
+       Secondary — サブカラー（補助UI・フッター）
+    ------------------------------------------------------- */
+    --color-secondary:              #4a6572;
+    --color-on-secondary:           #ffffff;
+    --color-secondary-container:    #cde5f0;
+    --color-on-secondary-container: #061f27;
+
+    /* -------------------------------------------------------
+       Tertiary — CTA・必須マーク・注意喚起
+    ------------------------------------------------------- */
+    --color-tertiary:              #c05040;
+    --color-on-tertiary:           #ffffff;
+    --color-tertiary-container:    #fcdad6;
+    --color-on-tertiary-container: #3e0200;
+
+    /* -------------------------------------------------------
+       Error — 触らない
+    ------------------------------------------------------- */
+    --color-error:              #b3261e;
+    --color-on-error:           #ffffff;
+    --color-error-container:    #f9dedc;
+    --color-on-error-container: #410e0b;
+
+    /* Success / Warning / Info — 触らない */
+    --color-success:              #386a20;
+    --color-on-success:           #ffffff;
+    --color-success-container:    #b7f397;
+    --color-on-success-container: #042100;
+
+    --color-warning:              #7c5800;
+    --color-on-warning:           #ffffff;
+    --color-warning-container:    #ffdea8;
+    --color-on-warning-container: #271900;
+
+    --color-info:              #00629d;
+    --color-on-info:           #ffffff;
+    --color-info-container:    #cfe5ff;
+    --color-on-info-container: #001d35;
+
+    /* Surface — 触らない */
+    --color-surface:                   #fafcff;
+    --color-on-surface:                #1a1c1e;
+    --color-on-surface-variant:        #43474e;
+    --color-surface-container-lowest:  #ffffff;
+    --color-surface-container-low:     #f2f4f8;
+    --color-surface-container:         #eceef2;
+    --color-surface-container-high:    #e6e8ec;
+    --color-surface-container-highest: #e0e2e6;
+
+    /* Outline — 触らない */
+    --color-outline:         #73777f;
+    --color-outline-variant: #c3c7cf;
+
+    /* Inverse — 触らない */
+    --color-inverse-surface:    #2f3033;
+    --color-inverse-on-surface: #f0f0f4;
+    --color-inverse-primary:    #a2c9f0;
+
+    /* Scrim — 触らない */
+    --color-scrim: rgba(0, 0, 0, 0.5);
+
+    /* State Layer Opacity — 触らない */
+    --state-hover:              0.08;
+    --state-pressed:            0.12;
+    --state-focused:            0.12;
+    --state-disabled:           0.38;
+    --state-disabled-container: 0.12;
+  }
+
+
+  /* ==========================================================
+     SPACING — 触らない（4dpグリッド）
+  ========================================================== */
+  :root {
+    --spacing-1:  4px;
+    --spacing-2:  8px;
+    --spacing-3:  12px;
+    --spacing-4:  16px;
+    --spacing-5:  20px;
+    --spacing-6:  24px;
+    --spacing-7:  28px;
+    --spacing-8:  32px;
+    --spacing-9:  36px;
+    --spacing-10: 40px;
+    --spacing-12: 48px;
+    --spacing-16: 64px;
+    --spacing-20: 80px;
+    --spacing-24: 96px;
+
+    --layout-gap-sm: var(--spacing-4);
+    --layout-gap-md: var(--spacing-6);
+    --layout-gap-lg: var(--spacing-8);
+
+    --spacing-px:  1px;
+    --spacing-0-5: 2px;
+  }
+
+
+  /* ==========================================================
+     TYPOGRAPHY — 触らない
+  ========================================================== */
+  :root {
+    --font-sans-ja:  "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN",
+                     "Hiragino Sans", Meiryo, sans-serif;
+    --font-serif-ja: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+    --font-sans-en:  "Inter", system-ui, -apple-system, sans-serif;
+    --font-logo:     "Noto Serif JP", serif;
+    --font-mono:     "JetBrains Mono", ui-monospace, monospace;
+
+    --font-weight-regular: 400;
+    --font-weight-medium:  500;
+    --font-weight-bold:    700;
+
+    --text-xs:  0.75rem;
+    --text-sm:  0.875rem;
+    --text-md:  1rem;
+    --text-lg:  1.25rem;
+    --text-xl:  1.5rem;
+    --text-2xl: 2rem;
+    --text-3xl: 3rem;
+
+
+    --lh-tight:   1.2;
+    --lh-normal:  1.6;
+    --lh-relaxed: 1.9;
+
+    --tracking-tight: -0.02em;
+    --tracking-wide:   0.05em;
+  }
+
+
+  /* ==========================================================
+     SHAPE — 触らない
+  ========================================================== */
+  :root {
+    --shape-none: 0px;
+    --shape-xs:   4px;
+    --shape-sm:   8px;
+    --shape-md:   12px;
+    --shape-lg:   16px;
+    --shape-xl:   20px;
+    --shape-2xl:  24px;
+    --shape-3xl:  32px;
+    --shape-4xl:  48px;
+    --shape-full: 9999px;
+  }
+
+
+  /* ==========================================================
+     ELEVATION — 触らない
+  ========================================================== */
+  :root {
+    --elevation-0: none;
+    --elevation-1: 0 1px 2px rgba(0,0,0,0.18), 0 1px 3px 1px rgba(0,0,0,0.09);
+    --elevation-2: 0 1px 2px rgba(0,0,0,0.18), 0 2px 6px 2px rgba(0,0,0,0.09);
+    --elevation-3: 0 1px 3px rgba(0,0,0,0.18), 0 4px 8px 3px rgba(0,0,0,0.09);
+  }
+
+
+  /* ==========================================================
+     Z-INDEX — 触らない
+  ========================================================== */
+  :root {
+    --layer-a:      10;
+    --layer-b:      20;
+    --layer-c:      30;
+    --layer-dialog: 50;
+    --layer-top:   100;
+  }
+
+
+  /* ==========================================================
+     LAYOUT — 触らない
+  ========================================================== */
+  :root {
+    --site-max-width:    1400px;
+    --content-max-width: 1100px;
+    --page-body-width:    840px;
+    --page-narrow-width:  600px;
+
+    --header-height: 68px;
+    --border-width:   1px;
+  }
+
+} /* end @layer tokens */

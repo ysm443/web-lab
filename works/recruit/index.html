@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- =====================================================
+       SEO / OGP
+    ===================================================== -->
+    <title>採用情報 | エンタメで、世界を動かそう。</title>
+    <meta name="description" content="エンターテインメントの力で世界を豊かにする仕事。クリエイターとともに新しいエンタメをつくりつづける仲間を募集しています。" />
+
+    <!-- OGP -->
+    <meta property="og:title" content="採用情報 | エンタメで、世界を動かそう。" />
+    <meta property="og:description" content="エンターテインメントの力で世界を豊かにする仕事。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:image" content="https://example.com/img/common/ogp.png" />
+    <meta property="og:site_name" content="RECRUIT" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- =====================================================
+       Favicon
+    ===================================================== -->
+    <link rel="icon" href="./img/common/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./img/common/favicon.ico" sizes="32x32" />
+
+    <!-- =====================================================
+       Fonts
+    ===================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;700;900&family=Dancing+Script:wght@700&display=swap"
+    />
+
+    <!-- =====================================================
+       CSS
+    ===================================================== -->
+    <!-- layer="swiper" で @layer components より低い優先度に入れる
+         → components.css の overflow:visible が Swiper の overflow:hidden に勝てる -->
+    <link rel="stylesheet" href="./css/lib/swiper-bundle.min.css" layer="swiper" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+
+  <body>
+    <!-- =====================================================
+       Header
+    ===================================================== -->
+    <header class="header" id="header">
+      <div class="header__inner">
+        <a href="/" class="header__logo" aria-label="YSMlab トップページ">
+          <img src="./img/common/logo.svg" alt="YSMlab" width="104" height="28">
+        </a>
+        <nav class="header__nav" id="headerNav" aria-label="グローバルナビゲーション">
+          <ul class="header__nav-list">
+            <li><a href="#business">事業内容</a></li>
+            <li><a href="#interview">インタビュー</a></li>
+            <li><a href="#data">環境・制度</a></li>
+            <li><a href="#recruit">募集職種</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <div class="header__actions">
+          <a href="#recruit" class="btn btn--primary btn--sm">エントリー</a>
+          <button
+            class="header__menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="headerNav"
+            aria-label="メニューを開く"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- =====================================================
+         Hero
+         data-animate は _initHeroAnimation で順番にフェードイン
+      ===================================================== -->
+      <section class="hero" id="hero">
+        <div class="hero__inner">
+
+          <p class="hero__eyebrow" data-animate>RECRUIT 2025</p>
+
+          <!-- 3行構成: ボールド黒 + スクリプト青 -->
+          <h1 class="hero__headline" data-animate>
+            <span class="hero__hl-row">WORK FOR</span>
+            <span class="hero__hl-row">EVERY<em class="hero__hl-accent">ONE</em></span>
+            <span class="hero__hl-row">EVERY<em class="hero__hl-accent">WHERE.</em></span>
+          </h1>
+
+          <p class="hero__sub" data-animate>
+            エンタメの力で、世界を動かす仲間を募集しています。
+          </p>
+          <div class="hero__cta" data-animate>
+            <a href="#recruit" class="btn btn--primary btn--lg">求人を見る</a>
+            <a href="#interview" class="btn btn--outline btn--lg">社員インタビュー</a>
+          </div>
+
+        </div>
+
+        <div class="hero__scroll" aria-hidden="true">
+          <span class="hero__scroll-line"></span>
+          <span class="hero__scroll-label">SCROLL</span>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         Vision
+         data-animate-x: 左右からスライドイン
+      ===================================================== -->
+      <section class="section vision" id="vision">
+        <div class="vision__shape" aria-hidden="true"></div>
+        <div class="section__inner">
+          <div class="vision__grid">
+            <div class="vision__text" data-animate-x="-1">
+              <p class="section__label">OUR VISION</p>
+              <h2 class="vision__title">
+                エンタメの力で、<br>すべての人に<br>夢中になれる瞬間を。
+              </h2>
+              <p class="vision__body">
+                私たちは、エンターテインメントの力が人々の生活を豊かにすると信じています。
+                ライバーやYouTuberをはじめとするクリエイターと共に、まだ誰も見たことのない
+                エンターテインメントを生み出し続けることが私たちのミッションです。
+              </p>
+              <a href="#recruit" class="btn btn--primary">一緒に働く</a>
+            </div>
+            <div class="vision__image" data-animate-fade>
+              <img
+                src="./img/ourvision.jpg"
+                alt="チームで働く社員たち"
+                width="800"
+                height="600"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         Business
+         .business__scroll-text は gsap.js の _initScrollText で制御
+         .business__cards は data-stagger でスタガー入場
+      ===================================================== -->
+      <section class="section business" id="business">
+        <div class="section__inner">
+          <div class="section__head" data-animate>
+            <p class="section__label">BUSINESS</p>
+            <h2 class="section__title">私たちの事業</h2>
+          </div>
+        </div>
+
+        <div class="business__scroll-band" aria-hidden="true">
+          <p class="business__scroll-text">
+            ENTERTAINMENT &nbsp;&nbsp;×&nbsp;&nbsp; TECHNOLOGY &nbsp;&nbsp;×&nbsp;&nbsp; CREATIVITY &nbsp;&nbsp;×&nbsp;&nbsp; ENTERTAINMENT &nbsp;&nbsp;×&nbsp;&nbsp; TECHNOLOGY &nbsp;&nbsp;×&nbsp;&nbsp; CREATIVITY &nbsp;&nbsp;×&nbsp;&nbsp; ENTERTAINMENT &nbsp;&nbsp;×&nbsp;&nbsp; TECHNOLOGY &nbsp;&nbsp;×&nbsp;&nbsp; CREATIVITY
+          </p>
+        </div>
+
+        <div class="section__inner">
+          <div class="business__cards" data-stagger>
+            <article class="business__card">
+              <div class="business__card__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="business__card__title">クリエイター支援事業</h3>
+              <p class="business__card__desc">
+                ライバー・YouTuberをはじめとするクリエイターのマネジメントを担う。
+                タレントの成長を支え、新しいスターを世に送り出す仕事。
+              </p>
+            </article>
+            <article class="business__card">
+              <div class="business__card__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="23 7 16 12 23 17 23 7"/>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                </svg>
+              </div>
+              <h3 class="business__card__title">メディア事業</h3>
+              <p class="business__card__desc">
+                オリジナルコンテンツの企画・制作・配信。エンタメの最前線で
+                人々の心を動かすコンテンツを世界へ届ける。
+              </p>
+            </article>
+            <article class="business__card">
+              <div class="business__card__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
+              <h3 class="business__card__title">マーケティング事業</h3>
+              <p class="business__card__desc">
+                企業とクリエイターをつなぐマーケティングソリューション。
+                インフルエンサーの力でブランドの価値を最大化する。
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         Interview
+         data-stagger で4枚カードをスタガー入場
+         ホバーエフェクト（円形スケール）はCSS ::after で実装
+      ===================================================== -->
+      <section class="section interview" id="interview">
+        <div class="section__inner">
+          <div class="section__head" data-animate>
+            <p class="section__label">INTERVIEW</p>
+            <h2 class="section__title">社員インタビュー</h2>
+          </div>
+          <div class="interview__grid" data-animate>
+            <!-- JS（interview.js）で microCMS のデータに差し替え。API失敗時はこの静的カードが表示される -->
+            <article class="interview__card">
+              <div class="interview__card__image"></div>
+              <div class="interview__card__body">
+                <p class="interview__card__dept">エンジニアリング部</p>
+                <p class="interview__card__name">田中 花子</p>
+                <p class="interview__card__quote">
+                  「技術とエンタメの交差点で、まだ誰も見たことないものをつくっています」
+                </p>
+              </div>
+            </article>
+            <article class="interview__card">
+              <div class="interview__card__image"></div>
+              <div class="interview__card__body">
+                <p class="interview__card__dept">クリエイティブ部</p>
+                <p class="interview__card__name">鈴木 太郎</p>
+                <p class="interview__card__quote">
+                  「ゼロから生み出す喜びが、毎日の仕事のモチベーションになっています」
+                </p>
+              </div>
+            </article>
+            <article class="interview__card">
+              <div class="interview__card__image"></div>
+              <div class="interview__card__body">
+                <p class="interview__card__dept">プロデュース部</p>
+                <p class="interview__card__name">山田 美咲</p>
+                <p class="interview__card__quote">
+                  「クリエイターの夢を形にする瞬間、この仕事を選んでよかったと感じます」
+                </p>
+              </div>
+            </article>
+            <article class="interview__card">
+              <div class="interview__card__image"></div>
+              <div class="interview__card__body">
+                <p class="interview__card__dept">マーケティング部</p>
+                <p class="interview__card__name">佐藤 健一</p>
+                <p class="interview__card__quote">
+                  「数字の裏にある人の感動を、データで証明していく仕事が楽しい」
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <!-- 4件超のときだけ表示 (interview.js が hidden を外す) -->
+          <div class="interview__more" id="interviewMore" hidden>
+            <a href="./interview-list.html" class="btn btn--outline btn--lg">
+              インタビューをもっと見る
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <line x1="3" y1="8" x2="13" y2="8"/>
+                <polyline points="9,4 13,8 9,12"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =====================================================
+         Data
+         data-count: GSAP カウントアップ
+         data-stagger: 福利厚生リストをスタガー入場
+      ===================================================== -->
+      <section class="section data" id="data">
+        <div class="section__inner">
+          <div class="section__head" data-animate>
+            <p class="section__label">DATA</p>
+            <h2 class="section__title">数字で見る私たちの会社</h2>
+          </div>
+          <div class="data__numbers">
+            <div class="data__number" data-animate>
+              <p class="data__number__value">
+                <span data-count="1200">0</span><span class="data__number__unit">+</span>
+              </p>
+              <p class="data__number__label">所属クリエイター数</p>
+            </div>
+            <div class="data__number" data-animate>
+              <p class="data__number__value">
+                <span data-count="92">0</span><span class="data__number__unit">%</span>
+              </p>
+              <p class="data__number__label">社員定着率</p>
+            </div>
+            <div class="data__number" data-animate>
+              <p class="data__number__value">
+                <span data-count="31">0</span><span class="data__number__unit">歳</span>
+              </p>
+              <p class="data__number__label">平均年齢</p>
+            </div>
+            <div class="data__number" data-animate>
+              <p class="data__number__value">
+                <span data-count="500">0</span><span class="data__number__unit">+</span>
+              </p>
+              <p class="data__number__label">社員数</p>
+            </div>
+          </div>
+          <div class="data__benefits__head" data-animate>
+            <p class="section__label">BENEFITS</p>
+            <h3 class="data__benefits__title">福利厚生・制度</h3>
+          </div>
+          <ul class="data__benefits" data-stagger>
+            <li class="data__benefit">完全週休2日制</li>
+            <li class="data__benefit">フレックスタイム制</li>
+            <li class="data__benefit">リモートワーク可</li>
+            <li class="data__benefit">書籍購入補助</li>
+            <li class="data__benefit">育児支援制度</li>
+            <li class="data__benefit">充実した健康診断</li>
+            <li class="data__benefit">キャリア支援研修</li>
+            <li class="data__benefit">社内副業制度</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         Recruit
+         Swiper カルーセル（_initSwiper で初期化）
+      ===================================================== -->
+      <section class="section recruit" id="recruit">
+        <div class="section__inner">
+          <div class="section__head" data-animate>
+            <p class="section__label">RECRUIT</p>
+            <h2 class="section__title">募集職種</h2>
+          </div>
+        </div>
+        <div class="recruit__swiper-wrap" data-animate>
+          <div class="swiper recruit__swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <article class="recruit__card">
+                  <span class="recruit__card__type">正社員</span>
+                  <h3 class="recruit__card__title">フロントエンド<br>エンジニア</h3>
+                  <p class="recruit__card__location">東京 / リモート可</p>
+                  <a href="#" class="recruit__card__link" aria-label="フロントエンドエンジニアの詳細を見る">
+                    詳細を見る
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                      <line x1="3" y1="8" x2="13" y2="8"/>
+                      <polyline points="9,4 13,8 9,12"/>
+                    </svg>
+                  </a>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="recruit__card">
+                  <span class="recruit__card__type">正社員</span>
+                  <h3 class="recruit__card__title">バックエンド<br>エンジニア</h3>
+                  <p class="recruit__card__location">東京 / フルリモート可</p>
+                  <a href="#" class="recruit__card__link" aria-label="バックエンドエンジニアの詳細を見る">
+                    詳細を見る
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                      <line x1="3" y1="8" x2="13" y2="8"/>
+                      <polyline points="9,4 13,8 9,12"/>
+                    </svg>
+                  </a>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="recruit__card">
+                  <span class="recruit__card__type">正社員</span>
+                  <h3 class="recruit__card__title">UIデザイナー</h3>
+                  <p class="recruit__card__location">東京</p>
+                  <a href="#" class="recruit__card__link" aria-label="UIデザイナーの詳細を見る">
+                    詳細を見る
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                      <line x1="3" y1="8" x2="13" y2="8"/>
+                      <polyline points="9,4 13,8 9,12"/>
+                    </svg>
+                  </a>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="recruit__card">
+                  <span class="recruit__card__type">正社員</span>
+                  <h3 class="recruit__card__title">コンテンツ<br>プロデューサー</h3>
+                  <p class="recruit__card__location">東京</p>
+                  <a href="#" class="recruit__card__link" aria-label="コンテンツプロデューサーの詳細を見る">
+                    詳細を見る
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                      <line x1="3" y1="8" x2="13" y2="8"/>
+                      <polyline points="9,4 13,8 9,12"/>
+                    </svg>
+                  </a>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="recruit__card">
+                  <span class="recruit__card__type">正社員</span>
+                  <h3 class="recruit__card__title">デジタル<br>マーケター</h3>
+                  <p class="recruit__card__location">東京 / 大阪</p>
+                  <a href="#" class="recruit__card__link" aria-label="デジタルマーケターの詳細を見る">
+                    詳細を見る
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                      <line x1="3" y1="8" x2="13" y2="8"/>
+                      <polyline points="9,4 13,8 9,12"/>
+                    </svg>
+                  </a>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="recruit__card">
+                  <span class="recruit__card__type">正社員</span>
+                  <h3 class="recruit__card__title">企画・営業</h3>
+                  <p class="recruit__card__location">東京</p>
+                  <a href="#" class="recruit__card__link" aria-label="企画・営業の詳細を見る">
+                    詳細を見る
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                      <line x1="3" y1="8" x2="13" y2="8"/>
+                      <polyline points="9,4 13,8 9,12"/>
+                    </svg>
+                  </a>
+                </article>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         CTA Section
+      ===================================================== -->
+      <section class="cta-section" id="entry">
+        <div class="cta-section__inner">
+          <h2 class="cta-section__title" data-animate>
+            新しい物語を、<br>一緒につくろう。
+          </h2>
+          <p class="cta-section__lead" data-animate>
+            エンタメの力で世界を動かす。そのチームの一員になりませんか。
+          </p>
+          <a href="#recruit" class="btn btn--primary btn--xl" data-animate>エントリーする</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================
+       Contact
+    ===================================================== -->
+    <section class="section contact" id="contact">
+      <div class="section__inner">
+        <div class="section__head" data-animate>
+          <p class="section__label">CONTACT</p>
+          <h2 class="section__title">お問い合わせ</h2>
+          <p class="contact__lead">
+            募集職種へのご質問・エントリーに関するお問い合わせはこちらから。
+          </p>
+        </div>
+        <div class="contact__form-wrap" data-animate>
+
+          <!-- 送信成功メッセージ（初期非表示） -->
+          <div class="contact__success" id="contactSuccess" aria-hidden="true">
+            <div class="contact__success-icon" aria-hidden="true">✓</div>
+            <h3 class="contact__success-title">送信が完了しました</h3>
+            <p class="contact__success-body">
+              お問い合わせありがとうございます。<br>
+              2〜3営業日以内にご連絡いたします。
+            </p>
+          </div>
+
+          <!-- フォーム -->
+          <form class="form" id="contactForm" novalidate>
+            <div class="form__group">
+              <label class="form__label" for="name">
+                お名前<span class="form__required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form__input"
+                type="text"
+                id="name"
+                name="name"
+                autocomplete="name"
+                placeholder="山田 太郎"
+              />
+              <span class="form__error" id="nameError" role="alert"></span>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="email">
+                メールアドレス<span class="form__required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form__input"
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                placeholder="example@email.com"
+              />
+              <span class="form__error" id="emailError" role="alert"></span>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="position">
+                応募希望職種<span class="form__required" aria-hidden="true">*</span>
+              </label>
+              <select class="form__input form__select" id="position" name="position">
+                <option value="">選択してください</option>
+                <option value="frontend">フロントエンドエンジニア</option>
+                <option value="backend">バックエンドエンジニア</option>
+                <option value="designer">UIデザイナー</option>
+                <option value="producer">コンテンツプロデューサー</option>
+                <option value="marketer">デジタルマーケター</option>
+                <option value="planning">企画・営業</option>
+                <option value="other">その他・インターン</option>
+              </select>
+              <span class="form__error" id="positionError" role="alert"></span>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="message">
+                志望動機・メッセージ<span class="form__required" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                class="form__textarea"
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="志望動機やご質問をご記入ください"
+              ></textarea>
+              <span class="form__error" id="messageError" role="alert"></span>
+            </div>
+            <div class="form__action">
+              <button class="btn btn--primary btn--lg form__submit" type="submit">
+                <span class="form__submit-text">送信する</span>
+                <span class="form__spinner" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       Footer
+    ===================================================== -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <a href="/" class="footer__logo" aria-label="YSMlab トップページ">
+          <img src="./img/common/logo-white.svg" alt="YSMlab" width="104" height="28">
+        </a>
+        <nav class="footer__nav" aria-label="フッターナビゲーション">
+          <ul class="footer__nav-list">
+            <li><a href="#business">事業内容</a></li>
+            <li><a href="#interview">インタビュー</a></li>
+            <li><a href="#data">環境・制度</a></li>
+            <li><a href="#recruit">募集職種</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <p class="footer__copy">
+          <small>&copy; <span id="footerYear"></span> RECRUIT. All Rights Reserved.</small>
+        </p>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+       JS — 読み込み順序厳守:
+       GSAP本体 → ScrollTrigger → Swiper → 各JS → main.js
+    ===================================================== -->
+    <script src="./js/lib/gsap.min.js"></script>
+    <script src="./js/lib/ScrollTrigger.min.js"></script>
+    <script src="./js/lib/swiper-bundle.min.js"></script>
+    <script src="./js/nav.js"></script>
+    <script src="./js/scroll.js"></script>
+    <script src="./js/form.js"></script>
+    <script src="./js/interview.js"></script>
+    <script src="./js/gsap.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

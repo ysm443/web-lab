@@ -1,0 +1,1078 @@
+/* ============================================================
+   style.css — 案件固有スタイル（メインの作業場所）
+
+   音楽フェス_rev: 独自デザインのため全セクションをここに記述。
+   Base — ダークテーマ上書き
+   ロゴ（常時固定）
+   ハンバーガー + オーバーレイナビ
+   スティッキーナビ
+   メインビジュアル
+   INFORMATION
+   ARTIST
+   TICKET
+   TIMETABLE
+   AREAMAP
+   ACCESS
+   GUIDE & FAQ
+   FOOTER
+   固定チケットCTA
+   YouTubeモーダル
+   アニメーション
+   レスポンシブ
+============================================================ */
+
+@layer components {
+
+/* ============================================================
+   Base — ダークテーマ上書き
+============================================================ */
+body {
+  background: #1a1a2e;
+  color: #fff;
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", "ヒラギノ角ゴ Pro W3", sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* 非表示ユーティリティ */
+.hide { display: none; }
+
+/* セクション共通 */
+section, article {
+  max-width: 1280px;
+  margin: 0 auto 80px;
+  padding-inline: var(--spacing-6);
+}
+
+/* セクション見出し */
+.section-title {
+  font-family: "sutro", serif;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-2);
+}
+
+.section-title small {
+  display: block;
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+  font-size: var(--text-sm);
+  text-transform: none;
+  line-height: 2;
+  margin: 0 auto var(--spacing-10);
+}
+
+
+/* ============================================================
+   ロゴ（常時固定表示）
+============================================================ */
+.site-logo {
+  position: fixed;
+  top: var(--spacing-3);
+  left: var(--spacing-4);
+  z-index: var(--layer-top);
+  pointer-events: auto;
+}
+
+.site-logo img {
+  width: clamp(120px, 14vw, 200px);
+  height: auto;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+}
+
+
+/* ============================================================
+   ハンバーガー + オーバーレイナビ
+============================================================ */
+.nav-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--layer-b);
+  pointer-events: none;
+}
+
+/* ハンバーガーボタン（SP のみ表示） */
+.menu-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 48px;
+  height: 48px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: var(--layer-top);
+}
+
+.menu-btn span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #fff;
+  border-radius: var(--shape-full);
+  transition: translate 300ms, rotate 300ms, opacity 300ms;
+  transform-origin: center;
+}
+
+.menu-btn[aria-expanded="true"] span:nth-child(1) { translate: 0 8px; rotate: -45deg; }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3) { translate: 0 -8px; rotate: 45deg; }
+
+/* オーバーレイナビ */
+.global-nav {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a2e, #2d2d55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 400ms, visibility 400ms;
+  pointer-events: none;
+  z-index: var(--layer-c);
+}
+
+.global-nav[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.global-nav__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  list-style: none;
+}
+
+.global-nav__list a {
+  font-family: "sutro", serif;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  text-transform: uppercase;
+  color: #fff;
+  transition: color 200ms;
+}
+
+.global-nav__list a:hover { color: var(--color-primary); }
+
+
+/* ============================================================
+   スティッキーナビ（PC）
+============================================================ */
+/* JS（Lenis scroll イベント）で .is-stuck を付与し fixed 固定する */
+.sticky-nav-wrap {
+  z-index: var(--layer-b);
+}
+
+.sticky-nav-wrap.is-stuck {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.sticky-nav {
+  background: linear-gradient(90deg, #2d2d55, #404079);
+}
+
+.sticky-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-10);
+  padding: var(--spacing-2) 0;
+  list-style: none;
+}
+
+.sticky-nav a {
+  font-family: "sutro", serif;
+  font-size: clamp(0.875rem, 1.5vw, 1.1rem);
+  text-transform: uppercase;
+  color: #fff;
+  transition: opacity 200ms;
+}
+
+.sticky-nav a:hover { opacity: 0.7; }
+
+
+/* ============================================================
+   メインビジュアル
+============================================================ */
+.visual {
+  position: relative;
+  width: 100%;
+  height: 720px;
+  margin: 0;
+  max-width: none;
+}
+
+.visual__bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(65%);
+}
+
+.visual__slider {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visual__slider .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.visual__slider .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* <a>にwidth/heightを与えてスライド全体を使い、中央配置 */
+.visual__slider .swiper-slide a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.visual__slider .swiper-slide img {
+  width: clamp(280px, 40vw, 560px);
+  height: auto;
+  display: block;
+}
+
+
+/* ============================================================
+   INFORMATION
+============================================================ */
+#information { margin-top: var(--spacing-16); }
+
+.info-list {
+  max-width: 1280px;
+  width: 80%;
+  margin: 0 auto var(--spacing-10);
+  font-size: var(--text-sm);
+  list-style: none;
+}
+
+.info-list li:first-child { border-top: 1px solid rgba(200,200,200,0.8); }
+.info-list li { border-bottom: 1px solid rgba(200,200,200,0.8); }
+
+.info-list a {
+  display: block;
+  color: #fff;
+  transition: 0.3s ease-out;
+  position: relative;
+}
+
+.info-list a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.4);
+  transition: width 0.3s ease-out;
+}
+
+@media (any-hover: hover) {
+  .info-list a:hover .info-content { transform: translateX(16px); }
+  .info-list a:hover::before { width: 100%; }
+}
+
+.info-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-20);
+  padding: var(--spacing-6) 0;
+  transition: transform 0.3s ease-out;
+}
+
+.info-head { position: relative; white-space: nowrap; }
+
+.badge-new {
+  display: inline-block;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  padding: 3px 4px;
+  background: #f06aaa;
+  color: #fff;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  left: calc(100% + var(--spacing-6));
+  transform: translateY(-50%);
+  animation: badgeBlink 2s infinite;
+}
+
+@keyframes badgeBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.view-btn {
+  max-width: 200px;
+  width: 80%;
+  margin: 0 auto var(--spacing-10);
+  text-align: center;
+}
+
+.view-btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  height: 48px;
+  font-size: var(--text-md);
+  color: #fff;
+  background: rgba(64,64,121,0.8);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--shape-full);
+  transition: 0.3s;
+}
+
+.view-btn a::after { content: '→'; }
+
+@media (any-hover: hover) {
+  .view-btn a:hover {
+    background: var(--color-primary);
+    box-shadow: 0 0 12px rgba(172,60,220,0.6);
+  }
+}
+
+/* 動画スライダー */
+.video-slider-wrap { padding-inline: var(--spacing-6); }
+
+#swiper2 .swiper-slide {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--shape-md);
+}
+
+#swiper2 .js-modal-btn {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: var(--shape-md);
+  overflow: hidden;
+  filter: brightness(70%) opacity(0.8);
+  cursor: pointer;
+}
+
+#swiper2 .js-modal-btn img {
+  width: 100%;
+  display: block;
+  transition: transform 1.2s;
+}
+
+@media (any-hover: hover) {
+  #swiper2 .swiper-slide:hover .js-modal-btn img { transform: scale(1.1); }
+  #swiper2 .swiper-slide:hover .play-btn { background: rgba(255,255,255,0.8); }
+  #swiper2 .swiper-slide:hover .play-btn::before { color: rgba(0,0,0,0.4); }
+}
+
+#swiper2 figcaption {
+  width: 90%;
+  margin: var(--spacing-2) auto 0;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.play-btn {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(5vw, 56px);
+  height: min(5vw, 56px);
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background: rgba(50,50,50,0.5);
+  pointer-events: none;
+  transition: background 0.6s ease-out;
+}
+
+.play-btn::before {
+  content: "\25B6";
+  font-size: min(2vw, 22px);
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  transition: color 0.6s ease-out;
+}
+
+
+/* ============================================================
+   ARTIST
+============================================================ */
+.artist-message {
+  max-width: 1280px;
+  width: 80%;
+  padding: var(--spacing-6) var(--spacing-4);
+  margin: var(--spacing-10) auto;
+  font-size: var(--text-sm);
+  text-align: center;
+  line-height: var(--lh-relaxed);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: var(--shape-lg);
+}
+
+.text-shadow  { font-family: "sutro", serif; color: var(--color-primary); }
+.text-prisme  { font-family: "sutro", serif; color: var(--color-secondary); }
+.text-luminous { font-family: "sutro", serif; color: var(--color-tertiary); }
+
+.artist-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-6);
+}
+
+.artist-day { flex: 1; text-align: center; }
+
+.artist-day__title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.artist-day__title time {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-family: "sutro", serif;
+}
+
+.artist-day__title span {
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  text-transform: uppercase;
+  padding: 2px var(--spacing-2);
+  border: 1px solid #fff;
+  border-radius: var(--shape-xs);
+}
+
+/* ステージタブ */
+.stage-tabs {
+  display: flex;
+  gap: var(--spacing-4);
+  justify-content: center;
+  margin-bottom: var(--spacing-4);
+  font-family: "sutro", serif;
+  text-transform: uppercase;
+}
+
+.stage-tab {
+  flex: 1;
+  font-size: clamp(0.875rem, 2vw, 1.25rem);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--shape-xs);
+  padding: var(--spacing-2) var(--spacing-6);
+  color: #fff;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.stage-tab--shadow.is-active { background: var(--color-primary); border-color: transparent; }
+.stage-tab--prisme.is-active { background: var(--color-secondary); border-color: transparent; color: var(--color-on-secondary); }
+
+@media (any-hover: hover) {
+  .stage-tab:hover { background: rgba(255,255,255,0.1); }
+}
+
+/* アーティストリスト */
+.artist-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-6);
+  list-style: none;
+}
+
+.artist-list figure {
+  overflow: hidden;
+  border-radius: var(--shape-sm) var(--shape-sm) 0 0;
+  transition: box-shadow 0.3s;
+}
+
+.img-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--shape-sm) var(--shape-sm) 0 0;
+}
+
+.img-wrap img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ホバー光沢 */
+.img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: linear-gradient(25deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 60%);
+  transform: rotate(25deg) translate(-60%, 60%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media (any-hover: hover) {
+  .img-wrap:hover::before {
+    animation: imgReflection 0.8s ease forwards;
+    opacity: 1;
+  }
+}
+
+@keyframes imgReflection {
+  0%   { transform: rotate(25deg) translate(-60%, 60%); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: rotate(25deg) translate(60%, -60%); opacity: 0; }
+}
+
+.artist-list--shadow figcaption,
+.artist-list--prisme figcaption {
+  border-radius: 0 0 var(--shape-sm) var(--shape-sm);
+  padding: var(--spacing-2) var(--spacing-3);
+  /* sutro: Latin / Zen Kaku Gothic New 700: 日本語 */
+  font-family: "sutro", "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  letter-spacing: var(--tracking-wide);
+}
+
+.artist-list--shadow figcaption {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.artist-list--prisme figcaption {
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+
+
+/* ============================================================
+   TICKET
+============================================================ */
+.ticket-cards {
+  display: flex;
+  gap: var(--spacing-5);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: var(--spacing-10) 0;
+}
+
+.ticket {
+  display: flex;
+  width: calc(50% - var(--spacing-8));
+  max-width: 360px;
+  border-radius: var(--shape-md);
+  overflow: hidden;
+  position: relative;
+}
+
+/* 切り欠き */
+.ticket::before,
+.ticket::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transform: translateY(-50%);
+  background: transparent;
+}
+
+.ticket::before { left: -12px; z-index: 10; }
+.ticket::after  { right: -12px; z-index: 10; }
+
+.ticket__left {
+  flex: 2;
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+.ticket__right {
+  flex: 1;
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-1);
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+}
+
+.ticket__right p:first-child { font-family: "sutro", serif; font-size: clamp(1.25rem, 3vw, 1.75rem); letter-spacing: var(--tracking-wide); }
+.ticket__right p:last-child  { font-size: var(--text-xs); letter-spacing: var(--tracking-wide); }
+
+.ticket__right::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -1px; bottom: 0;
+  width: 2px;
+  background-image: repeating-linear-gradient(to bottom, #fff 0 6px, transparent 6px 12px);
+}
+
+.ticket__type  { font-size: var(--text-md); font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-wide); margin-bottom: var(--spacing-1); }
+.ticket__price { font-size: var(--text-2xl); font-weight: var(--font-weight-bold); }
+
+.one-day .ticket__left  { background: linear-gradient(135deg, rgba(255,100,180,0.85), rgba(180,50,220,0.85)); }
+.one-day .ticket__right { background: rgba(255,100,180,0.3); }
+.two-day .ticket__left  { background: linear-gradient(135deg, rgba(0,200,255,0.85), rgba(0,120,255,0.85)); }
+.two-day .ticket__right { background: rgba(0,200,255,0.3); }
+
+.ticket-notes {
+  max-width: 800px;
+  font-size: var(--text-sm);
+  padding-inline: var(--spacing-2);
+  margin: 0 auto;
+  line-height: var(--lh-relaxed);
+}
+
+.ticket-notes p::before { content: "※"; padding-right: var(--spacing-1); }
+
+.ticket-attention {
+  text-align: center;
+  font-size: var(--text-sm);
+  margin: var(--spacing-10) auto;
+}
+
+.ticket-attention a {
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+  padding-bottom: 2px;
+}
+
+.ticket-buy-btn {
+  width: 280px;
+  margin: var(--spacing-10) auto;
+  text-align: center;
+}
+
+.ticket-buy-btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  height: 48px;
+  font-size: var(--text-md);
+  color: #1a1a2e;
+  background: var(--color-tertiary);
+  border-radius: var(--shape-full);
+  box-shadow: 0 0 6px rgba(0,0,0,0.4);
+  transition: 0.3s;
+}
+
+.ticket-buy-btn a::after { content: '→'; font-size: var(--text-lg); transition: transform 0.3s; }
+
+@media (any-hover: hover) {
+  .ticket-buy-btn a:hover { background: #ff8c42; box-shadow: 0 0 6px rgba(255,180,71,0.8); }
+  .ticket-buy-btn a:hover::after { transform: translateX(6px); }
+}
+
+
+/* ============================================================
+   TIMETABLE
+============================================================ */
+.tt-tabs {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: "sutro", serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  text-transform: uppercase;
+  padding-bottom: var(--spacing-6);
+}
+
+.tt-tab { color: rgba(255,255,255,0.3); transition: color 0.3s; }
+.tt-tab--0919.is-active { color: rgba(177,255,176,1); }
+.tt-tab--0920.is-active { color: rgba(255,176,210,1); }
+
+.tt-lists img { width: 80%; display: block; margin: 0 auto; }
+
+
+/* ============================================================
+   AREAMAP
+============================================================ */
+#areamap img { display: block; width: 80%; margin: 0 auto; }
+
+
+/* ============================================================
+   ACCESS
+============================================================ */
+.venue-name {
+  text-align: center;
+  line-height: var(--lh-normal);
+  font-size: var(--text-md);
+}
+
+.venue-name span { font-size: clamp(1.375rem, 3vw, 1.75rem); }
+
+address {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  text-align: center;
+  font-style: normal;
+  margin-bottom: var(--spacing-10);
+}
+
+#access iframe {
+  width: 80%;
+  display: block;
+  margin: var(--spacing-10) auto 0;
+  border: none;
+}
+
+.access-item {
+  display: flex;
+  margin: var(--spacing-10) auto;
+  padding-inline: var(--spacing-10);
+}
+
+.access-item h3 {
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  flex: 1;
+  border-right: 2px dotted rgba(200,200,200,0.8);
+  padding: var(--spacing-4) var(--spacing-12);
+  line-height: var(--lh-tight);
+}
+
+.access-detail {
+  flex: 2;
+  padding-left: var(--spacing-6);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.access-detail dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  padding-left: var(--spacing-6);
+  border-left: 4px solid #fff;
+  margin-bottom: var(--spacing-6);
+}
+
+.access-detail dl:last-child { margin-bottom: 0; }
+
+
+/* ============================================================
+   GUIDE & FAQ
+============================================================ */
+.guide-box,
+.faq-box {
+  width: 80%;
+  padding: var(--spacing-6) var(--spacing-10);
+  margin: 0 auto;
+  border: 1px solid #fff;
+  border-radius: 20px;
+}
+
+.guide-box h3 {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  text-align: center;
+  padding-top: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.accordion-list { list-style: none; }
+
+/* アコーディオン */
+.accordion {
+  display: block;
+  position: relative;
+  padding: var(--spacing-4) var(--spacing-10) var(--spacing-4) 60px;
+  margin: var(--spacing-4) 0;
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  cursor: pointer;
+  transition: 0.3s;
+  line-height: var(--lh-normal);
+}
+
+.accordion::before {
+  content: "Q";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: var(--text-lg);
+  background: #323232;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.accordion::after {
+  content: '+';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  font-size: var(--text-md);
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+.accordion.active::after { content: '－'; }
+
+.accordion:hover { border-radius: var(--shape-sm); background: rgba(255,255,255,0.05); }
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.panel__answer {
+  width: 90%;
+  display: block;
+  min-height: 40px;
+  margin: 0 auto var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-4) var(--spacing-3) 60px;
+  position: relative;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: var(--lh-relaxed);
+}
+
+.panel__answer::before {
+  content: "A";
+  position: absolute;
+  left: 15px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: var(--text-lg);
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+}
+
+.shuttle-table {
+  width: 90%;
+  margin: var(--spacing-4) auto;
+  font-size: var(--text-xs);
+}
+
+.shuttle-table th,
+.shuttle-table td {
+  padding: var(--spacing-1) var(--spacing-2);
+  text-align: center;
+  border: 2px solid #fff;
+}
+
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer {
+  padding-block: var(--spacing-12) var(--spacing-8);
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.footer__sns {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-6);
+  list-style: none;
+  margin-bottom: var(--spacing-6);
+}
+
+.footer__copy { font-size: var(--text-xs); color: rgba(255,255,255,0.6); }
+
+hr { border-color: rgba(255,255,255,0.2); margin-block: var(--spacing-6); }
+
+
+/* ============================================================
+   固定チケットCTA
+   PC: 右辺中央縦ライン / タブレット以下: 右下横ボタン
+============================================================ */
+.ticket-cta {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: var(--layer-b);
+}
+
+.ticket-cta a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-6) var(--spacing-3);
+  background: linear-gradient(180deg, var(--color-tertiary), #ff8c42);
+  color: #1a1a2e;
+  font-family: "sutro", serif;
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  border-radius: var(--shape-sm) 0 0 var(--shape-sm);
+  box-shadow: -4px 0 16px rgba(255,179,71,0.35);
+  transition: box-shadow 250ms, padding 250ms;
+}
+
+.ticket-cta a::before {
+  content: '✦';
+  font-family: serif;
+  font-size: 0.65rem;
+  writing-mode: horizontal-tb;
+  opacity: 0.6;
+}
+
+@media (any-hover: hover) {
+  .ticket-cta a:hover {
+    padding: var(--spacing-6) var(--spacing-4);
+    box-shadow: -6px 0 24px rgba(255,140,66,0.6);
+  }
+}
+
+
+/* ============================================================
+   YouTube モーダル
+============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: var(--layer-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-inner {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.modal-close:hover { background: rgba(255,255,255,0.2); }
+
+.modal-video-wrap {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.modal-video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+/* ============================================================
+   アニメーション（GSAP FOUC防止）
+============================================================ */
+[data-animate] { opacity: 0; }
+
+
+/* ============================================================
+   レスポンシブ
+============================================================ */
+/* タブレット 769px〜1024px */
+@media screen and (max-width: 1024px) {
+  .ticket-cta {
+    top: auto;
+    bottom: var(--spacing-6);
+    right: var(--spacing-4);
+    transform: none;
+  }
+
+  .ticket-cta a {
+    writing-mode: horizontal-tb;
+    flex-direction: row;
+    padding: var(--spacing-3) var(--spacing-6);
+    border-radius: var(--shape-full);
+    font-size: var(--text-xs);
+    box-shadow: 0 4px 16px rgba(255,179,71,0.4);
+  }
+
+  .ticket-cta a::before { writing-mode: horizontal-tb; }
+}
+
+/* SP 〜768px */
+@media screen and (max-width: 768px) {
+  .visual { height: 400px; }
+  .visual__slider .swiper-slide img { width: clamp(200px, 70vw, 350px); }
+
+  .menu-btn { display: flex; }
+  .sticky-nav { display: none; }
+
+  .info-list { width: 90%; }
+  .info-content { flex-direction: column; align-items: flex-start; gap: var(--spacing-2); padding: var(--spacing-2) 0; }
+
+  .artist-message { width: 95%; padding: var(--spacing-2) var(--spacing-4); }
+  .artist-grid { flex-direction: column; }
+  .artist-day { width: 100%; padding-inline: var(--spacing-6); }
+
+  .ticket { width: 80%; }
+  .ticket-cards { flex-direction: column; align-items: center; }
+
+  .access-item { flex-direction: column; padding-inline: 0; width: 90%; }
+  .access-item h3 { border: none; }
+  .access-detail dl { border-left: 1px solid #fff; }
+
+  .guide-box, .faq-box { width: 100%; border: none; padding-inline: 0; }
+}
+
+} /* end @layer components */

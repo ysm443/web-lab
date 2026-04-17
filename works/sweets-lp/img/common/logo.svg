@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" role="img" aria-label="Gaufre Dorée">
+  <defs>
+    <style>
+      .ld-icon { fill: none; stroke: #3D2B1F; stroke-linecap: round; }
+      .ld-name { font-family: Georgia, Garamond, 'Times New Roman', serif; font-style: italic; fill: #3D2B1F; }
+      .ld-sub  { font-family: Georgia, Garamond, 'Times New Roman', serif; fill: #7A5C48; }
+    </style>
+  </defs>
+
+  <!-- Waffle grid icon -->
+  <rect x="5" y="11" width="38" height="38" rx="3" stroke-width="1.6" class="ld-icon"/>
+  <line x1="17.7" y1="11" x2="17.7" y2="49" stroke-width="1" class="ld-icon"/>
+  <line x1="30.3" y1="11" x2="30.3" y2="49" stroke-width="1" class="ld-icon"/>
+  <line x1="5"    y1="23.7" x2="43" y2="23.7" stroke-width="1" class="ld-icon"/>
+  <line x1="5"    y1="36.3" x2="43" y2="36.3" stroke-width="1" class="ld-icon"/>
+
+  <!-- Brand name -->
+  <text x="56" y="37" font-size="26" class="ld-name">Gaufre Dor&#233;e</text>
+  <text x="57" y="52" font-size="8.5" letter-spacing="0.18em" class="ld-sub">WAFFLES &#38; CAF&#201;</text>
+</svg>

@@ -1,0 +1,20 @@
+/* ============================================================
+   index.css — エントリーポイント
+   HTMLで読み込むのはこのファイルのみ。
+   <link rel="stylesheet" href="./css/index.css">
+
+   読み込み順序 = カスケードの優先順位。触らない。
+   追加するときは components の下に @import を追記
+============================================================ */
+@layer reset, tokens, components;
+
+@import './reset.css';
+@import './token.css';
+@import './base.css';
+@import './components.css';
+@import './style.css';
+
+/* 複数ページ対応時はここに追記
+@import "./pages/top.css";
+@import "./pages/about.css";
+*/

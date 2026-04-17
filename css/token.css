@@ -1,0 +1,92 @@
+/* ============================================================
+   token.css — ポートフォリオ用デザイントークン
+   固定ダークテーマ
+============================================================ */
+
+@layer tokens {
+  :root {
+    /* ---- Color ---- */
+    --color-bg:               #fcfcfc;
+    --color-surface:          #F6F8F8;
+    --color-surface-high:     #ffffff;
+    --color-border:           #dddddd;
+
+    --color-on-bg:            #37383C;
+    --color-on-bg-variant:    #6B7280;
+    --color-accent:           #84B5C5;
+    --color-accent-hover:     #6AA3B5;
+
+    --color-tag-bg:           #EBF4F7;
+    --color-tag-text:         #4A96AA;
+
+    --color-scrim:            rgba(0, 0, 0, 0.5);
+
+    /* ---- Spacing ---- */
+    --spacing-1:  4px;
+    --spacing-2:  8px;
+    --spacing-3:  12px;
+    --spacing-4:  16px;
+    --spacing-5:  20px;
+    --spacing-6:  24px;
+    --spacing-8:  32px;
+    --spacing-10: 40px;
+    --spacing-12: 48px;
+    --spacing-16: 64px;
+    --spacing-20: 80px;
+    --spacing-24: 96px;
+
+    /* ---- Typography ---- */
+    --font-en:   "Albert Sans", system-ui, -apple-system, sans-serif;
+    --font-ja:   "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+    --font-mono: "SF Mono", "Fira Mono", "Consolas", "Menlo", monospace;
+
+    --fw-regular: 400;
+    --fw-medium:  500;
+    --fw-bold:    700;
+
+    --text-xs:   0.75rem;
+    --text-sm:   0.875rem;
+    --text-md:   1rem;
+    --text-lg:   1.25rem;
+    --text-xl:   1.5rem;
+    --text-2xl:  2rem;
+    --text-hero: clamp(2.5rem, 7vw, 5rem);
+
+    --lh-tight:   1.2;
+    --lh-normal:  1.6;
+    --lh-relaxed: 1.8;
+
+    --tracking-tight: -0.02em;
+    --tracking-wide:   0.06em;
+
+    /* ---- Shape ---- */
+    --shape-sm:   6px;
+    --shape-md:   10px;
+    --shape-lg:   16px;
+    --shape-full: 9999px;
+
+    /* ---- Layout ---- */
+    --site-max:    1200px;
+    --header-h:    64px;
+
+    /* ---- Motion ---- */
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --ease-out:      cubic-bezier(0.05, 0.7, 0.1, 1);
+    --dur-fast:   150ms;
+    --dur-normal: 250ms;
+    --dur-slow:   400ms;
+
+    /* ---- Z-index ---- */
+    --z-header: 30;
+    --z-modal:  50;
+    --z-top:   100;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --dur-fast:   1ms;
+      --dur-normal: 1ms;
+      --dur-slow:   1ms;
+    }
+  }
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>社員インタビュー一覧 | RECRUIT</title>
+    <meta name="description" content="エンタメで世界を動かす社員たちのインタビュー一覧。" />
+    <link rel="icon" href="./img/common/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;700&display=swap"
+    />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+
+  <body>
+
+    <header class="header" id="header">
+      <div class="header__inner">
+        <a href="./" class="header__logo" aria-label="YSMlab トップページ">
+          <img src="./img/common/logo.svg" alt="YSMlab" width="104" height="28">
+        </a>
+        <nav class="header__nav" id="headerNav" aria-label="グローバルナビゲーション">
+          <ul class="header__nav-list">
+            <li><a href="./#business">事業内容</a></li>
+            <li><a href="./#interview">インタビュー</a></li>
+            <li><a href="./#data">環境・制度</a></li>
+            <li><a href="./#recruit">募集職種</a></li>
+            <li><a href="./#contact">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <div class="header__actions">
+          <a href="./#recruit" class="btn btn--primary btn--sm">エントリー</a>
+          <button
+            class="header__menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="headerNav"
+            aria-label="メニューを開く"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section subpage-hero">
+        <div class="section__inner">
+          <div class="section__head">
+            <p class="section__label">INTERVIEW</p>
+            <h1 class="section__title">社員インタビュー</h1>
+            <p class="subpage-hero__count">
+              全 <span id="interviewCount">—</span>
+            </p>
+          </div>
+          <div class="interview__grid" id="interviewListGrid">
+            <!-- interview-list.js で描画 -->
+            <div class="interview-list__skeleton"></div>
+            <div class="interview-list__skeleton"></div>
+            <div class="interview-list__skeleton"></div>
+            <div class="interview-list__skeleton"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="subpage-footer">
+      <div class="subpage-footer__inner">
+        <a href="./" class="subpage-footer__logo">
+          <img src="./img/common/logo-white.svg" alt="RECRUIT" width="80" height="26" />
+        </a>
+        <p class="subpage-footer__copy">
+          <small>&copy; <span id="footerYear"></span> RECRUIT. All Rights Reserved.</small>
+        </p>
+      </div>
+    </footer>
+
+    <script src="./js/nav.js"></script>
+    <script src="./js/interview-list.js"></script>
+    <script>
+      document.getElementById('footerYear').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+<!-- placeholder_staff.svg — 400 × 400 px / 1:1 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#dde4ec"/>
+  <!-- head -->
+  <circle cx="200" cy="148" r="64" fill="#a8b8c8"/>
+  <!-- body -->
+  <path d="M72 380 Q72 272 200 272 Q328 272 328 380Z" fill="#a8b8c8"/>
+  <text x="200" y="396" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#6e8294">400 × 400</text>
+</svg>

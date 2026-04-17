@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 125.1 154.9">
+  <!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #555;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4px;
+      }
+    </style>
+  </defs>
+  <g id="icon">
+    <g>
+      <line class="st0" x1="42.1" y1="109" x2="68.7" y2="109"/>
+      <line class="st0" x1="43.3" y1="118.3" x2="68.7" y2="118.3"/>
+      <line class="st0" x1="45.7" y1="127.6" x2="68.7" y2="127.6"/>
+      <polygon class="st0" points="45.3 137 40.5 99.6 84.6 99.6 79.8 137 45.3 137"/>
+      <polygon class="st0" points="99.3 82.5 95.3 99.6 29.8 99.6 25.8 82.5 99.3 82.5"/>
+      <path class="st0" d="M25.8,82.5c-.4-1.8-1.4-4-2.4-5.6-6.6-10.5-14.8-38.8-1.1-51.7,13.3-12.5,28.1-5.5,40.3-4.7,12.2-.8,27-7.7,40.3,4.7,13.7,12.9,5.4,41.2-1.1,51.7-1,1.6-2,3.7-2.4,5.6"/>
+      <path class="st0" d="M44.5,32.5c9,0,13.4,4.5,18,4.5s9-4.5,18-4.5"/>
+    </g>
+  </g>
+</svg>

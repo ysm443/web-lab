@@ -1,0 +1,452 @@
+/* ============================================================
+   components.css — UIコンポーネント
+   Header / Footer / Button / Form / Animation の共通パーツ。
+   案件ごとにデザインに合わせて編集してよい。
+
+   収録:
+   1. Layout Utility  — .section / .section__inner 等
+   2. Header
+   3. Button
+   4. Form
+   5. Footer
+   6. Animation       — [data-animate]
+
+   Hero・各セクション（About / Services 等）は style.css に書く。
+============================================================ */
+
+@layer components {
+
+/* clip-path アニメーションに変更したため overflow-x: clip は不要 */
+
+/* ============================================================
+   1. Layout Utility
+============================================================ */
+
+/* セクション共通 */
+.section {
+  padding-block: var(--spacing-16);
+}
+
+@media (min-width: 840px) {
+  .section {
+    padding-block: var(--spacing-20);
+  }
+}
+
+/* インナー幅制限 */
+.section__inner {
+  width: min(100% - var(--spacing-8), var(--content-max-width));
+  margin-inline: auto;
+}
+
+/* セクション見出し */
+.section__head {
+  margin-bottom: var(--spacing-8);
+  text-align: center;
+}
+
+.section__label {
+  font-size:      var(--text-sm);
+  font-weight:    var(--font-weight-medium);
+  letter-spacing: var(--tracking-wide);
+  color:          var(--color-on-surface-variant);
+  margin-bottom:  var(--spacing-2);
+}
+
+.section__title {
+  font-size:      var(--text-2xl);
+  font-weight:    var(--font-weight-bold);
+  line-height:    var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+@media (min-width: 840px) {
+  .section__head {
+    margin-bottom: var(--spacing-12);
+  }
+}
+
+
+/* ============================================================
+   2. Header
+============================================================ */
+.header {
+  position:          fixed;
+  inset-block-start: 0;
+  inset-inline:      0;
+  height:            var(--header-height);
+  z-index:           var(--layer-b);
+}
+
+/* スクロール後の背景 */
+.header[data-scrolled="true"] {
+  background: var(--color-surface);
+  box-shadow: var(--elevation-1);
+}
+
+.header__inner {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  height:          100%;
+  padding-inline:  var(--spacing-4);
+  max-width:       var(--site-max-width);
+  margin-inline:   auto;
+}
+
+.header__logo img {
+  height: 32px;
+  width:  auto;
+}
+
+/* ナビ（PC） */
+.header__nav-list {
+  display:     flex;
+  align-items: center;
+  gap:         var(--spacing-6);
+}
+
+.header__nav-list a {
+  font-size:       var(--text-sm);
+  font-weight:     var(--font-weight-medium);
+  color:           var(--color-on-surface);
+  text-decoration: none;
+  /* prefers-reduced-motion でトークン値が1msになるためhardcoded */
+  transition:      color 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.header__nav-list a:hover {
+  color: var(--color-primary);
+}
+
+/* ハンバーガーボタン（SP） */
+.header__menu-btn {
+  display:         flex;
+  flex-direction:  column;
+  justify-content: space-between;
+  width:           24px;
+  height:          18px;
+  padding:         0;
+}
+
+.header__menu-btn span {
+  display:          block;
+  width:            100%;
+  height:           2px;
+  background:       var(--color-on-surface);
+  border-radius:    var(--shape-full);
+  transition:       translate 150ms cubic-bezier(0.2, 0, 0, 1),
+                    rotate  150ms cubic-bezier(0.2, 0, 0, 1),
+                    opacity 150ms cubic-bezier(0.2, 0, 0, 1);
+  transform-origin: center;
+}
+
+.header__menu-btn[aria-expanded="true"] span {
+  border-radius: 0; /* 回転時に端点が丸い点として見えるのを防ぐ */
+}
+.header__menu-btn[aria-expanded="true"] span:nth-child(1) {
+  translate: 0 8px;
+  rotate:    45deg;
+}
+.header__menu-btn[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.header__menu-btn[aria-expanded="true"] span:nth-child(3) {
+  translate: 0 -8px;
+  rotate:    -45deg;
+}
+
+/* SP: ナビをオーバーレイ表示（clip-path で右→左ワイプ＋フェード）
+   translate:100% は viewport 外に出て GPU クリップで背景が消えるため clip-path に変更 */
+@media (max-width: 599px) {
+  .header__nav {
+    position:       fixed;
+    inset:          var(--header-height) 0 0;
+    background:     #FBF6F0;
+    padding:        var(--spacing-8) var(--spacing-4);
+    opacity:        0;
+    pointer-events: none;
+    transition:     opacity 300ms cubic-bezier(0.2, 0, 0, 1);
+    z-index:        var(--layer-a);
+  }
+
+  .header__nav[data-open="true"] {
+    opacity:        1;
+    pointer-events: auto;
+  }
+
+  .header__nav-list {
+    flex-direction: column;
+    align-items:    flex-start;
+    gap:            var(--spacing-4);
+  }
+
+  .header__nav-list a {
+    font-size: var(--text-lg);
+  }
+}
+
+/* PC: ハンバーガーボタン非表示 */
+@media (min-width: 600px) {
+  .header__menu-btn {
+    display: none;
+  }
+}
+
+/* Header Actions（SNSリンク + ハンバーガー） */
+.header__actions {
+  display:     flex;
+  align-items: center;
+  gap:         var(--spacing-3);
+}
+
+.header__sns-link {
+  display:     flex;
+  align-items: center;
+  color:       var(--color-on-surface);
+  transition:  color 250ms cubic-bezier(0.2, 0, 0, 1),
+               opacity 250ms cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
+}
+
+.header__sns-link:hover {
+  color:   var(--color-primary);
+  opacity: 0.8;
+}
+
+
+/* ============================================================
+   3. Button
+============================================================ */
+.btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             var(--spacing-2);
+  height:          2.5rem;        /* 40px — 案件に合わせて直書きで変更 */
+  padding-inline:  1.5rem;        /* 24px — 案件に合わせて直書きで変更 */
+  border-radius:   var(--shape-full);
+  font-size:       var(--text-sm);
+  font-weight:     var(--font-weight-medium);
+  letter-spacing:  var(--tracking-wide);
+  text-decoration: none;
+  cursor:          pointer;
+  border:          var(--border-width) solid transparent;
+  white-space:     nowrap;
+  transition:      background 150ms cubic-bezier(0.2, 0, 0, 1),
+                   color      150ms cubic-bezier(0.2, 0, 0, 1),
+                   scale      150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Primary */
+.btn--primary {
+  background: var(--color-primary);
+  color:      var(--color-on-primary);
+}
+
+.btn--primary:hover {
+  background: color-mix(in srgb, var(--color-primary) 92%, #000);
+}
+
+/* Outline */
+.btn--outline {
+  background:   transparent;
+  color:        var(--color-primary);
+  border-color: var(--color-outline);
+}
+
+.btn--outline:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+/* Size variants */
+.btn--sm {
+  height:         2.25rem; /* 36px */
+  font-size:      var(--text-xs);
+  padding-inline: var(--spacing-4);
+}
+.btn--lg {
+  height:         3.25rem; /* 52px */
+  font-size:      var(--text-md);
+  padding-inline: var(--spacing-8);
+}
+.btn--xl {
+  height:         3.75rem; /* 60px */
+  font-size:      var(--text-lg);
+  padding-inline: var(--spacing-10);
+  width:          100%;
+  max-width:      25rem;
+}
+
+/* ホバースケール */
+@media (hover: hover) {
+  .btn:hover { scale: 1.03; }
+}
+
+/* フォーカスリング */
+.btn:focus-visible {
+  outline:        3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* 無効状態 */
+.btn:disabled {
+  opacity: var(--state-disabled);
+  cursor:  not-allowed;
+}
+
+
+/* ============================================================
+   4. Form
+============================================================ */
+.form {
+  max-width:      var(--page-narrow-width);
+  margin-inline:  auto;
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--spacing-6);
+}
+
+.form__group {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--spacing-2);
+}
+
+.form__label {
+  font-size:   var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color:       var(--color-on-surface);
+}
+
+.form__required {
+  color:       var(--color-error);
+  margin-left: var(--spacing-1);
+}
+
+.form__input,
+.form__textarea {
+  width:          100%;
+  padding:        var(--spacing-3) var(--spacing-4);
+  border:         var(--border-width) solid var(--color-outline);
+  border-radius:  var(--shape-xs);
+  background:     var(--color-surface-container-lowest);
+  color:          var(--color-on-surface);
+  font-size:      var(--text-md);
+  transition:     border-color 150ms cubic-bezier(0.2, 0, 0, 1),
+                  box-shadow   150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.form__input:focus,
+.form__textarea:focus {
+  border-color: var(--color-primary);
+  outline:      none;
+  box-shadow:   0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+.form__input[aria-invalid="true"],
+.form__textarea[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.form__error {
+  font-size:  var(--text-xs);
+  color:      var(--color-error);
+  min-height: 1.2em;
+}
+
+.form__result {
+  padding:       var(--spacing-4);
+  border-radius: var(--shape-sm);
+  font-size:     var(--text-sm);
+}
+
+.form__result--success {
+  background: var(--color-success-container);
+  color:      var(--color-on-success-container);
+}
+
+.form__result--error {
+  background: var(--color-error-container);
+  color:      var(--color-on-error-container);
+}
+
+
+/* ============================================================
+   5. Footer
+============================================================ */
+.footer {
+  padding-block:      var(--spacing-12) var(--spacing-8);
+  background:         var(--color-surface-container-low);
+  border-block-start: var(--border-width) solid var(--color-outline-variant);
+}
+
+.footer__inner {
+  width:          min(100% - var(--spacing-8), var(--site-max-width));
+  margin-inline:  auto;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            var(--spacing-6);
+}
+
+.footer__logo img {
+  height: 28px;
+  width:  auto;
+}
+
+.footer__nav-list {
+  display:         flex;
+  flex-wrap:       wrap;
+  justify-content: center;
+  gap:             var(--spacing-2) var(--spacing-6);
+  list-style:      none;
+}
+
+.footer__nav-list a {
+  font-size:       var(--text-sm);
+  color:           var(--color-on-surface-variant);
+  text-decoration: none;
+  transition:      color 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.footer__nav-list a:hover {
+  color: var(--color-on-surface);
+}
+
+.footer__copy {
+  font-size: var(--text-xs);
+  color:     var(--color-on-surface-variant);
+}
+
+
+/* ============================================================
+   6. Animation
+   GSAPが読み込まれていればScrollTriggerに委譲（gsap.js）。
+   GSAPなしの場合はscroll.jsのIntersectionObserverフォールバック。
+
+   【重要】translate / y の制御はGSAPに任せること。
+   CSS側には opacity: 0 のみ設定する（GSAP競合防止）。
+   装飾的な ::before の content は `'✦' / ''` 形式で
+   スクリーンリーダーの読み上げを抑制すること。
+============================================================ */
+
+/* GSAP動作前のFOUC防止 */
+[data-animate],
+[data-animate-x] {
+  opacity: 0;
+}
+
+/* GSAP非使用時のフォールバック（scroll.jsがis-visibleを付与） */
+[data-animate].is-visible {
+  opacity:    1;
+  transition: opacity 400ms cubic-bezier(0.05, 0.7, 0.1, 1);
+}
+
+/* 遅延バリエーション（CSS fallback用） */
+[data-animate][data-delay="100"] { transition-delay: 100ms; }
+[data-animate][data-delay="200"] { transition-delay: 200ms; }
+[data-animate][data-delay="300"] { transition-delay: 300ms; }
+[data-animate][data-delay="400"] { transition-delay: 400ms; }
+
+} /* end @layer components */

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#C62828"/>
+  <!-- 丼の縁 -->
+  <line x1="7" y1="18" x2="25" y2="18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- 丼のカーブ -->
+  <path d="M8 18 Q16 27 24 18" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <!-- 湯気 -->
+  <path d="M12 15 Q13.5 12 12 9" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M16 15 Q17.5 11 16 8" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M20 15 Q21.5 12 20 9" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

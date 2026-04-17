@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>ysm443 — Web Portfolio</title>
+    <meta name="description" content="Web Designer / Developer のポートフォリオサイト。HTML / CSS / JS + GSAP + Lenis による制作実績を掲載。" />
+    <!-- Favicon -->
+    <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+
+  <body>
+
+    <!-- ===================================================
+       Header
+    =================================================== -->
+    <header class="header" id="header">
+      <div class="header__inner">
+        <a href="./index.html" class="header__logo">ysm<span>.</span></a>
+        <nav class="header__nav" id="headerNav" aria-label="グローバルナビゲーション">
+          <ul>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <button
+          class="header__menu-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="headerNav"
+          aria-label="メニューを開く"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ===================================================
+         Hero
+      =================================================== -->
+      <section class="hero" id="hero">
+        <div class="hero__inner">
+          <p class="hero__label">// Web Designer &amp; Developer</p>
+          <h1 class="hero__name">ysm443</h1>
+          <p class="hero__title">Crafting Web Experiences</p>
+          <p class="hero__copy">
+            HTML / CSS / JS + GSAP + Lenis で<br />
+            動きのある Web サイトを制作しています。
+          </p>
+        </div>
+
+        <!-- Works Reel（ヒーロー最下部・ファーストビュー内）-->
+        <div class="works-reel" role="region" aria-label="制作実績ギャラリー">
+          <div class="works-reel__track" id="worksReelTrack">
+
+          <a class="works-reel__link" href="works/202604-beauty-salon-sam/">
+          <figure class="works-reel__slide">
+            <div class="works-reel__thumb">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+                <rect width="320" height="200" fill="#F6F8F8"/>
+                <rect x="0" y="0" width="320" height="36" fill="#ffffff"/>
+                <rect x="16" y="12" width="48" height="12" rx="2" fill="#37383C" opacity="0.6"/>
+                <rect x="0" y="36" width="320" height="110" fill="#EBF4F7"/>
+                <rect x="16" y="64" width="120" height="22" rx="3" fill="#37383C" opacity="0.4"/>
+                <rect x="16" y="94" width="180" height="12" rx="2" fill="#37383C" opacity="0.25"/>
+                <rect x="16" y="113" width="80" height="22" rx="11" fill="#84B5C5" opacity="0.7"/>
+                <rect x="16" y="162" width="84" height="24" rx="6" fill="#ffffff"/>
+                <rect x="112" y="162" width="84" height="24" rx="6" fill="#ffffff"/>
+                <rect x="208" y="162" width="84" height="24" rx="6" fill="#ffffff"/>
+              </svg>
+            </div>
+            <figcaption class="works-reel__title">美容室サム</figcaption>
+          </figure>
+          </a>
+
+          <a class="works-reel__link" href="works/music-fes/">
+          <figure class="works-reel__slide">
+            <div class="works-reel__thumb">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+                <rect width="320" height="200" fill="#1a1a2e"/>
+                <rect x="0" y="0" width="320" height="36" fill="#141428"/>
+                <rect x="16" y="12" width="48" height="12" rx="2" fill="#ac3cdc" opacity="0.8"/>
+                <rect x="0" y="36" width="320" height="110" fill="#16162a"/>
+                <rect x="16" y="64" width="100" height="20" rx="3" fill="#ac3cdc" opacity="0.5"/>
+                <rect x="16" y="92" width="160" height="10" rx="2" fill="#ffffff" opacity="0.2"/>
+                <rect x="16" y="110" width="130" height="10" rx="2" fill="#ffffff" opacity="0.15"/>
+                <rect x="16" y="162" width="60" height="20" rx="4" fill="#ac3cdc" opacity="0.6"/>
+                <rect x="88" y="162" width="60" height="20" rx="4" fill="#40bde0" opacity="0.4"/>
+              </svg>
+            </div>
+            <figcaption class="works-reel__title">音楽フェスLP</figcaption>
+          </figure>
+          </a>
+
+          <a class="works-reel__link" href="works/recruit/">
+          <figure class="works-reel__slide">
+            <div class="works-reel__thumb">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+                <rect width="320" height="200" fill="#f8f5f0"/>
+                <rect x="0" y="0" width="320" height="36" fill="#ffffff"/>
+                <rect x="16" y="12" width="40" height="12" rx="2" fill="#B89A6A" opacity="0.8"/>
+                <rect x="0" y="36" width="320" height="110" fill="#f0ebe3"/>
+                <rect x="16" y="60" width="140" height="28" rx="3" fill="#B89A6A" opacity="0.5"/>
+                <rect x="16" y="96" width="100" height="10" rx="2" fill="#B89A6A" opacity="0.3"/>
+                <rect x="16" y="112" width="80" height="28" rx="14" fill="#B89A6A" opacity="0.7"/>
+                <rect x="16" y="162" width="90" height="24" rx="6" fill="#ffffff"/>
+                <rect x="118" y="162" width="90" height="24" rx="6" fill="#ffffff"/>
+              </svg>
+            </div>
+            <figcaption class="works-reel__title">採用サイト</figcaption>
+          </figure>
+          </a>
+
+          <a class="works-reel__link" href="works/sweets-lp/">
+          <figure class="works-reel__slide">
+            <div class="works-reel__thumb">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+                <rect width="320" height="200" fill="#FBF6F0"/>
+                <rect x="0" y="0" width="320" height="36" fill="#ffffff"/>
+                <rect x="16" y="12" width="44" height="12" rx="2" fill="#7D4E24" opacity="0.8"/>
+                <rect x="0" y="36" width="320" height="110" fill="#f5ede3"/>
+                <rect x="16" y="58" width="120" height="24" rx="3" fill="#7D4E24" opacity="0.4"/>
+                <rect x="16" y="90" width="160" height="10" rx="2" fill="#7D4E24" opacity="0.22"/>
+                <rect x="16" y="108" width="100" height="28" rx="14" fill="#A86B2E" opacity="0.7"/>
+                <rect x="16" y="162" width="90" height="24" rx="6" fill="#ede0d0"/>
+                <rect x="118" y="162" width="90" height="24" rx="6" fill="#ede0d0"/>
+              </svg>
+            </div>
+            <figcaption class="works-reel__title">スイーツ専門カフェ LP</figcaption>
+          </figure>
+          </a>
+
+          <a class="works-reel__link" href="works/dental/">
+          <figure class="works-reel__slide">
+            <div class="works-reel__thumb">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+                <rect width="320" height="200" fill="#f5f7fa"/>
+                <rect x="0" y="0" width="320" height="36" fill="#ffffff"/>
+                <rect x="16" y="10" width="44" height="16" rx="3" fill="#4A96AA" opacity="0.7"/>
+                <rect x="0" y="36" width="160" height="164" fill="#EBF4F7"/>
+                <rect x="16" y="60" width="120" height="80" rx="6" fill="#ffffff" opacity="0.8"/>
+                <rect x="168" y="52" width="136" height="10" rx="2" fill="#37383C" opacity="0.4"/>
+                <rect x="168" y="70" width="110" height="8" rx="2" fill="#37383C" opacity="0.25"/>
+                <rect x="168" y="84" width="120" height="8" rx="2" fill="#37383C" opacity="0.2"/>
+                <rect x="168" y="162" width="80" height="22" rx="4" fill="#84B5C5" opacity="0.6"/>
+              </svg>
+            </div>
+            <figcaption class="works-reel__title">歯科医院サイト</figcaption>
+          </figure>
+          </a>
+
+          <a class="works-reel__link" href="works/restaurant-lp/">
+          <figure class="works-reel__slide">
+            <div class="works-reel__thumb">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+                <rect width="320" height="200" fill="#1a0a06"/>
+                <rect x="0" y="0" width="320" height="36" fill="#140602"/>
+                <rect x="16" y="12" width="40" height="12" rx="2" fill="#C62828" opacity="0.9"/>
+                <rect x="0" y="36" width="320" height="110" fill="#220e06"/>
+                <rect x="16" y="58" width="100" height="20" rx="3" fill="#C62828" opacity="0.5"/>
+                <rect x="16" y="86" width="160" height="10" rx="2" fill="#ffffff" opacity="0.15"/>
+                <rect x="16" y="104" width="130" height="10" rx="2" fill="#ffffff" opacity="0.1"/>
+                <rect x="16" y="162" width="70" height="22" rx="11" fill="#C62828" opacity="0.6"/>
+              </svg>
+            </div>
+            <figcaption class="works-reel__title">飲食店 LP</figcaption>
+          </figure>
+          </a>
+
+          </div>
+        </div>
+      </section><!-- /.hero -->
+
+      <!-- ===================================================
+         Works
+      =================================================== -->
+      <section class="section works" id="works">
+        <div class="inner">
+          <div class="section__head">
+            <p class="section__label">Works</p>
+            <h2 class="section__title">制作実績</h2>
+          </div>
+
+          <div class="works__list">
+
+            <!-- 01 美容室サム -->
+            <a class="works-item" href="https://sam3274.com/" target="_blank" rel="noopener noreferrer">
+              <div class="works-item__img">
+                <!-- 800×500 / 比率 8:5 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" aria-hidden="true">
+                  <rect width="800" height="500" fill="#F6F8F8"/>
+                  <rect x="0" y="0" width="800" height="56" fill="#ffffff"/>
+                  <rect x="32" y="20" width="80" height="16" rx="3" fill="#37383C" opacity="0.7"/>
+                  <rect x="560" y="20" width="60" height="16" rx="8" fill="#84B5C5" opacity="0.6"/>
+                  <rect x="636" y="20" width="60" height="16" rx="8" fill="#84B5C5" opacity="0.4"/>
+                  <rect x="0" y="56" width="800" height="280" fill="#EBF4F7"/>
+                  <rect x="32" y="120" width="200" height="36" rx="4" fill="#37383C" opacity="0.5"/>
+                  <rect x="32" y="170" width="300" height="20" rx="3" fill="#37383C" opacity="0.3"/>
+                  <rect x="32" y="200" width="260" height="20" rx="3" fill="#37383C" opacity="0.2"/>
+                  <rect x="32" y="240" width="140" height="36" rx="18" fill="#84B5C5" opacity="0.7"/>
+                  <rect x="32" y="360" width="172" height="110" rx="8" fill="#ffffff"/>
+                  <rect x="220" y="360" width="172" height="110" rx="8" fill="#ffffff"/>
+                  <rect x="408" y="360" width="172" height="110" rx="8" fill="#ffffff"/>
+                  <rect x="596" y="360" width="172" height="110" rx="8" fill="#ffffff"/>
+                  <rect x="52" y="420" width="80" height="10" rx="2" fill="#84B5C5" opacity="0.6"/>
+                  <rect x="52" y="440" width="60" height="8" rx="2" fill="#6B7280" opacity="0.4"/>
+                </svg>
+              </div>
+              <div class="works-item__body">
+                <div class="works-item__tags">
+                  <span class="tag">コーポレート</span>
+                </div>
+                <p class="works-item__num">01</p>
+                <p class="works-item__name">美容室サム</p>
+                <p class="works-item__desc">横浜市保土ケ谷区の美容室サイトリニューアル。スクロールアニメーション・スタガー演出・スムーズスクロールを実装。</p>
+                <span class="works-item__more" aria-hidden="true">詳しくみる →</span>
+              </div>
+            </a>
+
+            <!-- 02 音楽フェスLP -->
+            <a class="works-item" href="./works/music-fes/">
+              <div class="works-item__img">
+                <!-- 800×500 / 比率 8:5 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" aria-hidden="true">
+                  <rect width="800" height="500" fill="#1a1a2e"/>
+                  <rect x="0" y="0" width="800" height="60" fill="#141428"/>
+                  <rect x="32" y="22" width="72" height="16" rx="3" fill="#ac3cdc" opacity="0.9"/>
+                  <rect x="520" y="22" width="70" height="16" rx="8" fill="#ac3cdc" opacity="0.5"/>
+                  <rect x="606" y="22" width="70" height="16" rx="8" fill="#40bde0" opacity="0.4"/>
+                  <rect x="0" y="60" width="800" height="300" fill="#16162a"/>
+                  <rect x="32" y="130" width="80" height="14" rx="3" fill="#ac3cdc" opacity="0.6"/>
+                  <rect x="32" y="154" width="340" height="48" rx="4" fill="#ffffff" opacity="0.08"/>
+                  <rect x="32" y="218" width="260" height="18" rx="3" fill="#ffffff" opacity="0.2"/>
+                  <rect x="32" y="246" width="220" height="18" rx="3" fill="#ffffff" opacity="0.13"/>
+                  <rect x="32" y="290" width="140" height="38" rx="19" fill="#ac3cdc" opacity="0.7"/>
+                  <rect x="0" y="380" width="800" height="120" fill="#0f0f1e"/>
+                  <rect x="32" y="404" width="120" height="72" rx="8" fill="#1e1e38"/>
+                  <rect x="172" y="404" width="120" height="72" rx="8" fill="#1e1e38"/>
+                  <rect x="312" y="404" width="120" height="72" rx="8" fill="#1e1e38"/>
+                  <rect x="452" y="404" width="120" height="72" rx="8" fill="#1e1e38"/>
+                  <rect x="592" y="404" width="120" height="72" rx="8" fill="#1e1e38"/>
+                </svg>
+              </div>
+              <div class="works-item__body">
+                <div class="works-item__tags">
+                  <span class="tag">イベント</span>
+                  <span class="tag">LP</span>
+                </div>
+                <p class="works-item__num">02</p>
+                <p class="works-item__name">音楽フェス LP</p>
+                <p class="works-item__desc">音楽フェスティバルのランディングページ。ダークネオン配色にアコーディオン・スティッキーナビ・スクロールアニメーションを実装。</p>
+                <span class="works-item__more" aria-hidden="true">詳しくみる →</span>
+              </div>
+            </a>
+
+            <!-- 03 採用サイト -->
+            <a class="works-item" href="./works/recruit/">
+              <div class="works-item__img">
+                <!-- 800×500 / 比率 8:5 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" aria-hidden="true">
+                  <rect width="800" height="500" fill="#f8f5f0"/>
+                  <rect x="0" y="0" width="800" height="60" fill="#ffffff"/>
+                  <rect x="32" y="22" width="64" height="16" rx="3" fill="#B89A6A" opacity="0.9"/>
+                  <rect x="500" y="22" width="70" height="16" rx="8" fill="#B89A6A" opacity="0.5"/>
+                  <rect x="586" y="22" width="70" height="16" rx="8" fill="#B89A6A" opacity="0.35"/>
+                  <rect x="672" y="22" width="96" height="16" rx="8" fill="#B89A6A" opacity="0.8"/>
+                  <rect x="0" y="60" width="800" height="300" fill="#f0ebe3"/>
+                  <rect x="32" y="120" width="100" height="14" rx="3" fill="#B89A6A" opacity="0.6"/>
+                  <rect x="32" y="146" width="320" height="52" rx="4" fill="#B89A6A" opacity="0.12"/>
+                  <rect x="32" y="214" width="280" height="18" rx="3" fill="#6B5C44" opacity="0.25"/>
+                  <rect x="32" y="242" width="240" height="18" rx="3" fill="#6B5C44" opacity="0.17"/>
+                  <rect x="32" y="290" width="148" height="42" rx="21" fill="#B89A6A" opacity="0.75"/>
+                  <rect x="460" y="80" width="300" height="260" rx="12" fill="#e8e0d4"/>
+                  <ellipse cx="610" cy="150" rx="60" ry="60" fill="#d4c8b8"/>
+                  <rect x="490" y="230" width="240" height="12" rx="3" fill="#B89A6A" opacity="0.3"/>
+                  <rect x="490" y="252" width="200" height="10" rx="3" fill="#B89A6A" opacity="0.2"/>
+                  <rect x="0" y="380" width="800" height="120" fill="#e8e0d4"/>
+                  <rect x="32" y="408" width="160" height="62" rx="8" fill="#f8f5f0"/>
+                  <rect x="212" y="408" width="160" height="62" rx="8" fill="#f8f5f0"/>
+                  <rect x="392" y="408" width="160" height="62" rx="8" fill="#f8f5f0"/>
+                  <rect x="572" y="408" width="160" height="62" rx="8" fill="#f8f5f0"/>
+                </svg>
+              </div>
+              <div class="works-item__body">
+                <div class="works-item__tags">
+                  <span class="tag">採用</span>
+                </div>
+                <p class="works-item__num">03</p>
+                <p class="works-item__name">採用サイト</p>
+                <p class="works-item__desc">中小企業向け採用特設ページ。温かみのあるトーン&マナーで、採用背景・社風・募集要項をシンプルにまとめた構成。</p>
+                <span class="works-item__more" aria-hidden="true">詳しくみる →</span>
+              </div>
+            </a>
+
+            <!-- 04 歯科医院サイト -->
+            <a class="works-item" href="./works/dental/">
+              <div class="works-item__img">
+                <!-- 800×500 / 比率 8:5 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" aria-hidden="true">
+                  <rect width="800" height="500" fill="#f5f7fa"/>
+                  <rect x="0" y="0" width="800" height="60" fill="#ffffff"/>
+                  <rect x="32" y="20" width="72" height="20" rx="4" fill="#4A96AA" opacity="0.9"/>
+                  <rect x="490" y="22" width="70" height="16" rx="8" fill="#4A96AA" opacity="0.5"/>
+                  <rect x="576" y="22" width="70" height="16" rx="8" fill="#4A96AA" opacity="0.35"/>
+                  <rect x="662" y="22" width="106" height="16" rx="8" fill="#4A96AA" opacity="0.8"/>
+                  <rect x="0" y="60" width="400" height="300" fill="#EBF4F7"/>
+                  <rect x="32" y="110" width="260" height="200" rx="12" fill="#ffffff" opacity="0.85"/>
+                  <ellipse cx="162" cy="188" rx="72" ry="72" fill="#d0e8ef"/>
+                  <rect x="400" y="60" width="400" height="300" fill="#ffffff"/>
+                  <rect x="432" y="100" width="120" height="16" rx="3" fill="#4A96AA" opacity="0.6"/>
+                  <rect x="432" y="128" width="300" height="36" rx="4" fill="#37383C" opacity="0.08"/>
+                  <rect x="432" y="180" width="260" height="14" rx="3" fill="#6B7280" opacity="0.3"/>
+                  <rect x="432" y="204" width="230" height="14" rx="3" fill="#6B7280" opacity="0.22"/>
+                  <rect x="432" y="228" width="200" height="14" rx="3" fill="#6B7280" opacity="0.16"/>
+                  <rect x="432" y="270" width="140" height="40" rx="20" fill="#4A96AA" opacity="0.7"/>
+                  <rect x="0" y="380" width="800" height="120" fill="#ffffff"/>
+                  <rect x="32" y="400" width="172" height="80" rx="8" fill="#EBF4F7"/>
+                  <rect x="220" y="400" width="172" height="80" rx="8" fill="#EBF4F7"/>
+                  <rect x="408" y="400" width="172" height="80" rx="8" fill="#EBF4F7"/>
+                  <rect x="596" y="400" width="172" height="80" rx="8" fill="#EBF4F7"/>
+                </svg>
+              </div>
+              <div class="works-item__body">
+                <div class="works-item__tags">
+                  <span class="tag">コーポレート</span>
+                </div>
+                <p class="works-item__num">04</p>
+                <p class="works-item__name">歯科医院サイト</p>
+                <p class="works-item__desc">地域密着型クリニックの Web サイト制作。清潔感を意識したブルー×ホワイトの配色で、診療内容・アクセスをわかりやすく整理。</p>
+                <span class="works-item__more" aria-hidden="true">詳しくみる →</span>
+              </div>
+            </a>
+
+            <!-- 05 スイーツ専門カフェ LP -->
+            <a class="works-item" href="./works/sweets-lp/">
+              <div class="works-item__img">
+                <!-- 800×500 / 比率 8:5 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" aria-hidden="true">
+                  <rect width="800" height="500" fill="#FBF6F0"/>
+                  <rect x="0" y="0" width="800" height="60" fill="#ffffff"/>
+                  <rect x="32" y="22" width="80" height="16" rx="3" fill="#7D4E24" opacity="0.8"/>
+                  <rect x="500" y="22" width="70" height="16" rx="8" fill="#A86B2E" opacity="0.5"/>
+                  <rect x="586" y="22" width="70" height="16" rx="8" fill="#A86B2E" opacity="0.35"/>
+                  <rect x="0" y="60" width="800" height="300" fill="#f5ede3"/>
+                  <rect x="32" y="110" width="60" height="12" rx="3" fill="#A86B2E" opacity="0.6"/>
+                  <rect x="32" y="134" width="360" height="56" rx="4" fill="#7D4E24" opacity="0.12"/>
+                  <rect x="32" y="206" width="280" height="18" rx="3" fill="#7D4E24" opacity="0.25"/>
+                  <rect x="32" y="234" width="240" height="18" rx="3" fill="#7D4E24" opacity="0.18"/>
+                  <rect x="32" y="282" width="148" height="42" rx="21" fill="#A86B2E" opacity="0.75"/>
+                  <rect x="460" y="80" width="300" height="260" rx="12" fill="#ede0d0"/>
+                  <ellipse cx="610" cy="178" rx="80" ry="54" fill="#d9c4ae"/>
+                  <rect x="0" y="380" width="800" height="120" fill="#e8d8c8"/>
+                  <rect x="32" y="400" width="172" height="80" rx="8" fill="#FBF6F0"/>
+                  <rect x="220" y="400" width="172" height="80" rx="8" fill="#FBF6F0"/>
+                  <rect x="408" y="400" width="172" height="80" rx="8" fill="#FBF6F0"/>
+                  <rect x="596" y="400" width="172" height="80" rx="8" fill="#FBF6F0"/>
+                </svg>
+              </div>
+              <div class="works-item__body">
+                <div class="works-item__tags">
+                  <span class="tag">LP</span>
+                  <span class="tag">スイーツ</span>
+                </div>
+                <p class="works-item__num">05</p>
+                <p class="works-item__name">スイーツ専門カフェ LP</p>
+                <p class="works-item__desc">フランス産発酵バターを使った本格ワッフル専門カフェ「Gaufre Dorée」のLP。クリーム×ウォームブラウンの配色で上品な世界観を構築。</p>
+                <span class="works-item__more" aria-hidden="true">詳しくみる →</span>
+              </div>
+            </a>
+
+            <!-- 06 飲食店 LP -->
+            <a class="works-item" href="./works/restaurant-lp/">
+              <div class="works-item__img">
+                <!-- 800×500 / 比率 8:5 -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" aria-hidden="true">
+                  <rect width="800" height="500" fill="#1a0a06"/>
+                  <rect x="0" y="0" width="800" height="60" fill="#140602"/>
+                  <rect x="32" y="22" width="72" height="16" rx="3" fill="#C62828" opacity="0.9"/>
+                  <rect x="500" y="22" width="70" height="16" rx="8" fill="#C62828" opacity="0.4"/>
+                  <rect x="586" y="22" width="70" height="16" rx="8" fill="#C62828" opacity="0.3"/>
+                  <rect x="0" y="60" width="800" height="300" fill="#220e06"/>
+                  <rect x="32" y="110" width="80" height="14" rx="3" fill="#C62828" opacity="0.7"/>
+                  <rect x="32" y="138" width="360" height="52" rx="4" fill="#ffffff" opacity="0.05"/>
+                  <rect x="32" y="206" width="280" height="18" rx="3" fill="#ffffff" opacity="0.2"/>
+                  <rect x="32" y="234" width="240" height="18" rx="3" fill="#ffffff" opacity="0.13"/>
+                  <rect x="32" y="282" width="140" height="42" rx="21" fill="#C62828" opacity="0.75"/>
+                  <rect x="460" y="80" width="300" height="260" rx="12" fill="#2e1408"/>
+                  <ellipse cx="610" cy="192" rx="80" ry="60" fill="#3d1c0a"/>
+                  <rect x="0" y="380" width="800" height="120" fill="#140602"/>
+                  <rect x="32" y="400" width="172" height="80" rx="8" fill="#220e06"/>
+                  <rect x="220" y="400" width="172" height="80" rx="8" fill="#220e06"/>
+                  <rect x="408" y="400" width="172" height="80" rx="8" fill="#220e06"/>
+                  <rect x="596" y="400" width="172" height="80" rx="8" fill="#220e06"/>
+                </svg>
+              </div>
+              <div class="works-item__body">
+                <div class="works-item__tags">
+                  <span class="tag">LP</span>
+                  <span class="tag">飲食</span>
+                </div>
+                <p class="works-item__num">06</p>
+                <p class="works-item__name">飲食店 LP</p>
+                <p class="works-item__desc">京都のバクテー専門店「湯気亭」のLP。深みのある赤×ブラウンの配色に、薬膳スープの世界観とスクロールアニメーションを融合。</p>
+                <span class="works-item__more" aria-hidden="true">詳しくみる →</span>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- 全て見る -->
+          <div class="works__footer">
+            <a href="./works/" class="works-all-btn">
+              <span class="works-all-btn__text">全て見る</span>
+              <span class="works-all-btn__circle">
+                <svg class="works-all-btn__svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="50" cy="50" r="48" class="works-all-btn__ring-bg"/>
+                  <circle cx="50" cy="50" r="48" class="works-all-btn__ring-fg" pathLength="100"/>
+                </svg>
+                <svg class="works-all-btn__arrow" viewBox="0 0 34 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M0 7H32M26 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================
+         Feature
+      =================================================== -->
+      <section class="section feature" id="feature">
+        <div class="inner">
+          <div class="section__head">
+            <p class="section__label">Feature</p>
+            <h2 class="section__title">できること</h2>
+          </div>
+
+          <div class="feature__grid">
+
+            <div class="feature-card">
+              <p class="feature-card__title">企画 × マーケティング</p>
+              <p class="feature-card__desc">数字だけでは動かない領域に踏み込み、<br>"なぜ選ばれるか"を設計します。<br>感覚とロジックの交差点で、体験ごと設計します。</p>
+            </div>
+
+            <div class="feature-card">
+              <p class="feature-card__title">コミュニケーション設計</p>
+              <p class="feature-card__desc">ズレは、成果を静かに壊します。<br>営業・企画で培った解像度で、<br>言語化と認識統一を徹底します。</p>
+            </div>
+
+            <div class="feature-card">
+              <p class="feature-card__title">表現領域</p>
+              <p class="feature-card__sub">WEB × 映像 × 音楽</p>
+              <p class="feature-card__desc">媒体に縛られず、必要な表現を選びます。<br>手段ではなく、「どう伝わるか」から逆算します。</p>
+            </div>
+
+            <div class="feature-card">
+              <p class="feature-card__title">AI × クリエイティブ</p>
+              <p class="feature-card__desc">Claudeなどを用いた制作フロー設計により、<br>速度とクオリティを両立。<br>"量産"ではなく、"精度の高い再現性"を構築します。</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         CTA
+      =================================================== -->
+      <section class="section cta-section">
+        <div class="inner">
+          <p class="cta-section__heading">「これ、どう形にすればいい？」</p>
+          <p class="cta-section__body">その段階からでも問題ありません。<br>曖昧な輪郭を、伝わる形に変換します。</p>
+          <a href="#contact" class="cta-section__btn">相談してみる</a>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         About
+      =================================================== -->
+      <section class="section about" id="about">
+        <div class="inner">
+          <div class="section__head">
+            <p class="section__label">About</p>
+            <h2 class="section__title">About Me</h2>
+          </div>
+
+          <!-- Career タイムライン -->
+          <ol class="career-list">
+
+            <li class="career-item">
+              <div class="career-item__date">
+                <span>2014.04</span><span>2016.03</span>
+              </div>
+              <div class="career-item__body">
+                <p class="career-item__role">専門学校 作曲コース</p>
+                <p class="career-item__desc">作編曲、レコーディング、ディレクションまで一貫して実践的に学習</p>
+                <div class="career-item__skills">
+                  <span class="tag">Logic Pro</span>
+                  <span class="tag">Pro Tools</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="career-item">
+              <div class="career-item__date">
+                <span>2018.04</span><span>2018.09</span>
+              </div>
+              <div class="career-item__body">
+                <p class="career-item__role">コンテンツマーケティング（営業・販売）</p>
+                <p class="career-item__desc">平安神宮・大阪城でのコラボカフェ運営、マニュアル作成、グッズ制作、店舗運営に伴う各種申請業務</p>
+                <div class="career-item__skills">
+                  <span class="tag">Word</span>
+                  <span class="tag">Excel</span>
+                  <span class="tag">PowerPoint</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="career-item">
+              <div class="career-item__date">
+                <span>2019.06</span><span>2019.10</span>
+              </div>
+              <div class="career-item__body">
+                <p class="career-item__role">IT サポート / ヘルプデスク</p>
+                <p class="career-item__desc">Windows 環境でのヘルプデスク、社内受電対応、Excel サポート</p>
+                <div class="career-item__skills">
+                  <span class="tag">Word</span>
+                  <span class="tag">Excel</span>
+                  <span class="tag">PowerPoint</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="career-item">
+              <div class="career-item__date">
+                <span>2020.09</span><span>2022.12</span>
+              </div>
+              <div class="career-item__body">
+                <p class="career-item__role">電気工事士（設備施工）</p>
+                <p class="career-item__desc">新築（高層ビル・倉庫・マンション）および改修工事（学校・テーマパーク・オフィスビル）に従事</p>
+                <div class="career-item__skills">
+                  <span class="tag">第二種電気工事士</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="career-item">
+              <div class="career-item__date">
+                <span>2023.01</span><span>2023.06</span>
+              </div>
+              <div class="career-item__body">
+                <p class="career-item__role">動画制作 / 受電（コールセンター）</p>
+                <p class="career-item__desc">SNS 広告用動画（Instagram ショート動画）制作、美容商材の受電対応（解約阻止において1週間連続 No.1）</p>
+                <div class="career-item__skills">
+                  <span class="tag">Premiere Pro</span>
+                  <span class="tag">Photoshop</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="career-item">
+              <div class="career-item__date">
+                <span>2023.08</span><span>2025.03</span>
+              </div>
+              <div class="career-item__body">
+                <p class="career-item__role">動画制作 / 訪問営業</p>
+                <p class="career-item__desc">YouTube チャンネル運用、動画制作（ボイス系コンテンツ）、訪問営業、新人対応</p>
+                <div class="career-item__skills">
+                  <span class="tag">Premiere Pro</span>
+                  <span class="tag">Photoshop</span>
+                  <span class="tag">VOICEVOX</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="career-item">
+              <div class="career-item__date">
+                <span>2025.06</span><span>2025.11</span>
+              </div>
+              <div class="career-item__body">
+                <p class="career-item__role">Web クリエイタースクール</p>
+                <p class="career-item__desc">Web デザイナー・マークアップエンジニア・Web ディレクター養成課程</p>
+                <div class="career-item__skills">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Git</span>
+                  <span class="tag">Figma</span>
+                  <span class="tag">Photoshop</span>
+                  <span class="tag">Illustrator</span>
+                  <span class="tag">Premiere Pro</span>
+                  <span class="tag">After Effects</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="career-item">
+              <div class="career-item__date">
+                <span>2025.12</span><span>2026.03</span>
+              </div>
+              <div class="career-item__body">
+                <p class="career-item__role">WEB 運用・WEB デザイン</p>
+                <p class="career-item__desc">CMS・各種 EC サイトの運用・更新、商品画像制作。WEB 会員登録動画・組み立て動画・展示会用 PV の制作</p>
+                <div class="career-item__skills">
+                  <span class="tag">WordPress</span>
+                  <span class="tag">Shopify</span>
+                  <span class="tag">楽天 RMS</span>
+                  <span class="tag">Yahoo! SC Pro</span>
+                  <span class="tag">MODX</span>
+                  <span class="tag">Premiere Pro</span>
+                  <span class="tag">Illustrator</span>
+                </div>
+              </div>
+            </li>
+
+          </ol>
+
+          <div class="about__text">
+            <p class="about__desc">領域は跨ぎますが、やっていることは一貫しています。</p>
+            <p class="about__tagline">伝わらないものを、伝わる形にする。</p>
+            <p class="about__desc">WEB・映像・音楽・企画・営業。<br>異なる文脈で積み上げた経験をもとに、<br>機能と感情の両方が動く設計を行います。</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================
+         Contact
+      =================================================== -->
+      <section class="section contact" id="contact">
+        <div class="inner">
+          <div class="section__head">
+            <p class="section__label">Contact</p>
+            <h2 class="section__title">お問い合わせ</h2>
+          </div>
+
+          <form class="contact-form" novalidate>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-name">お名前<span class="form-required">*</span></label>
+              <div class="form-control">
+                <input type="text" id="contact-name" name="name" placeholder="山田 太郎" autocomplete="name">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-kana">ふりがな<span class="form-required">*</span></label>
+              <div class="form-control">
+                <input type="text" id="contact-kana" name="kana" placeholder="やまだ たろう">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-company">社名 / 屋号</label>
+              <div class="form-control">
+                <input type="text" id="contact-company" name="company" placeholder="株式会社〇〇" autocomplete="organization">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-email">メールアドレス<span class="form-required">*</span></label>
+              <div class="form-control">
+                <input type="email" id="contact-email" name="email" placeholder="example@mail.com" autocomplete="email">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <p class="form-label">ご希望の内容<span class="form-required">*</span></p>
+              <div class="form-control">
+                <div class="form-checks">
+                  <label class="form-check">
+                    <input type="checkbox" name="type" value="web">
+                    <span>WEBサイト作成について</span>
+                  </label>
+                  <label class="form-check">
+                    <input type="checkbox" name="type" value="cms">
+                    <span>CMS運用について（WordPress等）</span>
+                  </label>
+                  <label class="form-check">
+                    <input type="checkbox" name="type" value="ec">
+                    <span>ECサイト委託業務について（Shopify・Amazon・楽天等）</span>
+                  </label>
+                  <label class="form-check">
+                    <input type="checkbox" name="type" value="music">
+                    <span>作曲・編曲・Mixについて</span>
+                  </label>
+                  <label class="form-check">
+                    <input type="checkbox" name="type" value="other">
+                    <span>その他</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-schedule">
+                希望のスケジュール
+                <span class="form-note">制作相談の場合</span>
+              </label>
+              <div class="form-control">
+                <input type="text" id="contact-schedule" name="schedule" placeholder="例: 2026年8月末までに公開希望">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-message">お問い合わせ内容<span class="form-required">*</span></label>
+              <div class="form-control">
+                <textarea id="contact-message" name="message" rows="6" placeholder="ご相談内容をご記入ください"></textarea>
+              </div>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="contact-submit">送信する</button>
+            </div>
+
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ===================================================
+       Footer
+    =================================================== -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <p class="footer__logo">ysm<span>.</span></p>
+        <p class="footer__copy">
+          <small>&copy; <span id="footerYear"></span> ysm443. All Rights Reserved.</small>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" type="button" aria-label="ページトップへ戻る">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </button>
+
+    <!-- JS -->
+    <script src="./js/lib/gsap.min.js" defer></script>
+    <script src="./js/lib/ScrollTrigger.min.js" defer></script>
+    <script src="./js/gsap.js" defer></script>
+    <script src="./js/main.js" defer></script>
+  </body>
+</html>

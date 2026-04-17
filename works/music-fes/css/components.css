@@ -1,0 +1,18 @@
+/* ============================================================
+   components.css — UIコンポーネント
+   Header / Footer / Button / Form / Animation の共通パーツ。
+   案件ごとにデザインに合わせて編集してよい。
+
+   この案件（音楽フェス_rev）は独自デザインのため、
+   共通UIは style.css に収録されています。
+   追加の共通コンポーネントがあれば、ここに記述してください。
+
+   Hero・各セクションは style.css に書く。
+============================================================ */
+
+@layer components {
+
+/* Animation — GSAP動作前のFOUC防止 */
+[data-animate] { opacity: 0; }
+
+} /* end @layer components */

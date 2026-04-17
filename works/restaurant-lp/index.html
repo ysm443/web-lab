@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>湯気亭 | 京都のバクテー専門店</title>
+    <meta name="description" content="京都・烏丸にある本格バクテー専門店「湯気亭」。シンガポール直伝の薬膳スープを、丁寧に仕込んだスペアリブとともにご提供します。" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/common/favicon.svg" type="image/svg+xml" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Kaisei+Opti:wght@400;700&family=Inter:wght@400;500;700&display=swap"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/index.css" />
+
+    <!-- スクロール位置の復元をブラウザに任せず Lenis で管理する -->
+    <!-- sessionStorage に保存値がある場合のみ一時的に非表示にしてフラッシュを防ぐ -->
+    <script>
+      history.scrollRestoration = 'manual';
+      if (sessionStorage.getItem('scrollY')) {
+        document.documentElement.style.visibility = 'hidden';
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- sessionStorage からスクロール位置を即時復元 -->
+    <script>(function(){ var y = sessionStorage.getItem('scrollY'); if(y) window.scrollTo(0, parseFloat(y)); })();</script>
+
+
+    <!-- =====================================================
+       Header
+    ===================================================== -->
+    <header class="header" id="header">
+      <div class="header__inner">
+        <a href="#hero" class="header__logo header__logo--text">
+          湯気亭
+          <span class="header__logo-en">YUKETEI</span>
+        </a>
+        <div class="header__actions">
+          <button
+            class="header__menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="headerNav"
+            aria-label="メニューを開く"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav class="header__nav" id="headerNav" aria-label="グローバルナビゲーション">
+      <ul class="header__nav-list">
+        <li><a href="#story">こだわり</a></li>
+        <li><a href="#menu">メニュー</a></li>
+        <li><a href="#shop">店舗情報</a></li>
+        <li class="header__nav-cta">
+          <a href="#reserve" class="btn btn--primary btn--sm">ご予約</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+
+      <!-- =====================================================
+         Hero — フルスクリーン料理ビジュアル
+      ===================================================== -->
+      <section class="hero hero--food" id="hero">
+        <!-- 背景スライドショー -->
+        <div class="hero__bg" aria-hidden="true">
+          <div class="hero__slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <radialGradient id="g1" cx="40%" cy="60%" r="70%">
+                  <stop offset="0%" stop-color="#3E1C0A"/>
+                  <stop offset="100%" stop-color="#0D0503"/>
+                </radialGradient>
+              </defs>
+              <rect width="1440" height="900" fill="url(#g1)"/>
+              <!-- 器のシルエット -->
+              <ellipse cx="720" cy="680" rx="320" ry="60" fill="#5C2B0E" opacity="0.4"/>
+              <ellipse cx="720" cy="500" rx="280" ry="200" fill="none" stroke="#8B4513" stroke-width="3" opacity="0.3"/>
+              <!-- スープの表面 -->
+              <ellipse cx="720" cy="490" rx="240" ry="160" fill="#7A3410" opacity="0.25"/>
+              <!-- 湯気 -->
+              <path d="M660 420 Q650 370 665 330 Q680 290 670 250" stroke="#D4A574" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+              <path d="M720 400 Q710 345 725 305 Q740 265 730 220" stroke="#D4A574" stroke-width="2.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+              <path d="M780 415 Q790 360 775 320 Q760 280 775 240" stroke="#D4A574" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+              <!-- スペアリブのシルエット -->
+              <path d="M580 520 Q620 500 680 510 Q720 515 740 505 Q780 495 820 508 Q860 520 850 540 Q820 555 760 548 Q720 542 680 550 Q640 558 600 548 Z" fill="#5C2B0E" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="hero__slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <radialGradient id="g2" cx="60%" cy="40%" r="70%">
+                  <stop offset="0%" stop-color="#2A0E06"/>
+                  <stop offset="100%" stop-color="#180704"/>
+                </radialGradient>
+              </defs>
+              <rect width="1440" height="900" fill="url(#g2)"/>
+              <!-- ハーブ・スパイスのシルエット -->
+              <circle cx="300" cy="200" r="80" fill="#5C2B0E" opacity="0.15"/>
+              <circle cx="1100" cy="700" r="120" fill="#8B4513" opacity="0.12"/>
+              <!-- 薬草モチーフ -->
+              <path d="M200 600 Q240 550 280 580 Q320 610 300 650 Q280 690 240 680 Q200 670 200 600Z" fill="#6B3E26" opacity="0.2"/>
+              <path d="M1100 200 Q1150 160 1180 190 Q1210 220 1190 260 Q1170 300 1130 290 Q1090 280 1100 200Z" fill="#6B3E26" opacity="0.2"/>
+              <!-- 中心の器 -->
+              <ellipse cx="720" cy="520" rx="300" ry="210" fill="none" stroke="#A0522D" stroke-width="2" opacity="0.25"/>
+              <ellipse cx="720" cy="510" rx="260" ry="170" fill="#7A3410" opacity="0.2"/>
+              <!-- 細い湯気ライン -->
+              <line x1="690" y1="380" x2="680" y2="260" stroke="#E8C49A" stroke-width="1.5" opacity="0.3"/>
+              <line x1="730" y1="360" x2="735" y2="230" stroke="#E8C49A" stroke-width="2" opacity="0.35"/>
+              <line x1="765" y1="375" x2="770" y2="255" stroke="#E8C49A" stroke-width="1.5" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="hero__slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <radialGradient id="g3" cx="50%" cy="50%" r="60%">
+                  <stop offset="0%" stop-color="#4A1A08"/>
+                  <stop offset="100%" stop-color="#0A0302"/>
+                </radialGradient>
+              </defs>
+              <rect width="1440" height="900" fill="url(#g3)"/>
+              <!-- 粒状テクスチャ（胡椒・スパイス） -->
+              <circle cx="420" cy="350" r="4" fill="#C62828" opacity="0.4"/>
+              <circle cx="460" cy="310" r="3" fill="#C62828" opacity="0.3"/>
+              <circle cx="980" cy="450" r="5" fill="#F57F17" opacity="0.35"/>
+              <circle cx="1020" cy="390" r="3" fill="#F57F17" opacity="0.25"/>
+              <circle cx="500" cy="580" r="4" fill="#C62828" opacity="0.3"/>
+              <circle cx="960" cy="560" r="3" fill="#F57F17" opacity="0.3"/>
+              <!-- 大きな丸（カウンターイメージ） -->
+              <ellipse cx="720" cy="480" rx="340" ry="240" fill="none" stroke="#8B4513" stroke-width="1.5" opacity="0.2"/>
+              <ellipse cx="720" cy="475" rx="290" ry="195" fill="none" stroke="#A0522D" stroke-width="1" opacity="0.15"/>
+              <ellipse cx="720" cy="470" rx="220" ry="150" fill="#5C1E0E" opacity="0.3"/>
+              <!-- 横ライン装飾 -->
+              <line x1="0" y1="100" x2="1440" y2="100" stroke="#8B4513" stroke-width="1" opacity="0.15"/>
+              <line x1="0" y1="800" x2="1440" y2="800" stroke="#8B4513" stroke-width="1" opacity="0.15"/>
+            </svg>
+          </div>
+          <div class="hero__overlay" aria-hidden="true"></div>
+        </div>
+
+        <!-- テキストコンテンツ -->
+        <div class="hero__inner">
+          <p class="hero__eyebrow" data-animate>京都 烏丸 ／ バクテー専門店</p>
+          <h1 class="hero__title hero__title--food" data-animate>
+            湯気亭
+            <span class="hero__title-en">YUKETEI</span>
+          </h1>
+          <p class="hero__lead hero__lead--food">
+            シンガポールの魂、京都で受け継ぐ。<br />
+            薬膳スープと骨付き豚の滋味を、<br class="sp-only" />どうぞ。
+          </p>
+          <div class="hero__cta">
+            <a href="#reserve" class="btn btn--primary btn--lg">Web 予約</a>
+            <a href="tel:0750000000" class="btn btn--outline-white btn--lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 15z"/>
+              </svg>
+              電話予約
+            </a>
+          </div>
+        </div>
+
+        <!-- スクロールインジケーター -->
+        <div class="hero__scroll-indicator" aria-hidden="true">
+          <span class="hero__scroll-text">Scroll</span>
+          <span class="hero__scroll-line"></span>
+        </div>
+      </section>
+
+
+      <!-- =====================================================
+         Story — こだわりストーリー
+      ===================================================== -->
+      <section class="section story" id="story">
+        <div class="section__inner">
+          <div class="story__body">
+
+            <div class="story__photo" data-animate-x="-1">
+              <div class="story__photo-wrap">
+                <img src="./img/about.jpg" alt="湯気亭のこだわり料理" width="480" height="600" loading="lazy" />
+              </div>
+            </div>
+
+            <div class="story__text" data-animate-x="1">
+              <p class="section__label">Our Story</p>
+              <h2 class="section__title story__title">
+                シンガポールの魂を、<br />
+                京都の水で煮込む。
+              </h2>
+              <p class="story__desc">
+                バクテー（肉骨茶）とは、マレーシア・シンガポールで生まれた骨付き豚のスパイス薬膳スープ。
+                かつて港湾労働者を支えた「力の食事」です。
+              </p>
+              <p class="story__desc">
+                湯気亭では、シンガポール現地で修行したシェフが8種の漢方・香辛料を独自にブレンド。
+                京都の軟水でじっくりと煮込み、骨の髄から旨味を引き出した一杯をご提供しています。
+              </p>
+              <ul class="story__features">
+                <li class="story__feature">
+                  <span class="story__feature-icon" aria-hidden="true">✦</span>
+                  8種の漢方・スパイスを独自配合
+                </li>
+                <li class="story__feature">
+                  <span class="story__feature-icon" aria-hidden="true">✦</span>
+                  京都の軟水で6時間以上煮込み
+                </li>
+                <li class="story__feature">
+                  <span class="story__feature-icon" aria-hidden="true">✦</span>
+                  無添加・無化調。素材の力だけで仕上げる
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- =====================================================
+         Menu — カテゴリタブ + カードグリッド
+      ===================================================== -->
+      <section class="section menu" id="menu">
+        <div class="section__inner">
+
+          <div class="section__head" data-animate>
+            <p class="section__label">Menu</p>
+            <h2 class="section__title">メニュー</h2>
+          </div>
+
+          <!-- カテゴリタブ -->
+          <div class="menu__tabs" role="tablist" aria-label="メニューカテゴリ" data-animate>
+            <button class="menu__tab is-active" role="tab" aria-selected="true"  aria-controls="panel-main"  id="tab-main"  type="button">メイン</button>
+            <button class="menu__tab"            role="tab" aria-selected="false" aria-controls="panel-side"  id="tab-side"  type="button">サイド</button>
+            <button class="menu__tab"            role="tab" aria-selected="false" aria-controls="panel-drink" id="tab-drink" type="button">お茶</button>
+          </div>
+
+          <!-- メインパネル -->
+          <div class="menu__panel is-active" role="tabpanel" id="panel-main" aria-labelledby="tab-main">
+            <ul class="menu__grid" data-animate>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/main_01.jpg" alt="スペアリブスープセット" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">スペアリブスープセット</h3>
+                  <p class="menu__card-desc">骨付きスペアリブの薬膳スープ。ライス・薬膳茶・油条付き</p>
+                  <p class="menu__card-price">¥1,480</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/main_02.jpg" alt="スペアリブスープ" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">スペアリブスープ</h3>
+                  <p class="menu__card-desc">シングルスープ。追加注文やセットのサイドアップに</p>
+                  <p class="menu__card-price">¥980</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/main_03.jpg" alt="レバースープ" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">レバースープ</h3>
+                  <p class="menu__card-desc">やわらかく仕込んだ豚レバー。独特の濃厚な旨味</p>
+                  <p class="menu__card-price">¥880</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/main_04.jpg" alt="バクテー麺" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">バクテー麺</h3>
+                  <p class="menu__card-desc">スペアリブスープにビーフン入り。麺でお腹も満足</p>
+                  <p class="menu__card-price">¥1,180</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- サイドパネル -->
+          <div class="menu__panel" role="tabpanel" id="panel-side" aria-labelledby="tab-side" hidden>
+            <ul class="menu__grid" data-animate>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/side_01.jpg" alt="油条（揚げパン）" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">油条（揚げパン）</h3>
+                  <p class="menu__card-desc">スープに浸して食べるサクサクの揚げパン。定番の組み合わせ</p>
+                  <p class="menu__card-price">¥350</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/side_02.jpg" alt="青菜炒め" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">青菜炒め</h3>
+                  <p class="menu__card-desc">季節の青菜をニンニク・オイスターソースで炒めた一品</p>
+                  <p class="menu__card-price">¥650</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/side_03.jpg" alt="落花生の炒め" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">落花生の炒め</h3>
+                  <p class="menu__card-desc">香ばしく炒めたピーナッツ。ビールのお供にも最適</p>
+                  <p class="menu__card-price">¥550</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/side_04.jpg" alt="豆花（トウファ）" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">豆花（トウファ）</h3>
+                  <p class="menu__card-desc">シンガポール風のやわらかな豆腐デザート。黒糖シロップ添え</p>
+                  <p class="menu__card-price">¥680</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ドリンクパネル -->
+          <div class="menu__panel" role="tabpanel" id="panel-drink" aria-labelledby="tab-drink" hidden>
+            <ul class="menu__grid" data-animate>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/tea_01.jpg" alt="プーアル茶" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">プーアル茶</h3>
+                  <p class="menu__card-desc">脂っこさをさっぱりと流す発酵茶。バクテーの定番お供</p>
+                  <p class="menu__card-price">¥900</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/tea_02.jpg" alt="中国烏龍茶" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">中国烏龍茶</h3>
+                  <p class="menu__card-desc">すっきりした香りと後味。食事の邪魔をしない上質な烏龍</p>
+                  <p class="menu__card-price">¥700</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/tea_03.jpg" alt="台湾ブラックティー" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">台湾ブラックティー</h3>
+                  <p class="menu__card-desc">甘みと渋みのバランスが絶妙な台湾産紅茶</p>
+                  <p class="menu__card-price">¥900</p>
+                </div>
+              </li>
+              <li class="menu__card">
+                <div class="menu__card-thumb">
+                  <img src="./img/tea_04.jpg" alt="鉄観音茶" width="400" height="300" loading="lazy" />
+                </div>
+                <div class="menu__card-body">
+                  <h3 class="menu__card-name">鉄観音茶</h3>
+                  <p class="menu__card-desc">花の香りが広がる、福建省の名茶。後味が長く続く</p>
+                  <p class="menu__card-price">¥800</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- =====================================================
+         Shop — 店舗情報
+      ===================================================== -->
+      <section class="section shop" id="shop">
+        <div class="section__inner">
+
+          <div class="section__head" data-animate>
+            <p class="section__label">Shop Info</p>
+            <h2 class="section__title">店舗情報</h2>
+          </div>
+
+          <div class="shop__body">
+
+            <div class="shop__map" data-animate-x="-1">
+              <!-- TODO: 本番の住所に合わせてiframe src内のpbパラメータを差し替え -->
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6481.75634061865!2d139.7657070661316!3d35.68000169409591!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbee1467bb%3A0x410f8b6e7e3ee34f!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sus!4v1776092065054!5m2!1sja!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="shop__info" data-animate-x="1">
+              <dl class="shop__dl">
+                <div class="shop__row">
+                  <dt>住所</dt>
+                  <dd>〒604-0000<br />
+                  京都府京都市中京区烏丸通<br />四条上ル 湯気亭ビル 1F</dd>
+                </div>
+                <div class="shop__row">
+                  <dt>アクセス</dt>
+                  <dd>地下鉄烏丸線「四条駅」<br />5番出口より徒歩3分</dd>
+                </div>
+                <div class="shop__row">
+                  <dt>営業時間</dt>
+                  <dd>
+                    11:30〜14:30（L.O. 14:00）<br />
+                    17:00〜21:00（L.O. 20:30）<br />
+                    <span class="shop__closed">定休日：火曜日</span>
+                  </dd>
+                </div>
+                <div class="shop__row">
+                  <dt>電話</dt>
+                  <dd><a href="tel:0750000000" class="shop__tel">075-000-0000</a></dd>
+                </div>
+                <div class="shop__row">
+                  <dt>お支払い</dt>
+                  <dd>現金 / クレジットカード<br />交通系IC / QRコード決済</dd>
+                </div>
+              </dl>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- =====================================================
+         Reserve — 予約CTA
+      ===================================================== -->
+      <section class="section reserve" id="reserve">
+        <div class="section__inner">
+          <div class="reserve__body" data-animate>
+            <p class="section__label">Reservation</p>
+            <h2 class="reserve__title">ご予約</h2>
+            <p class="reserve__lead">
+              お席は事前予約がおすすめです。<br />
+              当日予約も空席があればご対応します。
+            </p>
+            <div class="reserve__cta">
+              <a
+                href="https://www.tablecheck.com/"
+                class="btn btn--primary btn--xl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Web 予約（tablecheck）
+              </a>
+              <a href="tel:0750000000" class="btn btn--outline btn--lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 15z"/>
+                </svg>
+                075-000-0000
+              </a>
+            </div>
+            <div class="reserve__sns">
+              <a
+                href="https://www.instagram.com/"
+                class="reserve__sns-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                @yuketei_bkt
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- =====================================================
+       Footer
+    ===================================================== -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <p class="footer__logo-text">湯気亭 <span>YUKETEI</span></p>
+        <nav class="footer__nav" aria-label="フッターナビゲーション">
+          <ul class="footer__nav-list">
+            <li><a href="#story">こだわり</a></li>
+            <li><a href="#menu">メニュー</a></li>
+            <li><a href="#shop">店舗情報</a></li>
+            <li><a href="#reserve">ご予約</a></li>
+          </ul>
+        </nav>
+        <p class="footer__copy">
+          <small>&copy; <span id="footerYear"></span> 湯気亭. All Rights Reserved.</small>
+        </p>
+      </div>
+    </footer>
+
+    <!-- フローティング予約ボタン（スクロール後に表示） -->
+    <a href="#reserve" class="reserve-float" id="reserveFloat" aria-label="ご予約はこちら">
+      Web 予約
+    </a>
+
+    <!-- =====================================================
+       JS
+    ===================================================== -->
+    <script src="./js/lib/lenis.min.js"></script>
+    <script src="./js/lib/gsap.min.js"></script>
+    <script src="./js/lib/ScrollTrigger.min.js"></script>
+    <script src="./js/nav.js"></script>
+    <script src="./js/gsap.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

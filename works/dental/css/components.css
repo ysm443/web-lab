@@ -1,0 +1,764 @@
+/* ============================================================
+   components.css — UIコンポーネント
+   Header / Footer / Button / Form / Animation の共通パーツ。
+   案件ごとにデザインに合わせて編集してよい。
+
+   収録:
+   1. Layout Utility  — .section / .section__inner 等
+   2. Header（電話番号・予約CTAボタン含む）
+   3. Button（btn--tertiary / btn--outline-on-dark 含む）
+   4. Form（フォームオーバーレイ含む）
+   5. Footer
+   6. Animation       — [data-animate]
+   7. Responsive utilities
+
+   Hero・各セクション（Features / Greeting 等）は style.css に書く。
+============================================================ */
+
+@layer components {
+
+/* overflow-x: clip は translate nav との組み合わせで背景が消えるため不要 */
+
+  /* ============================================================
+   1. Layout Utility
+============================================================ */
+
+  .section {
+    padding-block: var(--spacing-16);
+  }
+
+  @media (min-width: 840px) {
+    .section {
+      padding-block: var(--spacing-20);
+    }
+  }
+
+  .section__inner {
+    width: min(100% - var(--spacing-8), var(--content-max-width));
+    margin-inline: auto;
+  }
+
+  .section__head {
+    margin-bottom: var(--spacing-8);
+    text-align: center;
+  }
+
+  .section__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-on-surface-variant);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .section__title {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  @media (min-width: 840px) {
+    .section__head {
+      margin-bottom: var(--spacing-12);
+    }
+  }
+
+  /* ============================================================
+   2. Header
+============================================================ */
+  .header {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: var(--header-height);
+    z-index: var(--layer-b);
+    background: var(--color-surface-container-lowest);
+    box-shadow: var(--elevation-1);
+    transition:
+      background 200ms cubic-bezier(0.2, 0, 0, 1),
+      box-shadow 200ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .header[data-scrolled='true'] {
+    background: var(--color-surface);
+    box-shadow: var(--elevation-2);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding-inline: var(--spacing-4);
+    max-width: var(--site-max-width);
+    margin-inline: auto;
+  }
+
+  /* ロゴ */
+  /* header__right(z:20) より後に描画されるよう layer-c(30) にする */
+  .header__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    text-decoration: none;
+    color: var(--color-on-surface);
+    font-family: var(--font-logo);
+    font-size: var(--text-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+    white-space: nowrap;
+    position: relative;
+    z-index:  var(--layer-c);
+  }
+
+  .header__logo img {
+    height: 32px;
+    width: auto;
+  }
+
+  /* 右エリア（tel + nav + btn） */
+  /* position: relative + z-index で header 内の nav(layer-a=10) より前面に出す */
+  .header__right {
+    display:   flex;
+    align-items: center;
+    gap:       var(--spacing-4);
+    position:  relative;
+    z-index:   var(--layer-b);
+  }
+
+  /* PC 電話番号 */
+  .header__tel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: var(--lh-tight);
+  }
+
+  .header__tel-label {
+    font-size: var(--text-xs);
+    color: var(--color-on-surface-variant);
+  }
+
+  .header__tel-num {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-decoration: none;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  /* ナビリスト（PC） */
+  .header__nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-5);
+    list-style: none;
+  }
+
+  .header__nav-list a {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-on-surface);
+    text-decoration: none;
+    transition: color 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .header__nav-list a:hover {
+    color: var(--color-primary);
+  }
+
+  .header__nav-list a.is-current {
+    color: var(--color-primary);
+  }
+
+  /* 予約CTA（ヘッダー内） */
+  .header__cta {
+    background: var(--color-tertiary);
+    color: var(--color-on-tertiary);
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--shape-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background 150ms cubic-bezier(0.2, 0, 0, 1),
+      scale 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .header__cta:hover {
+    background: color-mix(in srgb, var(--color-tertiary) 88%, #000);
+    scale: 1.03;
+  }
+
+  /* ハンバーガーボタン（SP） */
+  /* header__right(stacking context) 内で nav(z:10) より前面に出す */
+  .header__menu-btn {
+    position: relative;
+    z-index:  var(--layer-b);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .header__menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-on-surface);
+    border-radius: var(--shape-full);
+    transition:
+      translate 150ms cubic-bezier(0.2, 0, 0, 1),
+      rotate 150ms cubic-bezier(0.2, 0, 0, 1),
+      opacity 150ms cubic-bezier(0.2, 0, 0, 1);
+    transform-origin: center;
+  }
+
+  .header__menu-btn[aria-expanded='true'] span:nth-child(1) {
+    translate: 0 8px;
+    rotate: 45deg;
+  }
+  .header__menu-btn[aria-expanded='true'] span:nth-child(2) {
+    opacity: 0;
+  }
+  .header__menu-btn[aria-expanded='true'] span:nth-child(3) {
+    translate: 0 -8px;
+    rotate: -45deg;
+  }
+
+  /* SP: ナビオーバーレイ */
+  @media (max-width: 839px) {
+    .header__tel,
+    .header__cta {
+      display: none;
+    }
+
+    .header__nav {
+      position:            fixed;
+      inset:               0;
+      background:          var(--color-surface);
+      padding-block-start: calc(var(--header-height) + var(--spacing-8));
+      padding-block-end:   var(--spacing-8);
+      padding-inline:      var(--spacing-6);
+      opacity:             0;
+      pointer-events:      none;
+      transition:          opacity 300ms cubic-bezier(0.2, 0, 0, 1);
+      z-index:             var(--layer-a);
+      overflow-y:          auto;
+    }
+
+    .header__nav[data-open='true'] {
+      opacity:        1;
+      pointer-events: auto;
+    }
+
+    .header__nav-list {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-5);
+    }
+
+    .header__nav-list a {
+      font-size: var(--text-lg);
+    }
+  }
+
+  @media (min-width: 840px) {
+    .header__menu-btn {
+      display: none;
+    }
+  }
+
+  /* ============================================================
+   3. Button
+============================================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2);
+    height: 2.5rem;
+    padding-inline: 1.5rem;
+    border-radius: var(--shape-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-wide);
+    text-decoration: none;
+    cursor: pointer;
+    border: var(--border-width) solid transparent;
+    white-space: nowrap;
+    will-change: transform;
+    transition:
+      background 150ms cubic-bezier(0.2, 0, 0, 1),
+      color 150ms cubic-bezier(0.2, 0, 0, 1),
+      scale 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .btn--primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  .btn--primary:hover {
+    background: color-mix(in srgb, var(--color-primary) 92%, #000);
+  }
+
+  .btn--tertiary {
+    background: var(--color-tertiary);
+    color: var(--color-on-tertiary);
+  }
+
+  .btn--tertiary:hover {
+    background: color-mix(in srgb, var(--color-tertiary) 92%, #000);
+  }
+
+  .btn--outline {
+    background: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-outline);
+  }
+
+  .btn--outline:hover {
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+
+  /* ダーク背景（ヒーロー・page-cta等）上で使うアウトラインボタン */
+  .btn--outline-on-dark {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .btn--outline-on-dark:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .btn--sm {
+    height: 2.25rem;
+    font-size: var(--text-xs);
+    padding-inline: var(--spacing-4);
+  }
+
+  .btn--lg {
+    height: 3.25rem;
+    font-size: var(--text-md);
+    padding-inline: var(--spacing-8);
+  }
+
+  .btn--xl {
+    height: 3.75rem;
+    font-size: var(--text-lg);
+    padding-inline: var(--spacing-10);
+    width: 100%;
+    max-width: 25rem;
+  }
+
+  @media (hover: hover) {
+    .btn:not(:disabled):hover {
+      scale: 1.03;
+    }
+  }
+
+  .btn:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .btn:disabled {
+    opacity: var(--state-disabled);
+    cursor: not-allowed;
+  }
+
+  /* ============================================================
+   4. Form
+============================================================ */
+  .form {
+    max-width: var(--page-body-width);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+
+  .form__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .form__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-on-surface);
+  }
+
+  .form__required {
+    color: var(--color-tertiary);
+    margin-left: var(--spacing-1);
+    font-size: var(--text-xs);
+  }
+
+  .form__input,
+  .form__select,
+  .form__textarea {
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    border: var(--border-width) solid var(--color-outline);
+    border-radius: var(--shape-xs);
+    background: var(--color-surface-container-lowest);
+    color: var(--color-on-surface);
+    font-size: var(--text-md);
+    font-family: inherit;
+    transition:
+      border-color 150ms cubic-bezier(0.2, 0, 0, 1),
+      box-shadow 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .form__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%2373777f' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-3) center;
+    padding-right: var(--spacing-10);
+    cursor: pointer;
+  }
+
+  .form__input:focus,
+  .form__select:focus,
+  .form__textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
+
+  .form__input[aria-invalid='true'],
+  .form__select[aria-invalid='true'],
+  .form__textarea[aria-invalid='true'] {
+    border-color: var(--color-error);
+  }
+
+  .form__input[aria-invalid='true']:focus,
+  .form__select[aria-invalid='true']:focus,
+  .form__textarea[aria-invalid='true']:focus {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error) 20%, transparent);
+  }
+
+  .form__error {
+    font-size: var(--text-xs);
+    color: var(--color-error);
+    min-height: 1.2em;
+  }
+
+  /* テキストエリア */
+  .form__textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  /* 氏名2カラム */
+  .form__name-grid {
+    display: grid;
+    gap: var(--spacing-4);
+  }
+
+  @media (min-width: 600px) {
+    .form__name-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* 生年月日 */
+  .form__birthday {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+
+  .form__birthday .form__select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .form__birthday-sep {
+    font-size: var(--text-sm);
+    color: var(--color-on-surface-variant);
+    white-space: nowrap;
+  }
+
+  /* ラジオ・チェックボックス */
+  .form__radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-3) var(--spacing-4);
+  }
+
+  .form__radio-group--column {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .form__radio-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    cursor: pointer;
+    font-size: var(--text-sm);
+    color: var(--color-on-surface);
+  }
+
+  .form__radio-label input[type='radio'] {
+    width: 1.125rem;
+    height: 1.125rem;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* ラジオエラー時 */
+  input[type='radio'][aria-invalid='true'] {
+    outline: 2px solid var(--color-error);
+    outline-offset: 2px;
+  }
+
+  /* 送信ボタン */
+  .form__submit {
+    margin-top: var(--spacing-4);
+    text-align: center;
+  }
+
+  /* Form Overlay — loading / success */
+  .form-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--color-scrim);
+    z-index: var(--layer-dialog);
+    display: grid;
+    place-items: center;
+    padding: var(--spacing-4);
+    transition: opacity 250ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .form-overlay[aria-hidden='true'] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .form-overlay__card {
+    background: var(--color-surface);
+    border-radius: var(--shape-xl);
+    padding: var(--spacing-12) var(--spacing-8);
+    max-width: var(--page-narrow-width);
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--elevation-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-4);
+  }
+
+  /* ローディング */
+  .form-overlay[data-state='loading'] .form-overlay__loading {
+    display: block;
+  }
+  .form-overlay[data-state='success'] .form-overlay__loading {
+    display: none;
+  }
+  .form-overlay[data-state='loading'] .form-overlay__success {
+    display: none;
+  }
+  .form-overlay[data-state='success'] .form-overlay__success {
+    display: block;
+  }
+  .form-overlay[data-state='hidden'] {
+    display: none;
+  }
+
+  .form-overlay__spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid var(--color-outline-variant);
+    border-top-color: var(--color-primary);
+    border-radius: var(--shape-full);
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  .form-overlay__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--color-primary-container);
+    border-radius: var(--shape-full);
+    display: grid;
+    place-items: center;
+    font-size: 1.75rem;
+  }
+
+  .form-overlay__title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-on-surface);
+  }
+
+  .form-overlay__text {
+    font-size: var(--text-sm);
+    color: var(--color-on-surface-variant);
+    line-height: var(--lh-relaxed);
+  }
+
+  /* ============================================================
+   16. Footer
+============================================================ */
+  .footer {
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
+    padding-block: var(--spacing-12) var(--spacing-8);
+  }
+
+  .footer__inner {
+    width: min(100% - var(--spacing-8), var(--content-max-width));
+    margin-inline: auto;
+  }
+
+  .footer__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-8);
+    justify-content: space-between;
+    padding-bottom: var(--spacing-8);
+    border-bottom: var(--border-width) solid rgba(255, 255, 255, 0.15);
+  }
+
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .footer__logo {
+    font-family: var(--font-logo);
+    font-size: var(--text-md);
+    font-weight: var(--font-weight-bold);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .footer__address {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: var(--lh-relaxed);
+  }
+
+  .footer__tel-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-2);
+  }
+
+  .footer__tel-label {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer__tel {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* フッターナビ列 */
+  .footer__nav-cols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-8);
+  }
+
+  .footer__nav-col h4 {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-wide);
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: var(--spacing-3);
+  }
+
+  .footer__nav-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .footer__nav-col a {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .footer__nav-col a:hover {
+    color: #fff;
+  }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: center;
+    padding-top: var(--spacing-6);
+  }
+
+  .footer__copy {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* ============================================================
+   17. Animation
+   GSAP動作前のFOUC防止。
+   CSS側は opacity:0 のみ — translate/y制御はGSAPに委譲。
+============================================================ */
+  [data-animate],
+  [data-animate-x] {
+    opacity: 0;
+  }
+
+  /* ============================================================
+   18. Responsive utilities
+============================================================ */
+
+  /* SP のみ表示 */
+  @media (min-width: 840px) {
+    .show-sp {
+      display: none;
+    }
+  }
+
+  /* PC のみ表示 */
+  @media (max-width: 839px) {
+    .show-pc {
+      display: none;
+    }
+  }
+
+  /* 上方向のスペーサー */
+  .mt-section {
+    margin-top: var(--spacing-16);
+  }
+
+  @media (min-width: 840px) {
+    .mt-section {
+      margin-top: var(--spacing-20);
+    }
+  }
+} /* end @layer components */

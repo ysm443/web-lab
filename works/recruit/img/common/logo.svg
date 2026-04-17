@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 28" role="img" aria-label="YSMlab">
+  <circle cx="6" cy="14" r="5" fill="#0096d9"/>
+  <text x="17" y="21"
+        font-family="system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif"
+        font-size="20" font-weight="700" letter-spacing="-0.5">
+    <tspan fill="#1c1b1f">YSM</tspan><tspan fill="#0096d9">lab</tspan>
+  </text>
+</svg>

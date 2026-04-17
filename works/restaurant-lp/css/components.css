@@ -1,0 +1,398 @@
+/* ============================================================
+   components.css — UIコンポーネント
+   Header / Footer / Button / Animation の共通パーツ。
+   案件ごとにデザインに合わせて編集してよい。
+
+   収録:
+   1. Layout Utility  — .section / .section__inner 等
+   2. Header
+   3. Button
+   4. Footer
+   5. Animation       — [data-animate]
+
+   Hero・各セクション（Story / Menu 等）は style.css に書く。
+============================================================ */
+
+@layer components {
+
+/* スクロールバー幅を常に確保し vw 再計算によるレイアウトシフトを防ぐ */
+html { scrollbar-gutter: stable; }
+
+/* clip-path アニメーションに変更したため overflow-x: clip は不要 */
+
+/* ============================================================
+   1. Layout Utility
+============================================================ */
+.section {
+  padding-block: var(--spacing-16);
+}
+
+@media (min-width: 840px) {
+  .section {
+    padding-block: var(--spacing-20);
+  }
+}
+
+.section__inner {
+  width: min(100% - var(--spacing-8), var(--content-max-width));
+  margin-inline: auto;
+}
+
+.section__head {
+  margin-bottom: var(--spacing-8);
+  text-align: center;
+}
+
+.section__label {
+  display:        block;
+  font-family:    var(--font-sans-en);
+  font-size:      var(--text-xs);
+  font-weight:    var(--font-weight-medium);
+  letter-spacing: var(--tracking-wide);
+  color:          var(--color-tertiary);
+  text-transform: uppercase;
+  margin-bottom:  var(--spacing-2);
+}
+
+.section__title {
+  font-size:      var(--text-2xl);
+  font-weight:    var(--font-weight-bold);
+  line-height:    var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color:          var(--color-secondary);
+}
+
+@media (min-width: 840px) {
+  .section__head {
+    margin-bottom: var(--spacing-12);
+  }
+}
+
+/* SP用改行 */
+.sp-only { display: none; }
+@media (max-width: 599px) {
+  .sp-only { display: inline; }
+}
+
+
+/* ============================================================
+   2. Header
+============================================================ */
+.header {
+  position:          fixed;
+  inset-block-start: 0;
+  inset-inline:      0;
+  height:            var(--header-height);
+  z-index:           var(--layer-b);
+  transition:        background 250ms cubic-bezier(0.2, 0, 0, 1),
+                     box-shadow 250ms cubic-bezier(0.2, 0, 0, 1),
+                     color      250ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ヒーロー上（背景なし）: テキストを白に */
+.header:not([data-scrolled="true"]) .header__logo--text,
+.header:not([data-scrolled="true"]) .header__logo-en,
+.header:not([data-scrolled="true"]) ~ .header__nav .header__nav-list a {
+  color: #ffffff;
+}
+
+/* オーバーレイオープン時: 非スクロール状態でも暗色に戻す（白背景に白文字防止） */
+.header:not([data-scrolled="true"]) ~ .header__nav[data-open="true"] .header__nav-list a {
+  color: var(--color-secondary);
+}
+
+/* ハンバーガー線（SP）: background-color で描画 */
+.header:not([data-scrolled="true"]) .header__menu-btn span {
+  background-color: #ffffff;
+}
+
+/* navオープン時: ロゴ・ハンバーガーがクリーム背景に溶けないよう暗色に戻す
+   白ルールより後ろに置くことで同一詳細度で上書きできる */
+.header[data-nav-open="true"] .header__logo--text,
+.header[data-nav-open="true"] .header__logo-en {
+  color: var(--color-secondary);
+}
+.header[data-nav-open="true"] .header__menu-btn span {
+  background-color: var(--color-secondary);
+}
+
+/* backdrop-filter を header 本体に使うと position:fixed の子 nav が header を
+   containing block とみなし inset 計算が狂う（height 0 でパネルが消える）ため除去。
+   opacity 0.98 で視覚的な不透明感を確保する。 */
+.header[data-scrolled="true"] {
+  background: rgba(255, 248, 240, 0.98);
+  box-shadow: var(--elevation-1);
+}
+
+.header__inner {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  height:          100%;
+  padding-inline:  var(--spacing-5);
+  max-width:       var(--site-max-width);
+  margin-inline:   auto;
+}
+
+/* テキストロゴ */
+.header__logo--text {
+  display:        flex;
+  flex-direction: column;
+  gap:            2px;
+  text-decoration: none;
+  font-family:    var(--font-logo);
+  font-size:      var(--text-xl);
+  font-weight:    var(--font-weight-bold);
+  color:          var(--color-secondary);
+  line-height:    1;
+  transition:     color 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+.header__logo--text:hover { color: var(--color-primary); }
+
+.header__logo-en {
+  font-family:    var(--font-sans-en);
+  font-size:      var(--text-xs);
+  font-weight:    var(--font-weight-medium);
+  letter-spacing: var(--tracking-wide);
+  color:          var(--color-on-surface-variant);
+}
+
+/* ナビ */
+.header__nav-list {
+  display:     flex;
+  align-items: center;
+  gap:         var(--spacing-6);
+  list-style:  none;
+}
+
+.header__nav-list a {
+  font-size:       var(--text-sm);
+  font-weight:     var(--font-weight-medium);
+  color:           var(--color-secondary);
+  text-decoration: none;
+  transition:      color 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+.header__nav-list a:hover { color: var(--color-primary); }
+
+/* ヘッダーCTAナビアイテム */
+.header__nav-cta a { color: inherit; }
+
+/* ハンバーガー */
+.header__menu-btn {
+  display:         flex;
+  flex-direction:  column;
+  justify-content: space-between;
+  width:           24px;
+  height:          18px;
+  padding:         0;
+}
+
+.header__menu-btn span {
+  display:          block;
+  width:            100%;
+  height:           2px;
+  background:       var(--color-secondary);
+  border-radius:    var(--shape-full);
+  transition:       translate 150ms cubic-bezier(0.2, 0, 0, 1),
+                    rotate    150ms cubic-bezier(0.2, 0, 0, 1),
+                    opacity   150ms cubic-bezier(0.2, 0, 0, 1);
+  transform-origin: center;
+}
+
+.header__menu-btn[aria-expanded="true"] span {
+  border-radius: 0; /* 回転時に端点が丸い点として見えるのを防ぐ */
+}
+.header__menu-btn[aria-expanded="true"] span:nth-child(1) {
+  translate: 0 8px;
+  rotate:    45deg;
+}
+.header__menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.header__menu-btn[aria-expanded="true"] span:nth-child(3) {
+  translate: 0 -8px;
+  rotate:    -45deg;
+}
+
+/* nav は header の外（兄弟要素）に配置 → header の stacking context の影響を受けない */
+
+/* PC: header 上部に固定配置し右端にナビを並べる */
+@media (min-width: 600px) {
+  .header__nav {
+    position:          fixed;
+    inset-block-start: 0;
+    inset-inline:      0;
+    height:            var(--header-height);
+    display:           flex;
+    align-items:       center;
+    justify-content:   flex-end;
+    max-width:         var(--site-max-width);
+    margin-inline:     auto;
+    padding-inline:    var(--spacing-5);
+    z-index:           var(--layer-b);
+    pointer-events:    none;
+  }
+  .header__nav .header__nav-list {
+    pointer-events: auto;
+  }
+  .header__menu-btn { display: none; }
+  .header__actions  { display: none; }
+}
+
+/* SP: フルスクリーンオーバーレイ */
+@media (max-width: 599px) {
+  /* ご予約CTAはフローティングボタンと重複するため非表示 */
+  .header__nav-cta { display: none; }
+
+  .header__nav {
+    position:           fixed;
+    inset:              0;
+    background:         #FFF8F0;
+    padding-block-start: calc(var(--header-height) + var(--spacing-8));
+    padding-block-end:  var(--spacing-8);
+    padding-inline:     var(--spacing-5);
+    opacity:            0;
+    pointer-events:     none;
+    transition:         opacity 300ms cubic-bezier(0.2, 0, 0, 1);
+    /* header(--layer-b=20) より低い z-index にすることで
+       header がこの overlay の上に浮き、ハンバーガーが操作できる */
+    z-index:            var(--layer-a);
+  }
+  .header__nav[data-open="true"] {
+    opacity:        1;
+    pointer-events: auto;
+  }
+  .header__nav-list {
+    flex-direction: column;
+    align-items:    flex-start;
+    gap:            var(--spacing-5);
+  }
+  .header__nav-list a {
+    font-size: var(--text-xl);
+  }
+}
+
+
+/* ============================================================
+   3. Button
+============================================================ */
+.btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             var(--spacing-2);
+  height:          2.5rem;
+  padding-inline:  1.5rem;
+  border-radius:   var(--shape-full);
+  font-size:       var(--text-sm);
+  font-weight:     var(--font-weight-medium);
+  letter-spacing:  var(--tracking-wide);
+  text-decoration: none;
+  cursor:          pointer;
+  border:          var(--border-width) solid transparent;
+  white-space:     nowrap;
+  transition:      background 150ms cubic-bezier(0.2, 0, 0, 1),
+                   color      150ms cubic-bezier(0.2, 0, 0, 1),
+                   scale      150ms cubic-bezier(0.2, 0, 0, 1),
+                   border-color 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color:      var(--color-on-primary);
+}
+.btn--primary:hover {
+  background: color-mix(in srgb, var(--color-primary) 88%, #000);
+}
+
+.btn--outline {
+  background:   transparent;
+  color:        var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn--outline:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+/* Hero上でのアウトライン白版 */
+.btn--outline-white {
+  background:   transparent;
+  color:        #FFFFFF;
+  border-color: rgba(255,255,255,0.6);
+}
+.btn--outline-white:hover {
+  background:   rgba(255,255,255,0.1);
+  border-color: #FFFFFF;
+}
+
+.btn--sm  { height: 2.25rem; font-size: var(--text-xs); padding-inline: var(--spacing-4); }
+.btn--lg  { height: 3.25rem; font-size: var(--text-md); padding-inline: var(--spacing-8); }
+.btn--xl  { height: 3.75rem; font-size: var(--text-lg); padding-inline: var(--spacing-10); width: 100%; max-width: 28rem; }
+
+@media (hover: hover) { .btn:hover { scale: 1.03; } }
+.btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+.btn:disabled { opacity: var(--state-disabled); cursor: not-allowed; }
+
+
+/* ============================================================
+   4. Footer
+============================================================ */
+.footer {
+  padding-block: var(--spacing-10) var(--spacing-8);
+  background:    var(--color-surface-container-low);
+  border-top:    var(--border-width) solid var(--color-outline-variant);
+}
+
+.footer__inner {
+  width:          min(100% - var(--spacing-8), var(--site-max-width));
+  margin-inline:  auto;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            var(--spacing-4);
+}
+
+.footer__logo-text {
+  font-family: var(--font-logo);
+  font-size:   var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color:       var(--color-secondary);
+}
+.footer__logo-text span {
+  font-family:    var(--font-sans-en);
+  font-size:      var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color:          var(--color-on-surface-variant);
+  margin-left:    var(--spacing-3);
+}
+
+.footer__nav-list {
+  display:         flex;
+  flex-wrap:       wrap;
+  justify-content: center;
+  gap:             var(--spacing-2) var(--spacing-6);
+  list-style:      none;
+}
+
+.footer__nav-list a {
+  font-size:       var(--text-sm);
+  color:           var(--color-on-surface-variant);
+  text-decoration: none;
+  transition:      color 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+.footer__nav-list a:hover { color: var(--color-primary); }
+
+.footer__copy {
+  font-size: var(--text-xs);
+  color:     var(--color-on-surface-variant);
+}
+
+
+/* ============================================================
+   5. Animation
+   GSAPが opacity を直接制御するため、初期値のみ設定。
+============================================================ */
+[data-animate],
+[data-animate-x] {
+  opacity: 0;
+}
+
+} /* end @layer components */

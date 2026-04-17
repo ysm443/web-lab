@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEB予約 | 東都中央歯科医院</title>
+  <meta name="description"
+    content="東都中央歯科医院のWEB予約フォーム。24時間いつでもご予約いただけます。">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+  <!-- ヘッダー -->
+  <header id="header" class="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">東都中央歯科医院</a>
+      <div class="header__right">
+        <div class="header__tel show-pc">
+          <span class="header__tel-label">お電話でのご予約・お問い合わせ</span>
+          <a href="tel:0312345678" class="header__tel-num">03-1234-5678</a>
+        </div>
+        <nav id="headerNav" class="header__nav" data-open="false" aria-hidden="true">
+          <ul class="header__nav-list">
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="first-visit.html">初診の流れ</a></li>
+            <li><a href="doctors.html">医師紹介</a></li>
+            <li><a href="introduction.html">医院紹介</a></li>
+            <li><a href="medical-services.html">診療内容</a></li>
+            <li><a href="access.html">診療時間・アクセス</a></li>
+            <li><a href="fee.html">治療費</a></li>
+          </ul>
+        </nav>
+        <button id="menuBtn" class="header__menu-btn" aria-expanded="false" aria-label="メニューを開く">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 送信オーバーレイ -->
+  <div id="formOverlay" class="form-overlay" data-state="hidden" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="form-overlay__card">
+      <!-- ローディング -->
+      <div class="form-overlay__loading">
+        <div class="form-overlay__spinner" aria-label="送信中"></div>
+        <p class="form-overlay__title">送信中...</p>
+        <p class="form-overlay__text">しばらくお待ちください。</p>
+      </div>
+      <!-- 成功 -->
+      <div class="form-overlay__success">
+        <div class="form-overlay__icon" aria-hidden="true">✓</div>
+        <p class="form-overlay__title">予約を受け付けました</p>
+        <p class="form-overlay__text">
+          ご予約ありがとうございます。<br>
+          確認メールをお送りしますのでご確認ください。<br>
+          ご不明な点はお電話でお問い合わせください。
+        </p>
+        <button id="formOverlayReset" class="btn btn--primary" type="button">別の予約をする</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ページビジュアル -->
+    <div class="page-visual">
+      <div class="page-visual__bg">
+        <img src="images/visual_image01.jpg" width="1920" height="320" alt="" fetchpriority="high">
+      </div>
+      <div class="page-visual__body">
+        <h1 class="page-visual__title">WEB予約</h1>
+        <p class="page-visual__lead">24時間いつでもご予約いただけます</p>
+      </div>
+    </div>
+
+    <!-- フォーム -->
+    <section class="section">
+      <div class="section__inner" style="max-width: var(--page-body-width);">
+
+        <div style="margin-bottom: var(--spacing-8); padding: var(--spacing-4) var(--spacing-5); background: var(--color-primary-container); border-radius: var(--shape-md); font-size: var(--text-sm); color: var(--color-on-primary-container); line-height: var(--lh-relaxed);">
+          ご予約後、当院よりお電話またはメールにてご確認させていただく場合がございます。<br>
+          <strong>電話番号: <a href="tel:0312345678" style="color: var(--color-primary);">03-1234-5678</a>　受付時間: 10:00〜18:30（日・祝除く）</strong>
+        </div>
+
+        <form id="contactForm" class="form" novalidate>
+
+          <!-- 受診歴 -->
+          <div class="form__group">
+            <p class="form__label">当院での受診歴<span class="form__required" aria-label="必須">必須</span></p>
+            <div class="form__radio-group">
+              <label class="form__radio-label">
+                <input type="radio" name="examination" value="first">
+                初めて
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="examination" value="after_second">
+                2回目以降
+              </label>
+            </div>
+            <span id="examinationError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- 症状・希望内容 -->
+          <div class="form__group">
+            <p class="form__label">症状・希望内容<span class="form__required" aria-label="必須">必須</span></p>
+            <div class="form__radio-group form__radio-group--column">
+              <label class="form__radio-label">
+                <input type="radio" name="symptoms" value="pain">
+                痛みがある方はこちら
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="symptoms" value="swelling">
+                腫れがある方はこちら
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="symptoms" value="filling">
+                詰め物・被せものが取れた方はこちら
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="symptoms" value="stain">
+                歯の色が気になる方はこちら
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="symptoms" value="dentures">
+                入れ歯の状態が気になる方はこちら
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="symptoms" value="dental_checkup">
+                検診希望の方はこちら
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="symptoms" value="wisdom_teeth">
+                親知らずが気になる方はこちら
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="symptoms" value="other">
+                その他の治療希望の方はこちら
+              </label>
+            </div>
+            <span id="symptomsError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- 予約日 -->
+          <div class="form__group">
+            <label class="form__label" for="calendar">
+              予約日<span class="form__required" aria-label="必須">必須</span>
+            </label>
+            <input type="date" id="calendar" name="calendar"
+              class="form__input"
+              min="2026-04-15" max="2027-12-31"
+              autocomplete="off">
+            <span id="calendarError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- 予約時間 -->
+          <div class="form__group">
+            <label class="form__label" for="time">
+              予約時間<span class="form__required" aria-label="必須">必須</span>
+            </label>
+            <select id="time" name="time" class="form__select">
+              <option value="">時間を選択してください</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+            </select>
+            <span id="timeError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- 氏名 -->
+          <div class="form__name-grid">
+            <div class="form__group">
+              <label class="form__label" for="sei">
+                姓（漢字）<span class="form__required" aria-label="必須">必須</span>
+              </label>
+              <input type="text" id="sei" name="sei"
+                class="form__input"
+                placeholder="例）予約"
+                autocomplete="family-name">
+              <span id="seiError" class="form__error" aria-live="polite"></span>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="mei">
+                名（漢字）<span class="form__required" aria-label="必須">必須</span>
+              </label>
+              <input type="text" id="mei" name="mei"
+                class="form__input"
+                placeholder="例）太郎"
+                autocomplete="given-name">
+              <span id="meiError" class="form__error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <!-- フリガナ -->
+          <div class="form__name-grid">
+            <div class="form__group">
+              <label class="form__label" for="sei-kana">
+                セイ（フリガナ）<span class="form__required" aria-label="必須">必須</span>
+              </label>
+              <input type="text" id="sei-kana" name="sei-kana"
+                class="form__input"
+                placeholder="例）ヨヤク"
+                autocomplete="off">
+              <span id="sei-kanaError" class="form__error" aria-live="polite"></span>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="mei-kana">
+                メイ（フリガナ）<span class="form__required" aria-label="必須">必須</span>
+              </label>
+              <input type="text" id="mei-kana" name="mei-kana"
+                class="form__input"
+                placeholder="例）タロウ"
+                autocomplete="off">
+              <span id="mei-kanaError" class="form__error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <!-- 性別 -->
+          <div class="form__group">
+            <p class="form__label">性別<span class="form__required" aria-label="必須">必須</span></p>
+            <div class="form__radio-group">
+              <label class="form__radio-label">
+                <input type="radio" name="gender" value="male">
+                男性
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="gender" value="female">
+                女性
+              </label>
+              <label class="form__radio-label">
+                <input type="radio" name="gender" value="other">
+                その他
+              </label>
+            </div>
+            <span id="genderError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- 生年 -->
+          <div class="form__group">
+            <label class="form__label" for="year">
+              生年（年）<span class="form__required" aria-label="必須">必須</span>
+            </label>
+            <div class="form__birthday">
+              <select id="year" name="year" class="form__select">
+                <option value="">年を選択</option>
+                <option value="reiwa08">令和08年（2026年）</option>
+                <option value="reiwa07">令和07年（2025年）</option>
+                <option value="reiwa06">令和06年（2024年）</option>
+                <option value="reiwa05">令和05年（2023年）</option>
+                <option value="reiwa04">令和04年（2022年）</option>
+                <option value="reiwa03">令和03年（2021年）</option>
+                <option value="reiwa02">令和02年（2020年）</option>
+                <option value="reiwa01">令和01年（2019年）</option>
+                <option value="heisei30">平成30年（2018年）</option>
+                <option value="heisei29">平成29年（2017年）</option>
+                <option value="heisei28">平成28年（2016年）</option>
+                <option value="heisei27">平成27年（2015年）</option>
+                <option value="heisei26">平成26年（2014年）</option>
+                <option value="heisei25">平成25年（2013年）</option>
+                <option value="heisei24">平成24年（2012年）</option>
+                <option value="heisei23">平成23年（2011年）</option>
+                <option value="heisei22">平成22年（2010年）</option>
+                <option value="heisei21">平成21年（2009年）</option>
+                <option value="heisei20">平成20年（2008年）</option>
+                <option value="heisei19">平成19年（2007年）</option>
+                <option value="heisei18">平成18年（2006年）</option>
+                <option value="heisei17">平成17年（2005年）</option>
+                <option value="heisei16">平成16年（2004年）</option>
+                <option value="heisei15">平成15年（2003年）</option>
+                <option value="heisei14">平成14年（2002年）</option>
+                <option value="heisei13">平成13年（2001年）</option>
+                <option value="heisei12">平成12年（2000年）</option>
+                <option value="heisei11">平成11年（1999年）</option>
+                <option value="heisei10">平成10年（1998年）</option>
+                <option value="heisei09">平成09年（1997年）</option>
+                <option value="heisei08">平成08年（1996年）</option>
+                <option value="heisei07">平成07年（1995年）</option>
+                <option value="heisei06">平成06年（1994年）</option>
+                <option value="heisei05">平成05年（1993年）</option>
+                <option value="heisei04">平成04年（1992年）</option>
+                <option value="heisei03">平成03年（1991年）</option>
+                <option value="heisei02">平成02年（1990年）</option>
+                <option value="heisei01">平成01年（1989年）</option>
+                <option value="showa63">昭和63年（1988年）</option>
+                <option value="showa62">昭和62年（1987年）</option>
+                <option value="showa60">昭和60年（1985年）</option>
+                <option value="showa55">昭和55年（1980年）</option>
+                <option value="showa50">昭和50年（1975年）</option>
+                <option value="showa45">昭和45年（1970年）</option>
+                <option value="showa40">昭和40年（1965年）</option>
+                <option value="showa35">昭和35年（1960年）</option>
+                <option value="showa30">昭和30年（1955年）</option>
+                <option value="showa25">昭和25年（1950年）</option>
+              </select>
+            </div>
+            <span id="yearError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- メールアドレス -->
+          <div class="form__group">
+            <label class="form__label" for="mail">
+              メールアドレス<span class="form__required" aria-label="必須">必須</span>
+            </label>
+            <input type="email" id="mail" name="mail"
+              class="form__input"
+              placeholder="例）yoyaku@sample.jp"
+              autocomplete="email">
+            <span id="mailError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- 電話番号 -->
+          <div class="form__group">
+            <label class="form__label" for="telephone">
+              電話番号<span class="form__required" aria-label="必須">必須</span>
+            </label>
+            <input type="tel" id="telephone" name="telephone"
+              class="form__input"
+              placeholder="例）08012345678（ハイフンなし）"
+              autocomplete="tel">
+            <span id="telephoneError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- 要望・ご質問 -->
+          <div class="form__group">
+            <label class="form__label" for="comment">要望・ご質問</label>
+            <textarea id="comment" name="comment"
+              class="form__textarea"
+              placeholder="例）虫歯治療についての相談をしたいです。"></textarea>
+            <span id="commentError" class="form__error" aria-live="polite"></span>
+          </div>
+
+          <!-- 送信ボタン -->
+          <div class="form__submit">
+            <button type="submit" class="btn btn--tertiary btn--xl">予約を送信する</button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">東都中央歯科医院</a>
+          <address class="footer__address">
+            〒108-0014 東京都港区芝5丁目XX番XX号<br>
+            JR山手線 田町駅 西口より徒歩3分
+          </address>
+          <div class="footer__tel-wrap">
+            <span class="footer__tel-label">TEL</span>
+            <a href="tel:0312345678" class="footer__tel">03-1234-5678</a>
+          </div>
+        </div>
+        <div class="footer__nav-cols">
+          <div class="footer__nav-col">
+            <h4>院内メニュー</h4>
+            <ul>
+              <li><a href="index.html">ホーム</a></li>
+              <li><a href="first-visit.html">初診の流れ</a></li>
+              <li><a href="doctors.html">医師紹介</a></li>
+              <li><a href="introduction.html">医院紹介</a></li>
+              <li><a href="medical-services.html">診療内容</a></li>
+              <li><a href="access.html">診療時間・アクセス</a></li>
+              <li><a href="fee.html">治療費</a></li>
+              <li><a href="#x">プライバシーポリシー</a></li>
+            </ul>
+          </div>
+          <div class="footer__nav-col">
+            <h4>診療内容</h4>
+            <ul>
+              <li><a href="medical-services.html">虫歯・歯周病治療</a></li>
+              <li><a href="medical-services.html">審美治療・ホワイトニング</a></li>
+              <li><a href="medical-services.html">インプラント</a></li>
+              <li><a href="medical-services.html">矯正歯科</a></li>
+              <li><a href="medical-services.html">小児歯科</a></li>
+              <li><a href="medical-services.html">根管治療</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span id="footerYear"></span> 東都中央歯科医院</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/lib/gsap.min.js"></script>
+  <script src="js/lib/ScrollTrigger.min.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/scroll.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/gsap.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

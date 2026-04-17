@@ -1,0 +1,692 @@
+/* ============================================================
+   style.css — 案件固有スタイル（メインの作業場所）
+
+   書く順序（目安）:
+   1. Hero
+   2. 各セクション（About → Services → ... → Contact）
+
+   Header / Footer / Button / Form の調整は components.css で行う。
+   ここには Hero と各セクションのスタイルのみ書く。
+============================================================ */
+
+@layer components {
+
+/* GSAP の x アニメーション起点による横スクロール防止
+   clip は scroll container を作らないため Lenis に影響しない
+   body のみでは viewport に伝播しないため html も併記 */
+html, body { overflow-x: clip; }
+
+/* ============================================================
+   5. Hero
+============================================================ */
+/* _initStickyOffset により over-wrapper は -100vh から開始するため
+   ページ最上部でも is-over が即発火し header はクリーム背景になる。
+   ダークピル背景は不要。デフォルト（暗色バー）のまま表示できる。 */
+
+/* ヘッダー右グループ: ナビ + SNS を右寄せで束ねる */
+.header__right {
+  display:     flex;
+  align-items: center;
+  gap:         var(--spacing-6);
+  margin-left: auto;
+}
+
+/* SP: header__right のgapを縮小（ナビは fixed overlay のため非表示） */
+@media (max-width: 599px) {
+  .header__right {
+    gap: var(--spacing-3);
+  }
+}
+
+.hero {
+  padding-block:  calc(var(--header-height) + var(--spacing-16)) var(--spacing-16);
+  min-height:     80vh;
+  display:        grid;
+  align-items:    center;
+}
+
+.hero__inner {
+  width:          min(100% - var(--spacing-8), var(--page-body-width));
+  margin-inline:  auto;
+  text-align:     center;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            var(--spacing-6);
+}
+
+.hero__title {
+  font-size:      2.5rem; /* SP */
+  font-weight:    var(--font-weight-bold);
+  line-height:    var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+@media (min-width: 600px) {
+  .hero__title { font-size: 3.5rem; }
+}
+
+@media (min-width: 840px) {
+  .hero__title { font-size: 5rem; }
+}
+
+.hero__lead {
+  font-size: var(--text-lg);
+  color:     var(--color-on-surface-variant);
+  max-width: var(--page-narrow-width);
+}
+
+
+/* ============================================================
+   LP — Body / Base overrides
+============================================================ */
+body {
+  background-color: #FBF6F0;
+  color: #56411C;
+}
+
+a {
+  color: #56411C;
+}
+
+
+/* ============================================================
+   LP — Header
+   スライダー上では透明+グラデ / コンテンツ上では cream 背景
+============================================================ */
+.header {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 100%);
+  box-shadow: none;
+  height: auto;
+  padding-block: var(--spacing-4);
+  transition: background 400ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* backdrop-filter を header 本体に使うと position:fixed の子 nav の containing block が
+   header になり nav が height 0 に崩壊するため除去。opacity を上げて代替。 */
+.header.is-over {
+  background: rgba(251, 246, 240, 0.98);
+  box-shadow: none;
+}
+
+.header__logo img {
+  filter: brightness(0) invert(1);
+  transition: filter 400ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.header.is-over .header__logo img {
+  filter: none;
+}
+
+.header__sns {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.header__sns-link {
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.header__sns-link:hover {
+  color: #FFFFFF;
+  opacity: 0.7;
+}
+
+.header.is-over .header__sns-link {
+  color: #56411C;
+}
+
+.header.is-over .header__sns-link:hover {
+  color: #56411C;
+}
+
+
+/* ============================================================
+   LP — Main Visual (sticky slider)
+============================================================ */
+.main-visual {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.main-visual__slides {
+  position: absolute;
+  inset: 0;
+}
+
+.main-visual__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.main-visual__slide--1 { background-color: #CDB09A; }
+.main-visual__slide--2 { background-color: #B8906F; }
+.main-visual__slide--3 { background-color: #A8784C; }
+
+.main-visual__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 10, 0, 0.3) 0%,
+    rgba(20, 10, 0, 0.05) 50%,
+    rgba(20, 10, 0, 0.35) 100%
+  );
+}
+
+.main-visual__scroll-hint {
+  position: absolute;
+  bottom: var(--spacing-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.main-visual__scroll-line {
+  display: block;
+  width: 1px;
+  height: 56px;
+  background: #FFFFFF;
+  transform-origin: top;
+  animation: lpScrollLine 2s ease-in-out infinite;
+}
+
+@keyframes lpScrollLine {
+  0%   { transform: scaleY(0); opacity: 1; }
+  65%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+.main-visual__scroll-text {
+  font-family: var(--font-sans-en);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  color: #FFFFFF;
+}
+
+
+/* ============================================================
+   LP — Over-wrapper
+============================================================ */
+.over-wrapper {
+  position: relative;
+  z-index: 2;
+  /* margin-top set by JS: _initStickyOffset() */
+}
+
+
+/* ============================================================
+   LP — Logo Section (100vh brand intro)
+============================================================ */
+.logo-sec {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FBF6F0;
+}
+
+.logo-sec__inner {
+  text-align: center;
+  padding: var(--spacing-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.logo-sec__logo {
+  margin: 0;
+}
+
+.logo-sec__logo img {
+  width: min(280px, 60vw);
+  height: auto;
+}
+
+.logo-sec__catch {
+  font-family: var(--font-serif-ja);
+  font-size: var(--text-lg);
+  color: #56411C;
+  letter-spacing: 0.14em;
+}
+
+/* data-animate-load: initial hidden state (animated by JS on load) */
+[data-animate-load] {
+  opacity: 0;
+}
+
+
+/* ============================================================
+   LP — About Section (alternating image / text blocks)
+============================================================ */
+.about-sec {
+  background-color: #FBF6F0;
+}
+
+.about-sec__block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.about-sec__media {
+  aspect-ratio: 16 / 9; /* 688×384px（実素材比率に合わせる） */
+  overflow: hidden;
+}
+
+.about-sec__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-sec__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-16) var(--spacing-12);
+  background-color: #FBF6F0;
+}
+
+.about-sec__block--reverse .about-sec__body {
+  background-color: #F3E6D7;
+}
+
+.about-sec__num {
+  font-family: var(--font-sans-en);
+  font-size: var(--text-sm);
+  letter-spacing: 0.2em;
+  color: #D2A36C;
+  margin-bottom: var(--spacing-3);
+}
+
+.about-sec__title {
+  font-family: var(--font-serif-ja);
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+  font-weight: var(--font-weight-bold);
+  color: #56411C;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--spacing-6);
+}
+
+.about-sec__text {
+  font-size: var(--text-md);
+  line-height: var(--lh-relaxed);
+  color: #56411C;
+  opacity: 0.85;
+}
+
+@media (max-width: 839px) {
+  .about-sec__block,
+  .about-sec__block--reverse {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .about-sec__block--reverse .about-sec__media {
+    order: -1;
+  }
+
+  .about-sec__body {
+    padding: var(--spacing-10) var(--spacing-6);
+  }
+
+  .about-sec__title {
+    font-size: var(--text-xl);
+  }
+}
+
+
+/* ============================================================
+   LP — Menu Section
+============================================================ */
+.menu-sec {
+  background-color: #FBF6F0;
+  padding-block: var(--spacing-20);
+}
+
+.menu-sec__inner {
+  width: min(100% - var(--spacing-8), var(--content-max-width));
+  margin-inline: auto;
+}
+
+.menu-sec__head {
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+}
+
+.menu-sec__label {
+  font-family: var(--font-sans-en);
+  font-size: var(--text-sm);
+  letter-spacing: 0.2em;
+  color: #D2A36C;
+  margin-bottom: var(--spacing-2);
+}
+
+.menu-sec__title {
+  font-family: var(--font-serif-ja);
+  font-size: var(--text-2xl);
+  color: #56411C;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--spacing-4);
+}
+
+.menu-sec__lead {
+  font-size: var(--text-md);
+  color: #56411C;
+  opacity: 0.75;
+}
+
+.menu-sec__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-12);
+}
+
+@media (max-width: 839px) {
+  .menu-sec__grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin-inline: auto;
+    margin-bottom: var(--spacing-10);
+  }
+}
+
+.menu-card {
+  background-color: #FBF6F0;
+  border-radius: var(--shape-lg);
+  overflow: hidden;
+  transition: transform 300ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (hover: hover) {
+  .menu-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .menu-card:hover .menu-card__media img {
+    transform: scale(1.04);
+  }
+}
+
+.menu-card__media {
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin: 0;
+}
+
+.menu-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 400ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.menu-card__body {
+  padding: var(--spacing-6);
+}
+
+.menu-card__name {
+  font-family: var(--font-serif-ja);
+  font-size: var(--text-lg);
+  color: #56411C;
+  margin-bottom: var(--spacing-2);
+}
+
+.menu-card__desc {
+  font-size: var(--text-sm);
+  line-height: var(--lh-relaxed);
+  color: #56411C;
+  opacity: 0.75;
+  margin-bottom: var(--spacing-4);
+}
+
+.menu-card__price {
+  font-family: var(--font-sans-en);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: #56411C;
+}
+
+.menu-card__unit {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+/* CTA Button */
+.menu-sec__cta {
+  text-align: center;
+}
+
+.btn-gold {
+  display: inline-block;
+  padding: var(--spacing-4) var(--spacing-12);
+  background-color: #56411C;
+  color: #FBF6F0;
+  font-family: var(--font-serif-ja);
+  font-size: var(--text-md);
+  letter-spacing: 0.12em;
+  border-radius: var(--shape-full);
+  text-decoration: none;
+  transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1),
+              transform       200ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (hover: hover) {
+  .btn-gold:hover {
+    background-color: #D2A36C;
+    color: #FBF6F0;
+    transform: translateY(-2px);
+  }
+}
+
+
+/* ============================================================
+   LP — Access Section
+============================================================ */
+.access-sec {
+  background: linear-gradient(135deg, #FBF6F0 0%, #E0BF98 100%);
+  padding-block: var(--spacing-20);
+}
+
+.access-sec__inner {
+  width: min(100% - var(--spacing-8), var(--content-max-width));
+  margin-inline: auto;
+}
+
+.access-sec__head {
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+}
+
+.access-sec__label {
+  font-family: var(--font-sans-en);
+  font-size: var(--text-sm);
+  letter-spacing: 0.2em;
+  color: #D2A36C;
+  margin-bottom: var(--spacing-2);
+}
+
+.access-sec__title {
+  font-family: var(--font-serif-ja);
+  font-size: var(--text-2xl);
+  color: #56411C;
+  letter-spacing: var(--tracking-tight);
+}
+
+.access-sec__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-12);
+  align-items: start;
+}
+
+@media (max-width: 839px) {
+  .access-sec__body {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+}
+
+.access-sec__dl {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.access-sec__row {
+  display: grid;
+  grid-template-columns: 5em 1fr;
+  gap: var(--spacing-4);
+  padding-block: var(--spacing-4);
+  border-bottom: 1px solid rgba(86, 65, 28, 0.15);
+}
+
+.access-sec__row:first-child {
+  border-top: 1px solid rgba(86, 65, 28, 0.15);
+}
+
+.access-sec__row dt {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: #D2A36C;
+  letter-spacing: 0.05em;
+  padding-top: var(--spacing-1);
+}
+
+.access-sec__row dd {
+  font-size: var(--text-md);
+  line-height: var(--lh-relaxed);
+  color: #56411C;
+}
+
+.access-sec__row a {
+  color: #56411C;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.access-sec__row a:hover {
+  opacity: 0.7;
+}
+
+.access-sec__map {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--shape-md);
+}
+
+.access-sec__map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.access-sec__map-placeholder {
+  aspect-ratio: 4 / 3;
+  background-color: rgba(210, 163, 108, 0.25);
+  border-radius: var(--shape-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #D2A36C;
+  font-family: var(--font-sans-en);
+  font-size: var(--text-lg);
+  letter-spacing: 0.12em;
+}
+
+
+/* ============================================================
+   LP — Footer (overrides template footer)
+============================================================ */
+.footer {
+  background-color: #56411C;
+  border-block-start: none;
+  padding-block: var(--spacing-12);
+}
+
+.footer__inner {
+  gap: var(--spacing-6);
+}
+
+.footer__sns {
+  display: flex;
+  gap: var(--spacing-6);
+}
+
+.footer__sns-link {
+  color: #FBF6F0;
+  font-family: var(--font-sans-en);
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: opacity 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.footer__sns-link:hover {
+  color: #FBF6F0;
+  opacity: 0.65;
+}
+
+.footer__copy {
+  color: rgba(251, 246, 240, 0.5);
+}
+
+
+/* ============================================================
+   LP — Page Top Button
+============================================================ */
+.page-top {
+  position: fixed;
+  bottom: var(--spacing-8);
+  right: var(--spacing-6);
+  z-index: var(--layer-a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  text-decoration: none;
+  color: #56411C;
+}
+
+.page-top__line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background-color: #D2A36C;
+}
+
+.page-top__text {
+  font-family: var(--font-sans-en);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #56411C;
+}
+
+/* data-stagger children: initial hidden state */
+[data-stagger] > * {
+  opacity: 0;
+}
+
+} /* end @layer components */
