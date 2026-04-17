@@ -42,11 +42,13 @@ function _initWorksReel() {
   const SLIDE_W  = 280 + GAP; // .works-reel__slide の width + gap = 308px
   const INTERVAL = 3200;      // 自動送り間隔（ms）
 
-  // 各スライドに固有の回転角（DOM 移動しないので --slide-rot は変わらない）
-  const origSlides = [...track.querySelectorAll('.works-reel__slide')];
+  // origSlides は <a>.works-reel__link（直接の子要素）を対象にする
+  // → cloneNode(true) で <a> ごとクローンしリンクを保持させるため
+  const origSlides = [...track.children];
   if (!origSlides.length) return;
-  origSlides.forEach((slide, i) => {
-    slide.style.setProperty('--slide-rot', i % 2 === 0 ? '2deg' : '-2deg');
+  origSlides.forEach((link, i) => {
+    const slide = link.querySelector('.works-reel__slide');
+    if (slide) slide.style.setProperty('--slide-rot', i % 2 === 0 ? '2deg' : '-2deg');
   });
 
   const SET_W = origSlides.length * SLIDE_W; // 1セット幅
@@ -219,6 +221,25 @@ function _initWorksReel() {
     snapRelease();
     startInterval();
   });
+
+  // ── 横スクロール（トラックパッド水平スワイプ）──────────
+  let wheelSnap = null;
+  track.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // 縦スクロールは無視
+    e.preventDefault();
+    stopInterval();
+    cancelAnimationFrame(rafId);
+    rafId = null;
+    offset += e.deltaX;
+    rebalance();
+    applyTransform(offset);
+    clearTimeout(wheelSnap);
+    wheelSnap = setTimeout(() => {
+      const snapped = Math.round(offset / SLIDE_W) * SLIDE_W;
+      animateTo(snapped, 350);
+      startInterval();
+    }, 150);
+  }, { passive: false });
 
   // ── ホバーで一時停止 ────────────────────────
   track.addEventListener('mouseenter', () => { isPaused = true;  });
