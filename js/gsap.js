@@ -39,7 +39,6 @@ function _initWorksReel() {
   if (!track) return;
 
   const GAP      = 28;        // CSS gap と一致（px）
-  const SLIDE_W  = 280 + GAP; // .works-reel__slide の width + gap = 308px
   const INTERVAL = 3200;      // 自動送り間隔（ms）
 
   // origSlides は <a>.works-reel__link（直接の子要素）を対象にする
@@ -51,6 +50,8 @@ function _initWorksReel() {
     if (slide) slide.style.setProperty('--slide-rot', i % 2 === 0 ? '2deg' : '-2deg');
   });
 
+  // CSS の width を DOM から読み取る（SP 180px / PC 280px のレスポンシブ対応）
+  const SLIDE_W  = (origSlides[0]?.getBoundingClientRect().width ?? 280) + GAP;
   const SET_W = origSlides.length * SLIDE_W; // 1セット幅
 
   // 後ろにクローン追加
