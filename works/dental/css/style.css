@@ -21,7 +21,8 @@
 @layer components {
 
 /* GSAP の x アニメーション起点による横スクロール防止 */
-html, body { overflow-x: hidden; }
+/* hidden はモバイルで新スクロールコンテキストを生成し ScrollTrigger を壊すため clip を使う */
+html, body { overflow-x: clip; }
 
   /* ============================================================
    5. Hero（トップページ FV）
