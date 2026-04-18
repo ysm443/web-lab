@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// lazy 画像読み込み後にレイアウトが確定してからトリガー位置を再計算
+// DOMContentLoaded 時点では lazy 画像が未ロードでページ高さがズレるため
+window.addEventListener('load', () => {
+  if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+});
+
 
 /* ============================================================
    フォーカストラップ（モーダル用ユーティリティ）
