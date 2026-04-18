@@ -457,10 +457,16 @@
 
 .works-reel__slide {
   flex-shrink: 0;
-  width: 280px;
+  width: 180px;
   /* JS が --slide-rot を各スライドに設定し rotate() を適用 */
   transform: rotate(var(--slide-rot, 0deg));
   transition: box-shadow 0.3s ease;
+}
+
+@media (min-width: 840px) {
+  .works-reel__slide {
+    width: 280px;
+  }
 }
 
 .works-reel__thumb {
