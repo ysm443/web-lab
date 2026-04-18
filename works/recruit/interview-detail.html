@@ -16,19 +16,35 @@
 
   <body>
 
-    <!-- Sub-page Header -->
-    <header class="subpage-header">
-      <div class="subpage-header__inner">
-        <a href="./interview-list.html" class="subpage-header__back" aria-label="一覧へ戻る">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <line x1="13" y1="8" x2="3" y2="8"/>
-            <polyline points="7,4 3,8 7,12"/>
-          </svg>
-          一覧へ戻る
+    <header class="header" id="header">
+      <div class="header__inner">
+        <a href="./" class="header__logo" aria-label="YSMlab トップページ">
+          <img src="./img/common/logo.svg" alt="YSMlab" width="104" height="28">
         </a>
-        <a href="./" class="subpage-header__logo">
-          <img src="./img/common/logo.svg" alt="RECRUIT" width="100" height="32" />
-        </a>
+        <nav class="header__nav" id="headerNav" aria-label="グローバルナビゲーション">
+          <ul class="header__nav-list">
+            <li><a href="./#business">事業内容</a></li>
+            <li><a href="./#interview">インタビュー</a></li>
+            <li><a href="./#data">環境・制度</a></li>
+            <li><a href="./#recruit">募集職種</a></li>
+            <li><a href="./#contact">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <div class="header__actions">
+          <a href="./#recruit" class="btn btn--primary btn--sm">エントリー</a>
+          <button
+            class="header__menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="headerNav"
+            aria-label="メニューを開く"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -56,6 +72,7 @@
       </div>
     </footer>
 
+    <script src="./js/nav.js"></script>
     <script src="./js/interview-detail.js"></script>
     <script>
       document.getElementById('footerYear').textContent = new Date().getFullYear();
