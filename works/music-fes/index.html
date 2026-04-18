@@ -80,18 +80,18 @@
 
     <!-- メインビジュアル（Swiper） -->
     <div class="visual">
-      <img class="visual__bg" src="./img/visual-image.jpg" width="1920" height="1000" alt="" />
+      <img class="visual__bg" src="./img/visual-image.jpg" width="1920" height="1000" alt="" fetchpriority="high" loading="eager" />
       <div class="visual__slider">
         <div id="swiper1" class="swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-shadow01.jpg" alt="" /></a></div>
-            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-shadow02.jpg" alt="" /></a></div>
-            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-prisme01.jpg" alt="" /></a></div>
-            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-prisme02.jpg" alt="" /></a></div>
-            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-shadow03.jpg" alt="" /></a></div>
-            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-shadow04.jpg" alt="" /></a></div>
-            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-prisme03.jpg" alt="" /></a></div>
-            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-prisme04.jpg" alt="" /></a></div>
+            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-shadow01.jpg" width="1024" height="1024" alt="" loading="lazy" /></a></div>
+            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-shadow02.jpg" width="1024" height="1024" alt="" loading="lazy" /></a></div>
+            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-prisme01.jpg" width="1024" height="1024" alt="" loading="lazy" /></a></div>
+            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-prisme02.jpg" width="1024" height="1024" alt="" loading="lazy" /></a></div>
+            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-shadow03.jpg" width="1024" height="1024" alt="" loading="lazy" /></a></div>
+            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-shadow04.jpg" width="1024" height="1024" alt="" loading="lazy" /></a></div>
+            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-prisme03.jpg" width="1024" height="1024" alt="" loading="lazy" /></a></div>
+            <div class="swiper-slide"><a href="#artist" class="nav-link"><img src="./img/guest-prisme04.jpg" width="1024" height="1024" alt="" loading="lazy" /></a></div>
           </div>
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
@@ -510,10 +510,10 @@
     </div>
 
     <!-- JS 読み込み順厳守: GSAP → ScrollTrigger → Swiper → gsap.js → main.js -->
-    <script src="./js/lib/gsap.min.js"></script>
-    <script src="./js/lib/ScrollTrigger.min.js"></script>
-    <script src="./js/lib/swiper-bundle.min.js"></script>
-    <script src="./js/gsap.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="./js/lib/gsap.min.js" defer></script>
+    <script src="./js/lib/ScrollTrigger.min.js" defer></script>
+    <script src="./js/lib/swiper-bundle.min.js" defer></script>
+    <script src="./js/gsap.js" defer></script>
+    <script src="./js/main.js" defer></script>
   </body>
 </html>
