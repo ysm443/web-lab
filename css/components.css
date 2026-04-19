@@ -305,12 +305,15 @@
 }
 
 .works-item__name {
-  font-family: var(--font-en);
-  font-size: var(--text-xl);
-  font-weight: var(--fw-bold);
+  font-family: 'EB Garamond', var(--font-ja), serif;
+  font-size: 1.75rem;
+  font-weight: 400;
   color: var(--color-on-bg);
   line-height: var(--lh-tight);
   margin-bottom: var(--spacing-3);
+}
+@media (min-width: 840px) {
+  .works-item__name { font-size: 2.25rem; }
 }
 
 .works-item__desc {
@@ -359,6 +362,16 @@
     flex-direction: column-reverse;
   }
   .works-item__img { flex: none; width: 100%; }
+
+  /* タグをタイトルの下に */
+  .works-item__body {
+    display: flex;
+    flex-direction: column;
+  }
+  .works-item__name { order: 1; }
+  .works-item__tags { order: 2; }
+  .works-item__desc { order: 3; }
+  .works-item__more { order: 4; }
 }
 
 /* ============================================================
@@ -1416,5 +1429,301 @@ a.footer__logo {
   transition: opacity 0.15s cubic-bezier(0.2, 0, 0, 1);
 }
 a.footer__logo:hover { opacity: 0.7; }
+
+/* ============================================================
+   Banner Gallery（スティッキー見出し + パララクス行）
+============================================================ */
+.banner-gallery {
+  position: relative;
+  padding-top: var(--spacing-20);
+  background: var(--color-surface);
+}
+
+/* スティッキー見出し */
+.banner-gallery__heading {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  text-align: center;
+  font-family: var(--font-en);
+  font-size: 5rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+  color: var(--color-on-bg);
+  pointer-events: none;
+}
+@media (min-width: 840px) {
+  .banner-gallery__heading { font-size: 7rem; }
+}
+.banner-gallery__heading span {
+  display: block;
+  font-family: var(--font-ja);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-on-bg-variant);
+  margin-top: var(--spacing-3);
+}
+
+/* アイテムコンテナ */
+.banner-gallery__items {
+  padding-bottom: 50vh;
+}
+
+/* 各行 */
+.banner-gallery__row {
+  margin-bottom: var(--spacing-16);
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .banner-gallery__row--left {
+    padding-left: 40px;
+    max-width: 360px;
+  }
+  .banner-gallery__row--right {
+    margin-left: auto;
+    padding-right: 40px;
+    max-width: 360px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .banner-gallery__row--left {
+    padding-left: 80px;
+    max-width: 480px;
+  }
+  .banner-gallery__row--right {
+    padding-right: 80px;
+    max-width: 480px;
+  }
+}
+
+/* フェードアップ（IntersectionObserver で .is-active を付与） */
+.banner-gallery__row figure {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s cubic-bezier(0.5, 0, 0, 1),
+              transform 1s cubic-bezier(0.5, 0, 0, 1);
+  margin: 0;
+}
+.banner-gallery__row figure.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.banner-gallery__row img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--shape-sm);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* SP */
+@media (max-width: 767px) {
+  .banner-gallery {
+    padding-top: var(--spacing-16);
+    padding-bottom: var(--spacing-16);
+  }
+  .banner-gallery__heading {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-bottom: var(--spacing-8);
+    font-size: 3.25rem;
+  }
+  .banner-gallery__items {
+    padding-bottom: var(--spacing-4);
+    padding-inline: var(--spacing-4);
+  }
+  .banner-gallery__row {
+    margin-bottom: var(--spacing-6);
+  }
+  .banner-gallery__row--left,
+  .banner-gallery__row--right {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+    margin-left: 0;
+  }
+  /* SPでは IntersectionObserver を使わないので初期表示 */
+  .banner-gallery__row figure {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   Works 一覧ページ（works-list.html）
+============================================================ */
+.wl-hero {
+  padding-block: var(--spacing-24);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wl-hero__label {
+  font-family: var(--font-en);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-3);
+}
+
+.wl-hero__title {
+  font-family: var(--font-en);
+  font-size: 3.5rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-tight);
+  color: var(--color-on-bg);
+}
+
+@media (max-width: 767px) {
+  .wl-hero__title { font-size: 2.5rem; }
+}
+
+.wl-list {
+  padding-block: var(--spacing-24);
+}
+
+.wl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-10) var(--spacing-8);
+}
+
+@media (max-width: 1023px) {
+  .wl-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 599px) {
+  .wl-grid { grid-template-columns: 1fr; }
+}
+
+.wl-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  color: inherit;
+}
+
+.wl-card__img {
+  border-radius: var(--shape-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+.wl-card__img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.wl-card:hover .wl-card__img img {
+  transform: scale(1.04);
+}
+
+.wl-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.wl-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.wl-card__num {
+  font-family: var(--font-en);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  letter-spacing: var(--tracking-wide);
+}
+
+.wl-card__name {
+  font-family: var(--font-en);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-on-bg);
+  line-height: var(--lh-tight);
+}
+
+/* ============================================================
+   work-banner 個別ページ — バナー一覧表示
+============================================================ */
+.work-banners {
+  padding-block: var(--spacing-16) var(--spacing-24);
+}
+
+.work-banners__head {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-bg-variant);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-8);
+}
+
+.work-banners__group {
+  margin-bottom: var(--spacing-12);
+}
+
+.work-banners__group-title {
+  font-family: var(--font-en);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-accent);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--spacing-5);
+}
+
+.work-banners__lb {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.work-banners__lb img {
+  display: block;
+  width: 100%;
+  max-width: 728px;
+  height: auto;
+  border-radius: var(--shape-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.work-banners__mr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-6);
+}
+
+.work-banners__mr img {
+  display: block;
+  width: 300px;
+  height: 250px;
+  border-radius: var(--shape-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 599px) {
+  .work-banners__mr img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+  }
+}
 
 } /* end @layer components */

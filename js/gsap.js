@@ -24,6 +24,7 @@ function initGsap() {
   _initWorksAnimation();
   _initContactAnimation();
   _initWorkSectionsAnimation();
+  _initBannerGallery();
 }
 
 /* ============================================================
@@ -446,4 +447,60 @@ function _initWorkSectionsAnimation() {
       );
     }
   });
+}
+
+
+/* ============================================================
+   Banner Gallery — スティッキー見出し + パララクス行 + フェードアップ
+   ・figure: IntersectionObserver で .is-active 付与 → CSS フェードアップ
+   ・row: Lenis scroll イベントで Y パララクス（PC のみ）
+============================================================ */
+function _initBannerGallery() {
+  const section = document.querySelector('.banner-gallery');
+  if (!section) return;
+
+  // figure フェードアップ（IntersectionObserver）
+  const figures = section.querySelectorAll('.banner-gallery__row figure');
+  if (figures.length) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-active');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    figures.forEach(fig => io.observe(fig));
+  }
+
+  // SP はパララクスなし
+  if (window.innerWidth < 768) return;
+
+  const rows = section.querySelectorAll('.banner-gallery__row[data-parallax]');
+  if (!rows.length) return;
+
+  // 各行の初期中心 Y を記録
+  const rowData = Array.from(rows).map(row => {
+    const rect = row.getBoundingClientRect();
+    return {
+      el:      row,
+      speed:   parseFloat(row.dataset.parallax),
+      centerY: rect.top + window.scrollY + rect.height / 2
+    };
+  });
+
+  function update(scrollY) {
+    rowData.forEach(({ el, speed, centerY }) => {
+      const delta = scrollY + window.innerHeight / 2 - centerY;
+      gsap.set(el, { y: delta * speed });
+    });
+  }
+
+  if (window._lenis) {
+    window._lenis.on('scroll', ({ scroll }) => update(scroll));
+  } else {
+    window.addEventListener('scroll', () => update(window.scrollY), { passive: true });
+  }
+
+  update(window.scrollY);
 }
