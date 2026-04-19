@@ -1237,7 +1237,7 @@
   position: relative;
   background: #1c1c1e;
   border-radius: 44px;
-  padding: 56px 9px 28px;
+  padding: 40px 8px 18px;
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.1),
     0 0 0 2px rgba(0, 0, 0, 0.5),
@@ -1248,11 +1248,11 @@
 .work-sp__mockup::before {
   content: '';
   position: absolute;
-  top: 16px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 88px;
-  height: 28px;
+  width: 80px;
+  height: 22px;
   background: #0a0a0a;
   border-radius: 20px;
   z-index: 1;
@@ -1262,7 +1262,7 @@
 .work-sp__mockup::after {
   content: '';
   position: absolute;
-  bottom: 8px;
+  bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
   width: 36%;
