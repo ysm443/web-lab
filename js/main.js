@@ -8,6 +8,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ScrollTrigger 非依存の即時処理（typewriter / reel / hero / 初期状態）
   if (typeof initGsap === 'function') initGsap();
 
   _initHeader();
@@ -19,6 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('footerYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+});
+
+// 全画像読込後に ScrollTrigger を初期化
+// → DOMContentLoaded 時点でのページ高さ不足による誤発火を防ぐ
+window.addEventListener('load', () => {
+  if (typeof initGsapScroll === 'function') initGsapScroll();
 });
 
 /* ============================================================

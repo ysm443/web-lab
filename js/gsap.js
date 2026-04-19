@@ -12,6 +12,7 @@
    8. Works 個別ページ（左右交互フェード）
 ============================================================ */
 
+// DOMContentLoaded で呼ぶ（ScrollTrigger 非依存の即時処理）
 function initGsap() {
   _initTypewriter(); // GSAP 非依存
 
@@ -20,8 +21,14 @@ function initGsap() {
   gsap.registerPlugin(ScrollTrigger);
 
   _initWorksReel();
-  _setInitialStates();
-  _initHeroAnimation();
+  _setInitialStates(); // opacity: 0 で FOUC 防止
+  _initHeroAnimation(); // ScrollTrigger 不使用
+}
+
+// window.load で呼ぶ（全画像読込後に正確な高さで ScrollTrigger を作成）
+function initGsapScroll() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
   _initSectionHeads();
   _initWorksAnimation();
   _initOpacityFades();
@@ -290,9 +297,12 @@ function _setInitialStates() {
   });
 
   // opacity only フェード対象
-  gsap.set(['.works-reel', '.works__footer', '.feature__grid', '.cta-section', '.banner-gallery__heading'], {
-    opacity: 0
-  });
+  gsap.set(
+    ['.works-reel', '.works__footer', '.feature__grid', '.cta-section', '.banner-gallery__heading'],
+    {
+      opacity: 0
+    }
+  );
 
   // banner figures（双方向 ScrollTrigger で制御）
   gsap.set('.banner-gallery__row figure', { opacity: 0, y: 40 });
@@ -319,13 +329,21 @@ function _initHeroAnimation() {
   const existing = heroEls.filter((s) => document.querySelector(s));
   if (!existing.length) return;
 
-  gsap.from(existing, {
-    opacity: 0,
-    y: 28,
-    duration: 1.0,
-    ease: 'back.out(1.2)',
-    stagger: 0.15
-  });
+  const tl = gsap.timeline();
+
+  // hero テキスト: t=0 開始、stagger 0.15 × 3 + 1.0 = 1.45s で最後の要素が完了
+  tl.fromTo(
+    existing,
+    { opacity: 0, y: 28 },
+    { opacity: 1, y: 0, duration: 1.0, ease: 'back.out(1.2)', stagger: 0.15 },
+    0
+  );
+
+  // Works Reel: 確認用 delay:2 + duration:4（動作確認済み）
+  const reel = document.querySelector('.works-reel');
+  if (reel) {
+    tl.fromTo(reel, { opacity: 0 }, { opacity: 1, duration: 3, delay: 0.8, ease: 'power2.out' }, 0);
+  }
 }
 
 /* ============================================================
@@ -357,12 +375,7 @@ function _initSectionHeads() {
    banner-gallery > h2（sticky transform との競合回避で opacity のみ）
 ============================================================ */
 function _initOpacityFades() {
-  const selectors = [
-    '.works-reel',
-    '.works__footer',
-    '.feature__grid',
-    '.cta-section'
-  ];
+  const selectors = ['.works__footer', '.feature__grid', '.cta-section'];
 
   selectors.forEach((selector) => {
     const el = document.querySelector(selector);
@@ -372,11 +385,11 @@ function _initOpacityFades() {
       { opacity: 0 },
       {
         opacity: 1,
-        duration: 0.8,
+        duration: 3,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: el,
-          start: 'top 88%',
+          start: 'top bottom',
           toggleActions: 'play none none none'
         }
       }
@@ -460,8 +473,8 @@ function _initContactAnimation() {
 function _initWorkSectionsAnimation() {
   // ページヒーロー要素
   const workHeroEls = [
-    '.work-hero__tags',
     '.work-hero__title',
+    '.work-hero__tags',
     '.work-hero__sub',
     '.work-hero__link'
   ].filter((s) => document.querySelector(s));
@@ -555,10 +568,30 @@ function _initBannerGallery() {
       trigger: fig,
       start: 'top 90%',
       end: 'bottom 10%',
-      onEnter:      () => gsap.fromTo(fig, { opacity: 0, y:  40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', overwrite: true }),
-      onLeave:      () => gsap.fromTo(fig, { opacity: 1, y:   0 }, { opacity: 0, y: -40, duration: 0.5, ease: 'power2.in',  overwrite: true }),
-      onEnterBack:  () => gsap.fromTo(fig, { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', overwrite: true }),
-      onLeaveBack:  () => gsap.fromTo(fig, { opacity: 1, y:   0 }, { opacity: 0, y:  40, duration: 0.5, ease: 'power2.in',  overwrite: true }),
+      onEnter: () =>
+        gsap.fromTo(
+          fig,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', overwrite: true }
+        ),
+      onLeave: () =>
+        gsap.fromTo(
+          fig,
+          { opacity: 1, y: 0 },
+          { opacity: 0, y: -40, duration: 0.5, ease: 'power2.in', overwrite: true }
+        ),
+      onEnterBack: () =>
+        gsap.fromTo(
+          fig,
+          { opacity: 0, y: -40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', overwrite: true }
+        ),
+      onLeaveBack: () =>
+        gsap.fromTo(
+          fig,
+          { opacity: 1, y: 0 },
+          { opacity: 0, y: 40, duration: 0.5, ease: 'power2.in', overwrite: true }
+        )
     });
   });
 

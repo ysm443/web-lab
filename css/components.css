@@ -481,6 +481,7 @@
   padding-block: var(--spacing-8);
   background: var(--color-surface);
   border-top: 1px solid var(--color-border);
+  opacity: 0; /* FOUC防止: GSAP _initHeroAnimation で reveal */
 }
 
 .works-reel__track {
@@ -599,6 +600,7 @@
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   text-align: center;
+  opacity: 0; /* FOUC防止: GSAP _initOpacityFades で reveal */
 }
 
 .cta-section__heading {

@@ -22,6 +22,8 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/index.css" />
+    <!-- FOUC防止: GSAP アニメーション前の初期状態を HTML パース時に確保 -->
+    <style>.works-reel,.cta-section{opacity:0}</style>
   </head>
 
   <body>
@@ -32,7 +34,8 @@
       <div class="header__inner">
         <a href="./index.html" class="header__logo">ysm<span>.</span></a>
         <p class="header__message" aria-live="polite">
-          <span class="header__message__text"></span><span class="header__message__cursor" aria-hidden="true">|</span>
+          <span class="header__message__text"></span
+          ><span class="header__message__cursor" aria-hidden="true">|</span>
         </p>
         <nav class="header__nav" id="headerNav" aria-label="グローバルナビゲーション">
           <ul>
@@ -195,11 +198,11 @@
                 />
               </div>
               <div class="works-item__body">
+                <p class="works-item__name">美容室サム</p>
                 <div class="works-item__tags">
                   <span class="tag">コーポレート</span>
                   <span class="tag">実績</span>
                 </div>
-                <p class="works-item__name">美容室サム</p>
                 <p class="works-item__desc">
                   横浜市保土ケ谷区の美容室サイトリニューアル。スクロールアニメーション・スタガー演出・スムーズスクロールを実装。
                 </p>
@@ -219,12 +222,12 @@
                 />
               </div>
               <div class="works-item__body">
+                <p class="works-item__name">音楽フェス LP</p>
                 <div class="works-item__tags">
                   <span class="tag">イベント</span>
                   <span class="tag">LP</span>
                   <span class="tag">架空サイト</span>
                 </div>
-                <p class="works-item__name">音楽フェス LP</p>
                 <p class="works-item__desc">
                   音楽フェスティバルのランディングページ。ダークネオン配色にアコーディオン・スティッキーナビ・スクロールアニメーションを実装。
                 </p>
@@ -244,11 +247,11 @@
                 />
               </div>
               <div class="works-item__body">
+                <p class="works-item__name">採用サイト</p>
                 <div class="works-item__tags">
                   <span class="tag">採用</span>
                   <span class="tag">架空サイト</span>
                 </div>
-                <p class="works-item__name">採用サイト</p>
                 <p class="works-item__desc">
                   中小企業向け採用特設ページ。温かみのあるトーン&マナーで、採用背景・社風・募集要項をシンプルにまとめた構成。
                 </p>
@@ -268,11 +271,11 @@
                 />
               </div>
               <div class="works-item__body">
+                <p class="works-item__name">歯科医院サイト</p>
                 <div class="works-item__tags">
                   <span class="tag">コーポレート</span>
                   <span class="tag">架空サイト</span>
                 </div>
-                <p class="works-item__name">歯科医院サイト</p>
                 <p class="works-item__desc">
                   地域密着型クリニックの Web
                   サイト制作。清潔感を意識したブルー×ホワイトの配色で、診療内容・アクセスをわかりやすく整理。
@@ -293,12 +296,12 @@
                 />
               </div>
               <div class="works-item__body">
+                <p class="works-item__name">スイーツ専門カフェ LP</p>
                 <div class="works-item__tags">
                   <span class="tag">LP</span>
                   <span class="tag">スイーツ</span>
                   <span class="tag">架空サイト</span>
                 </div>
-                <p class="works-item__name">スイーツ専門カフェ LP</p>
                 <p class="works-item__desc">
                   フランス産発酵バターを使った本格ワッフル専門カフェ「Gaufre
                   Dorée」のLP。クリーム×ウォームブラウンの配色で上品な世界観を構築。
@@ -319,12 +322,12 @@
                 />
               </div>
               <div class="works-item__body">
+                <p class="works-item__name">飲食店 LP</p>
                 <div class="works-item__tags">
                   <span class="tag">LP</span>
                   <span class="tag">飲食</span>
                   <span class="tag">架空サイト</span>
                 </div>
-                <p class="works-item__name">飲食店 LP</p>
                 <p class="works-item__desc">
                   京都のバクテー専門店「湯気亭」のLP。深みのある赤×ブラウンの配色に、薬膳スープの世界観とスクロールアニメーションを融合。
                 </p>
