@@ -1266,24 +1266,24 @@
   position: relative;
   background: #1c1c1e;
   border-radius: 44px;
-  padding: 36px 12px 22px;
+  padding: 10px 12px 22px;  /* 上はスクリーンを上まで広げてノッチのみ */
   box-shadow:
     0 0 0 2px rgba(0, 0, 0, 0.5),
     0 20px 48px rgba(0, 0, 0, 0.2);
 }
 
-/* ノッチ（iPhone XR スタイル：上端から突き出す形）*/
+/* ノッチ（iPhone XR スタイル：中央のみ・両脇はスクリーン表示）*/
 .work-sp__mockup::before {
   content: '';
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 44%;
-  height: 26px;
+  width: 38%;
+  height: 22px;
   background: #0a0a0a;
-  border-radius: 0 0 16px 16px;
-  z-index: 1;
+  border-radius: 0 0 14px 14px;
+  z-index: 2;
 }
 
 /* Home indicator */
@@ -1303,7 +1303,7 @@
 .work-sp__scroll {
   max-height: 54vh;
   overflow-y: auto;
-  border-radius: 36px;
+  border-radius: 34px;
   border: none;
   box-shadow: none;
   scrollbar-width: none;
