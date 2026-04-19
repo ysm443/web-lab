@@ -85,10 +85,12 @@ function _initWorksReel() {
     track.style.transform = `translateX(${-o}px)`;
   }
 
-  // offset を中央帯 [0.5×SET_W, 2.5×SET_W] に維持（瞬間テレポート）
+  // offset を orig 帯 [SET_W, 2×SET_W) に維持（瞬間テレポート）
+  // N が偶数のとき 2.5×SET_W がスライド境界に重なり > 条件を素通りするため
+  // post-clone ゾーン（≥ 2×SET_W）に入ったら即テレポートする方式に変更
   function rebalance() {
-    if (offset < SET_W * 0.5)  { offset += SET_W; applyTransform(offset); }
-    if (offset > SET_W * 2.5)  { offset -= SET_W; applyTransform(offset); }
+    if (offset < SET_W)           { offset += SET_W; applyTransform(offset); }
+    else if (offset >= 2 * SET_W) { offset -= SET_W; applyTransform(offset); }
   }
 
   // RAF ease-out アニメーション
