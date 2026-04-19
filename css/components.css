@@ -1252,6 +1252,45 @@
   height: auto;
 }
 
+/* Color Palette */
+.work-palette {
+  padding-top: var(--spacing-12);
+  border-top: 1px solid var(--color-border);
+}
+.work-palette__row {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-4);
+}
+.work-palette__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+.work-palette__chip {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--shape-md);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.work-palette__role {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: var(--fw-medium);
+  color: var(--color-on-bg-variant);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.work-palette__hex {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-on-bg);
+  letter-spacing: 0.02em;
+}
+
 /* Meta テーブル */
 .work-meta {
   border-top: 1px solid var(--color-border);
