@@ -24,6 +24,7 @@ function initGsap() {
   _initHeroAnimation();
   _initSectionHeads();
   _initWorksAnimation();
+  _initOpacityFades();
   _initContactAnimation();
   _initWorkSectionsAnimation();
   _initBannerGallery();
@@ -288,6 +289,14 @@ function _setInitialStates() {
     opacity: 0
   });
 
+  // opacity only フェード対象
+  gsap.set(['.works-reel', '.works__footer', '.feature__grid', '.cta-section', '.banner-gallery__heading'], {
+    opacity: 0
+  });
+
+  // banner figures（双方向 ScrollTrigger で制御）
+  gsap.set('.banner-gallery__row figure', { opacity: 0, y: 40 });
+
   // Works 個別ページ要素
   gsap.set(
     [
@@ -340,6 +349,58 @@ function _initSectionHeads() {
       }
     );
   });
+}
+
+/* ============================================================
+   Opacity-only フェード
+   .works-reel / .works__footer / .feature__grid / .cta-section
+   banner-gallery > h2（sticky transform との競合回避で opacity のみ）
+============================================================ */
+function _initOpacityFades() {
+  const selectors = [
+    '.works-reel',
+    '.works__footer',
+    '.feature__grid',
+    '.cta-section'
+  ];
+
+  selectors.forEach((selector) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    gsap.fromTo(
+      el,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // banner heading（transform: translateY(-50%) と y が競合するため opacity のみ）
+  const heading = document.querySelector('.banner-gallery__heading');
+  if (heading) {
+    gsap.fromTo(
+      heading,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  }
 }
 
 /* ============================================================
@@ -486,22 +547,20 @@ function _initBannerGallery() {
   const section = document.querySelector('.banner-gallery');
   if (!section) return;
 
-  // figure フェードアップ（IntersectionObserver）
+  // figure 双方向フェード（ScrollTrigger 4コールバック）
+  // 上下どちらからスクロールしても出入りする
   const figures = section.querySelectorAll('.banner-gallery__row figure');
-  if (figures.length) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-active');
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    figures.forEach((fig) => io.observe(fig));
-  }
+  figures.forEach((fig) => {
+    ScrollTrigger.create({
+      trigger: fig,
+      start: 'top 90%',
+      end: 'bottom 10%',
+      onEnter:      () => gsap.fromTo(fig, { opacity: 0, y:  40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', overwrite: true }),
+      onLeave:      () => gsap.fromTo(fig, { opacity: 1, y:   0 }, { opacity: 0, y: -40, duration: 0.5, ease: 'power2.in',  overwrite: true }),
+      onEnterBack:  () => gsap.fromTo(fig, { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', overwrite: true }),
+      onLeaveBack:  () => gsap.fromTo(fig, { opacity: 1, y:   0 }, { opacity: 0, y:  40, duration: 0.5, ease: 'power2.in',  overwrite: true }),
+    });
+  });
 
   // SP はパララクスなし
   if (window.innerWidth < 768) return;

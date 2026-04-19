@@ -1543,17 +1543,9 @@ a.footer__logo:hover { opacity: 0.7; }
   }
 }
 
-/* フェードアップ（IntersectionObserver で .is-active を付与） */
+/* フェード（GSAP ScrollTrigger で制御） */
 .banner-gallery__row figure {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s cubic-bezier(0.5, 0, 0, 1),
-              transform 1s cubic-bezier(0.5, 0, 0, 1);
   margin: 0;
-}
-.banner-gallery__row figure.is-active {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .banner-gallery__row img {
@@ -1590,12 +1582,6 @@ a.footer__logo:hover { opacity: 0.7; }
     padding-right: 0;
     max-width: 100%;
     margin-left: 0;
-  }
-  /* SPでは IntersectionObserver を使わないので初期表示 */
-  .banner-gallery__row figure {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 }
 
