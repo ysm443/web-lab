@@ -1193,9 +1193,8 @@
    Work 個別ページ — PC スクリーンショット + SP スクロール
 ============================================================ */
 
-/* PC スクリーンショット（hero 内・inner 幅） */
+/* PC スクリーンショット */
 .work-pc {
-  margin-top: var(--spacing-8);
   border-radius: var(--shape-lg);
   border: 1px solid var(--color-border);
   overflow: hidden;
@@ -1207,29 +1206,59 @@
   height: auto;
 }
 
-/* SP + Meta 2 カラムレイアウト */
-.work-body {
+/* ── 概要グリッド（PC + meta/palette 横並び） ── */
+.work-overview {
+  padding-block: var(--spacing-10) var(--spacing-12);
+  border-top: 1px solid var(--color-border);
+}
+.work-overview__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-12);
-  padding-block: var(--spacing-16);
+  gap: var(--spacing-8);
+  align-items: start;
 }
 @media (min-width: 768px) {
-  .work-body {
-    grid-template-columns: 260px 1fr;
-    align-items: start;
-    gap: var(--spacing-16);
+  .work-overview__grid {
+    grid-template-columns: 3fr 2fr;
+    gap: var(--spacing-10);
   }
 }
+.work-overview__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+.work-overview__side .work-palette {
+  padding-top: 0;
+  border-top: none;
+}
 
-/* SP ラベル */
-.work-sp__label {
+/* ── SP スクリーン一覧 ── */
+.work-screens {
+  padding-block: var(--spacing-10) var(--spacing-16);
+  border-top: 1px solid var(--color-border);
+}
+.work-screens__row {
+  display: flex;
+  gap: var(--spacing-5);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-2);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+.work-screen {
+  flex: 0 0 auto;
+  width: 200px;
+}
+.work-screen__label {
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
+  font-size: 10px;
   font-weight: var(--fw-medium);
   color: var(--color-on-bg-variant);
   letter-spacing: var(--tracking-wide);
-  margin-bottom: var(--spacing-3);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: var(--spacing-2);
 }
 
 /* iPhone モックアップフレーム */
@@ -1273,14 +1302,12 @@
 
 /* SP スクロールコンテナ */
 .work-sp__scroll {
-  max-height: 64vh;
+  max-height: 54vh;
   overflow-y: auto;
   border-radius: 36px;
-  scrollbar-width: none;
-}
-.work-sp__mockup .work-sp__scroll {
   border: none;
   box-shadow: none;
+  scrollbar-width: none;
 }
 .work-sp__scroll::-webkit-scrollbar { display: none; }
 .work-sp__scroll img {
@@ -1291,7 +1318,7 @@
 
 /* Color Palette */
 .work-palette {
-  padding-top: var(--spacing-12);
+  padding-top: var(--spacing-8);
   border-top: 1px solid var(--color-border);
 }
 .work-palette__row {
