@@ -1266,13 +1266,14 @@
   position: relative;
   background: #1c1c1e;
   border-radius: 44px;
-  padding: 10px 12px 22px;  /* 上はスクリーンを上まで広げてノッチのみ */
+  overflow: hidden; /* phone body でクリッピング → scroll の角丸は不要 */
+  padding: 44px 12px 22px; /* 44px = ステータスバー領域 */
   box-shadow:
     0 0 0 2px rgba(0, 0, 0, 0.5),
     0 20px 48px rgba(0, 0, 0, 0.2);
 }
 
-/* ノッチ（iPhone XR スタイル：中央のみ・両脇はスクリーン表示）*/
+/* ノッチ（iPhone XR：中央カメラ部のみ・両脇はステータスバー表示）*/
 .work-sp__mockup::before {
   content: '';
   position: absolute;
@@ -1280,30 +1281,61 @@
   left: 50%;
   transform: translateX(-50%);
   width: 38%;
-  height: 22px;
-  background: #0a0a0a;
+  height: 26px;
+  background: #1c1c1e; /* phone body と同色 */
   border-radius: 0 0 14px 14px;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* Home indicator */
 .work-sp__mockup::after {
   content: '';
   position: absolute;
-  bottom: 5px;
+  bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
   width: 36%;
   height: 4px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 2px;
+  z-index: 3;
+}
+
+/* ステータスバー（時間・電波・WiFi・電池）*/
+.work-sp__bar {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  right: 14px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+  pointer-events: none;
+}
+.work-sp__bar::before {
+  content: '9:41';
+  color: #fff;
+  font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
+.work-sp__bar::after {
+  content: '';
+  display: block;
+  width: 55px;
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='55' height='12' viewBox='0 0 55 12'%3E%3Crect x='0' y='8' width='3' height='4' rx='.5' fill='%23fff'/%3E%3Crect x='5' y='5' width='3' height='7' rx='.5' fill='%23fff'/%3E%3Crect x='10' y='2' width='3' height='10' rx='.5' fill='%23fff'/%3E%3Ccircle cx='23' cy='11.5' r='1.2' fill='%23fff'/%3E%3Cpath d='M20 9.5Q23 7 26 9.5' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M17.5 7Q23 2 28.5 7' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3Crect x='34.5' y='2.5' width='16' height='7' rx='2' stroke='%23fff' stroke-width='1' fill='none'/%3E%3Crect x='51' y='4.5' width='1.5' height='3' rx='.5' fill='%23fff'/%3E%3Crect x='35.5' y='3.5' width='12' height='5' rx='1' fill='%23fff'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
 /* SP スクロールコンテナ */
 .work-sp__scroll {
   max-height: 54vh;
   overflow-y: auto;
-  border-radius: 34px;
+  border-radius: 0; /* overflow:hidden を親に移したため不要 */
   border: none;
   box-shadow: none;
   scrollbar-width: none;
