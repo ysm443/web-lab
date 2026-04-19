@@ -13,6 +13,8 @@
 ============================================================ */
 
 function initGsap() {
+  _initTypewriter(); // GSAP 非依存
+
   if (typeof gsap === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
@@ -503,4 +505,52 @@ function _initBannerGallery() {
   }
 
   update(window.scrollY);
+}
+
+/* ============================================================
+   Header Typewriter
+   walkal.one 準拠: typeSpeed:50 / backSpeed:20 / backDelay:2000 / loop
+============================================================ */
+function _initTypewriter() {
+  const textEl = document.querySelector('.header__message__text');
+  if (!textEl) return;
+
+  const phrases    = ['Web Designer', 'Frontend Developer', 'GSAP Developer', 'UI Designer'];
+  const TYPE_SPEED = 50;    // ms / char
+  const BACK_SPEED = 20;    // ms / char（削除）
+  const BACK_DELAY = 2000;  // ms（完全表示後の待機）
+  const NEXT_DELAY = 300;   // ms（全削除後の待機）
+
+  let phraseIdx  = 0;
+  let charIdx    = 0;
+  let isDeleting = false;
+
+  function tick() {
+    const phrase = phrases[phraseIdx];
+
+    if (!isDeleting) {
+      charIdx++;
+      textEl.textContent = phrase.slice(0, charIdx);
+
+      if (charIdx === phrase.length) {
+        setTimeout(() => { isDeleting = true; tick(); }, BACK_DELAY);
+        return;
+      }
+      setTimeout(tick, TYPE_SPEED);
+
+    } else {
+      charIdx--;
+      textEl.textContent = phrase.slice(0, charIdx);
+
+      if (charIdx === 0) {
+        isDeleting = false;
+        phraseIdx  = (phraseIdx + 1) % phrases.length;
+        setTimeout(tick, NEXT_DELAY);
+        return;
+      }
+      setTimeout(tick, BACK_SPEED);
+    }
+  }
+
+  tick();
 }
