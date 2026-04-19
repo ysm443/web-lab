@@ -1275,8 +1275,7 @@
   gap: var(--spacing-6);
 }
 .work-overview__side .work-palette {
-  padding-top: 0;
-  border-top: none;
+  padding-top: var(--spacing-5);
 }
 
 /* ── SP スクリーン一覧 ── */
@@ -1391,6 +1390,15 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* セクションラベル（Color 等） */
+.work-sp__label {
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-bg-variant);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--spacing-4);
 }
 
 /* Color Palette */
