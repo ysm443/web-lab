@@ -1188,4 +1188,99 @@
   .works-item:hover .works-item__img img { transform: none; }
 }
 
+
+/* ============================================================
+   Work 個別ページ — PC スクリーンショット + SP スクロール
+============================================================ */
+
+/* PC 全幅ビジュアル（header 直下に密着） */
+.work-pc {
+  margin-top: var(--header-h);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+.work-pc img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* work-pc の直後は header-h 分の padding 不要 */
+.work-pc + .work-hero {
+  padding-top: var(--spacing-16);
+}
+
+/* SP + Meta 2 カラムレイアウト */
+.work-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-12);
+  padding-block: var(--spacing-16);
+}
+@media (min-width: 768px) {
+  .work-body {
+    grid-template-columns: 260px 1fr;
+    align-items: start;
+    gap: var(--spacing-16);
+  }
+}
+
+/* SP ラベル */
+.work-sp__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-bg-variant);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--spacing-3);
+}
+
+/* SP スクロールコンテナ */
+.work-sp__scroll {
+  max-height: 72vh;
+  overflow-y: auto;
+  border-radius: var(--shape-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: 8px 12px 32px rgba(0, 0, 0, 0.08);
+  scrollbar-width: none;
+}
+.work-sp__scroll::-webkit-scrollbar { display: none; }
+.work-sp__scroll img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Meta テーブル */
+.work-meta {
+  border-top: 1px solid var(--color-border);
+}
+.work-meta__row {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--spacing-4);
+  padding-block: var(--spacing-5);
+  border-bottom: 1px solid var(--color-border);
+  align-items: start;
+}
+.work-meta__row dt {
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-bg-variant);
+  padding-top: 2px;
+}
+.work-meta__row dd {
+  font-size: var(--text-sm);
+  color: var(--color-on-bg);
+  line-height: var(--lh-relaxed);
+}
+
+/* footer__logo をリンクにする場合 */
+a.footer__logo {
+  text-decoration: none;
+  transition: opacity 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+a.footer__logo:hover { opacity: 0.7; }
+
 } /* end @layer components */
