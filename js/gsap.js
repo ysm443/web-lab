@@ -41,8 +41,8 @@ function _initWorksReel() {
   const track = document.getElementById('worksReelTrack');
   if (!track) return;
 
-  const GAP      = 28;        // CSS gap と一致（px）
-  const INTERVAL = 3200;      // 自動送り間隔（ms）
+  const GAP = 28; // CSS gap と一致（px）
+  const INTERVAL = 3200; // 自動送り間隔（ms）
 
   // origSlides は <a>.works-reel__link（直接の子要素）を対象にする
   // → cloneNode(true) で <a> ごとクローンしリンクを保持させるため
@@ -54,35 +54,35 @@ function _initWorksReel() {
   });
 
   // CSS の width を DOM から読み取る（SP 180px / PC 280px のレスポンシブ対応）
-  const SLIDE_W  = (origSlides[0]?.getBoundingClientRect().width ?? 280) + GAP;
+  const SLIDE_W = (origSlides[0]?.getBoundingClientRect().width ?? 280) + GAP;
   const SET_W = origSlides.length * SLIDE_W; // 1セット幅
 
   // 後ろにクローン追加
-  origSlides.forEach(slide => {
+  origSlides.forEach((slide) => {
     const c = slide.cloneNode(true);
     c.setAttribute('aria-hidden', 'true');
     track.appendChild(c);
   });
   // 前にクローン追加（逆順 insertBefore → 正順に並ぶ）
-  [...origSlides].reverse().forEach(slide => {
+  [...origSlides].reverse().forEach((slide) => {
     const c = slide.cloneNode(true);
     c.setAttribute('aria-hidden', 'true');
     track.insertBefore(c, track.firstChild);
   });
   // 結果: [pre-clone1..N][orig1..N][post-clone1..N]
 
-  let offset       = SET_W;  // 中央オリジナルセットの先頭
-  let rafId        = null;
-  let isDragging   = false;
-  let isPaused     = false;
-  let dragStartX   = 0;
+  let offset = SET_W; // 中央オリジナルセットの先頭
+  let rafId = null;
+  let isDragging = false;
+  let isPaused = false;
+  let dragStartX = 0;
   let dragStartOff = 0;
-  let prevDragX    = 0;
+  let prevDragX = 0;
   let prevDragTime = 0;
-  let velX         = 0;      // px/ms（正 = 指が右方向 = offset 減少方向）
-  let intervalId   = null;
-  let pointerDownX = 0;      // ドラッグ判定用
-  let didDrag      = false;
+  let velX = 0; // px/ms（正 = 指が右方向 = offset 減少方向）
+  let intervalId = null;
+  let pointerDownX = 0; // ドラッグ判定用
+  let didDrag = false;
 
   function applyTransform(o) {
     track.style.transform = `translateX(${-o}px)`;
@@ -92,20 +92,28 @@ function _initWorksReel() {
   // N が偶数のとき 2.5×SET_W がスライド境界に重なり > 条件を素通りするため
   // post-clone ゾーン（≥ 2×SET_W）に入ったら即テレポートする方式に変更
   function rebalance() {
-    if (offset < SET_W)           { offset += SET_W; applyTransform(offset); }
-    else if (offset >= 2 * SET_W) { offset -= SET_W; applyTransform(offset); }
+    if (offset < SET_W) {
+      offset += SET_W;
+      applyTransform(offset);
+    } else if (offset >= 2 * SET_W) {
+      offset -= SET_W;
+      applyTransform(offset);
+    }
   }
 
   // RAF ease-out アニメーション
   function animateTo(target, duration) {
     cancelAnimationFrame(rafId);
-    const from  = offset;
+    const from = offset;
     const delta = target - from;
-    if (Math.abs(delta) < 0.5) { rebalance(); return; }
+    if (Math.abs(delta) < 0.5) {
+      rebalance();
+      return;
+    }
     const t0 = performance.now();
 
     function tick(now) {
-      const p    = Math.min((now - t0) / duration, 1);
+      const p = Math.min((now - t0) / duration, 1);
       const ease = 1 - Math.pow(1 - p, 3); // ease-out cubic
       offset = from + delta * ease;
       applyTransform(offset);
@@ -130,12 +138,12 @@ function _initWorksReel() {
   function snapRelease() {
     const now = performance.now();
     // 直近 100ms 以内の速度のみ有効
-    const vel     = (now - prevDragTime) < 100 ? velX : 0;
+    const vel = now - prevDragTime < 100 ? velX : 0;
     const momentum = -vel * 100; // velX 正 = 右移動 = offset 減少
-    const raw     = offset + momentum;
+    const raw = offset + momentum;
     const snapped = Math.round(raw / SLIDE_W) * SLIDE_W;
-    const dist    = Math.abs(snapped - offset);
-    const dur     = Math.max(280, Math.min(600, dist * 1.2));
+    const dist = Math.abs(snapped - offset);
+    const dur = Math.max(280, Math.min(600, dist * 1.2));
     animateTo(snapped, dur);
   }
 
@@ -153,15 +161,15 @@ function _initWorksReel() {
   }
 
   // ── マウスドラッグ ──────────────────────────
-  track.addEventListener('mousedown', e => {
-    isDragging   = true;
-    dragStartX   = e.clientX;
+  track.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    dragStartX = e.clientX;
     dragStartOff = offset;
-    prevDragX    = e.clientX;
+    prevDragX = e.clientX;
     prevDragTime = performance.now();
-    velX         = 0;
+    velX = 0;
     pointerDownX = e.clientX;
-    didDrag      = false;
+    didDrag = false;
     cancelAnimationFrame(rafId);
     rafId = null;
     stopInterval();
@@ -169,20 +177,20 @@ function _initWorksReel() {
     e.preventDefault();
   });
 
-  window.addEventListener('mousemove', e => {
+  window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     const now = performance.now();
-    const dt  = now - prevDragTime;
+    const dt = now - prevDragTime;
     if (dt > 0) velX = (e.clientX - prevDragX) / dt;
-    prevDragX    = e.clientX;
+    prevDragX = e.clientX;
     prevDragTime = now;
     offset = dragStartOff + (dragStartX - e.clientX);
     applyTransform(offset);
   });
 
-  window.addEventListener('mouseup', e => {
+  window.addEventListener('mouseup', (e) => {
     if (!isDragging) return;
-    didDrag    = Math.abs(e.clientX - pointerDownX) > 5;
+    didDrag = Math.abs(e.clientX - pointerDownX) > 5;
     isDragging = false;
     track.classList.remove('is-dragging');
     snapRelease();
@@ -190,7 +198,7 @@ function _initWorksReel() {
   });
 
   // ドラッグ後の click によるリンク誤発火を抑制
-  track.addEventListener('click', e => {
+  track.addEventListener('click', (e) => {
     if (didDrag) {
       e.preventDefault();
       didDrag = false;
@@ -198,28 +206,36 @@ function _initWorksReel() {
   });
 
   // ── タッチ ──────────────────────────────────
-  track.addEventListener('touchstart', e => {
-    isDragging   = true;
-    dragStartX   = e.touches[0].clientX;
-    dragStartOff = offset;
-    prevDragX    = e.touches[0].clientX;
-    prevDragTime = performance.now();
-    velX         = 0;
-    cancelAnimationFrame(rafId);
-    rafId = null;
-    stopInterval();
-  }, { passive: true });
+  track.addEventListener(
+    'touchstart',
+    (e) => {
+      isDragging = true;
+      dragStartX = e.touches[0].clientX;
+      dragStartOff = offset;
+      prevDragX = e.touches[0].clientX;
+      prevDragTime = performance.now();
+      velX = 0;
+      cancelAnimationFrame(rafId);
+      rafId = null;
+      stopInterval();
+    },
+    { passive: true }
+  );
 
-  track.addEventListener('touchmove', e => {
-    if (!isDragging) return;
-    const now = performance.now();
-    const dt  = now - prevDragTime;
-    if (dt > 0) velX = (e.touches[0].clientX - prevDragX) / dt;
-    prevDragX    = e.touches[0].clientX;
-    prevDragTime = now;
-    offset = dragStartOff + (dragStartX - e.touches[0].clientX);
-    applyTransform(offset);
-  }, { passive: true });
+  track.addEventListener(
+    'touchmove',
+    (e) => {
+      if (!isDragging) return;
+      const now = performance.now();
+      const dt = now - prevDragTime;
+      if (dt > 0) velX = (e.touches[0].clientX - prevDragX) / dt;
+      prevDragX = e.touches[0].clientX;
+      prevDragTime = now;
+      offset = dragStartOff + (dragStartX - e.touches[0].clientX);
+      applyTransform(offset);
+    },
+    { passive: true }
+  );
 
   track.addEventListener('touchend', () => {
     if (!isDragging) return;
@@ -230,52 +246,60 @@ function _initWorksReel() {
 
   // ── 横スクロール（トラックパッド水平スワイプ）──────────
   let wheelSnap = null;
-  track.addEventListener('wheel', e => {
-    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // 縦スクロールは無視
-    e.preventDefault();
-    stopInterval();
-    cancelAnimationFrame(rafId);
-    rafId = null;
-    offset += e.deltaX;
-    rebalance();
-    applyTransform(offset);
-    clearTimeout(wheelSnap);
-    wheelSnap = setTimeout(() => {
-      const snapped = Math.round(offset / SLIDE_W) * SLIDE_W;
-      animateTo(snapped, 350);
-      startInterval();
-    }, 150);
-  }, { passive: false });
+  track.addEventListener(
+    'wheel',
+    (e) => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // 縦スクロールは無視
+      e.preventDefault();
+      stopInterval();
+      cancelAnimationFrame(rafId);
+      rafId = null;
+      offset += e.deltaX;
+      rebalance();
+      applyTransform(offset);
+      clearTimeout(wheelSnap);
+      wheelSnap = setTimeout(() => {
+        const snapped = Math.round(offset / SLIDE_W) * SLIDE_W;
+        animateTo(snapped, 350);
+        startInterval();
+      }, 150);
+    },
+    { passive: false }
+  );
 
   // ── ホバーで一時停止 ────────────────────────
-  track.addEventListener('mouseenter', () => { isPaused = true;  });
-  track.addEventListener('mouseleave', () => { isPaused = false; });
+  track.addEventListener('mouseenter', () => {
+    isPaused = true;
+  });
+  track.addEventListener('mouseleave', () => {
+    isPaused = false;
+  });
 
   applyTransform(offset);
   startInterval();
 }
-
 
 /* ============================================================
    初期状態設定（FOUC防止）
    ※ set した要素には必ず fromTo を使う（to は使わない）
 ============================================================ */
 function _setInitialStates() {
-  gsap.set([
-    '.section__head',
-    '.works-item:not(.works-item--placeholder)',
-    '.contact-form'
-  ], { opacity: 0 });
+  gsap.set(['.section__head', '.works-item:not(.works-item--placeholder)', '.contact-form'], {
+    opacity: 0
+  });
 
   // Works 個別ページ要素
-  gsap.set([
-    '.work-hero__tags',
-    '.work-hero__title',
-    '.work-hero__sub',
-    '.work-hero__link',
-    '.work-section__image',
-    '.work-section__text'
-  ], { opacity: 0 });
+  gsap.set(
+    [
+      '.work-hero__tags',
+      '.work-hero__title',
+      '.work-hero__sub',
+      '.work-hero__link',
+      '.work-section__image',
+      '.work-section__text'
+    ],
+    { opacity: 0 }
+  );
 }
 
 /* ============================================================
@@ -283,7 +307,7 @@ function _setInitialStates() {
 ============================================================ */
 function _initHeroAnimation() {
   const heroEls = ['.hero__label', '.hero__name', '.hero__title', '.hero__copy'];
-  const existing = heroEls.filter(s => document.querySelector(s));
+  const existing = heroEls.filter((s) => document.querySelector(s));
   if (!existing.length) return;
 
   gsap.from(existing, {
@@ -299,8 +323,9 @@ function _initHeroAnimation() {
    セクション見出し（共通）
 ============================================================ */
 function _initSectionHeads() {
-  gsap.utils.toArray('.section__head').forEach(el => {
-    gsap.fromTo(el,
+  gsap.utils.toArray('.section__head').forEach((el) => {
+    gsap.fromTo(
+      el,
       { opacity: 0, y: 20 },
       {
         opacity: 1,
@@ -326,7 +351,8 @@ function _initWorksAnimation() {
 
   items.forEach((item, i) => {
     const isEven = i % 2 === 0;
-    gsap.fromTo(item,
+    gsap.fromTo(
+      item,
       { opacity: 0, x: isEven ? -24 : 24 },
       {
         opacity: 1,
@@ -343,7 +369,6 @@ function _initWorksAnimation() {
   });
 }
 
-
 /* ============================================================
    Contact フォームフェードイン
 ============================================================ */
@@ -351,7 +376,8 @@ function _initContactAnimation() {
   const form = document.querySelector('.contact-form');
   if (!form) return;
 
-  gsap.fromTo(form,
+  gsap.fromTo(
+    form,
     { opacity: 0, y: 20 },
     {
       opacity: 1,
@@ -371,17 +397,17 @@ function _initContactAnimation() {
    Works 個別ページ — ヒーロー + 左右交互セクション
 ============================================================ */
 function _initWorkSectionsAnimation() {
-
   // ページヒーロー要素
   const workHeroEls = [
     '.work-hero__tags',
     '.work-hero__title',
     '.work-hero__sub',
     '.work-hero__link'
-  ].filter(s => document.querySelector(s));
+  ].filter((s) => document.querySelector(s));
 
   if (workHeroEls.length) {
-    gsap.fromTo(workHeroEls,
+    gsap.fromTo(
+      workHeroEls,
       { opacity: 0, y: 20 },
       {
         opacity: 1,
@@ -396,11 +422,12 @@ function _initWorkSectionsAnimation() {
   // 左右交互セクション
   gsap.utils.toArray('.work-section').forEach((section, i) => {
     const isEven = i % 2 === 0;
-    const img  = section.querySelector('.work-section__image');
+    const img = section.querySelector('.work-section__image');
     const text = section.querySelector('.work-section__text');
 
     if (img) {
-      gsap.fromTo(img,
+      gsap.fromTo(
+        img,
         { opacity: 0, x: isEven ? -24 : 24 },
         {
           opacity: 1,
@@ -416,7 +443,8 @@ function _initWorkSectionsAnimation() {
       );
     }
     if (text) {
-      gsap.fromTo(text,
+      gsap.fromTo(
+        text,
         { opacity: 0, x: isEven ? 24 : -24 },
         {
           opacity: 1,
@@ -435,22 +463,19 @@ function _initWorkSectionsAnimation() {
 
     // SS パララックス
     if (img) {
-      gsap.to(img,
-        {
-          yPercent: -6,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 0.5
-          }
+      gsap.to(img, {
+        yPercent: -6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5
         }
-      );
+      });
     }
   });
 }
-
 
 /* ============================================================
    Banner Gallery — スティッキー見出し + パララクス行 + フェードアップ
@@ -464,15 +489,18 @@ function _initBannerGallery() {
   // figure フェードアップ（IntersectionObserver）
   const figures = section.querySelectorAll('.banner-gallery__row figure');
   if (figures.length) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-active');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    figures.forEach(fig => io.observe(fig));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-active');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    figures.forEach((fig) => io.observe(fig));
   }
 
   // SP はパララクスなし
@@ -482,11 +510,11 @@ function _initBannerGallery() {
   if (!rows.length) return;
 
   // 各行の初期中心 Y を記録
-  const rowData = Array.from(rows).map(row => {
+  const rowData = Array.from(rows).map((row) => {
     const rect = row.getBoundingClientRect();
     return {
-      el:      row,
-      speed:   parseFloat(row.dataset.parallax),
+      el: row,
+      speed: parseFloat(row.dataset.parallax),
       centerY: rect.top + window.scrollY + rect.height / 2
     };
   });
@@ -515,14 +543,20 @@ function _initTypewriter() {
   const textEl = document.querySelector('.header__message__text');
   if (!textEl) return;
 
-  const phrases    = ['Web Designer', 'Frontend Developer', 'GSAP Developer', 'UI Designer'];
-  const TYPE_SPEED = 50;    // ms / char
-  const BACK_SPEED = 20;    // ms / char（削除）
-  const BACK_DELAY = 2000;  // ms（完全表示後の待機）
-  const NEXT_DELAY = 300;   // ms（全削除後の待機）
+  const phrases = [
+    'Web Designer',
+    'Frontend Developer',
+    'Composer',
+    'AI-driven Developer',
+    'UI Designer'
+  ];
+  const TYPE_SPEED = 50; // ms / char
+  const BACK_SPEED = 20; // ms / char（削除）
+  const BACK_DELAY = 2000; // ms（完全表示後の待機）
+  const NEXT_DELAY = 300; // ms（全削除後の待機）
 
-  let phraseIdx  = 0;
-  let charIdx    = 0;
+  let phraseIdx = 0;
+  let charIdx = 0;
   let isDeleting = false;
 
   function tick() {
@@ -533,18 +567,20 @@ function _initTypewriter() {
       textEl.textContent = phrase.slice(0, charIdx);
 
       if (charIdx === phrase.length) {
-        setTimeout(() => { isDeleting = true; tick(); }, BACK_DELAY);
+        setTimeout(() => {
+          isDeleting = true;
+          tick();
+        }, BACK_DELAY);
         return;
       }
       setTimeout(tick, TYPE_SPEED);
-
     } else {
       charIdx--;
       textEl.textContent = phrase.slice(0, charIdx);
 
       if (charIdx === 0) {
         isDeleting = false;
-        phraseIdx  = (phraseIdx + 1) % phrases.length;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
         setTimeout(tick, NEXT_DELAY);
         return;
       }
