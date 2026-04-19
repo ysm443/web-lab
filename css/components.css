@@ -1193,10 +1193,11 @@
    Work 個別ページ — PC スクリーンショット + SP スクロール
 ============================================================ */
 
-/* PC 全幅ビジュアル（header 直下に密着） */
+/* PC スクリーンショット（hero 内・inner 幅） */
 .work-pc {
-  margin-top: var(--header-h);
-  border-bottom: 1px solid var(--color-border);
+  margin-top: var(--spacing-8);
+  border-radius: var(--shape-lg);
+  border: 1px solid var(--color-border);
   overflow: hidden;
   background: var(--color-surface);
 }
@@ -1204,11 +1205,6 @@
   display: block;
   width: 100%;
   height: auto;
-}
-
-/* work-pc の直後は header-h 分の padding 不要 */
-.work-pc + .work-hero {
-  padding-top: var(--spacing-16);
 }
 
 /* SP + Meta 2 カラムレイアウト */
