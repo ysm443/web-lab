@@ -56,12 +56,12 @@ html, body { overflow-x: clip; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 25% center; /* 人物が左寄り — 狭い幅でも見切れない */
+    object-position: 70% center; /* 人物が右寄り */
   }
 
   @media (min-width: 1280px) {
     .hero__bg-img {
-      object-position: center center;
+      object-position: 65% center;
     }
   }
 
