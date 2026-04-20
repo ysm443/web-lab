@@ -144,6 +144,26 @@
 .header__nav a:hover { color: var(--color-on-bg); }
 .header__nav a:hover::after { transform: scaleX(1); }
 
+/* Header CTA ボタン */
+.header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-ja);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-bg);
+  background: var(--color-accent);
+  padding: 6px var(--spacing-4);
+  border-radius: var(--shape-full);
+  white-space: nowrap;
+  transition: background 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+.header__cta:hover { background: var(--color-accent-hover); }
+@media (max-width: 767px) {
+  .header__cta { display: none; }
+}
+
 /* SP ハンバーガー */
 .header__menu-btn {
   display: none;
@@ -257,6 +277,45 @@
   color: var(--color-on-bg-variant);
   line-height: var(--lh-relaxed);
   max-width: 480px;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-8);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-ja);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-bg);
+  background: var(--color-accent);
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--shape-full);
+  transition: background 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+.btn-primary:hover { background: var(--color-accent-hover); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-ja);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-bg);
+  background: transparent;
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--shape-full);
+  border: 1px solid var(--color-border);
+  transition: border-color 0.25s cubic-bezier(0.2, 0, 0, 1),
+              color 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+.btn-ghost:hover {
+  border-color: var(--color-on-bg);
 }
 
 
