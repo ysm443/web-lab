@@ -282,6 +282,12 @@
   color: #92400E;
   background: #FEF3C7;
 }
+.tag--fiction {
+  font-family: var(--font-ja);
+  letter-spacing: 0;
+  color: #4B5563;
+  background: #E5E7EB;
+}
 
 /* リスト */
 .works__list {
@@ -910,6 +916,12 @@
   margin-bottom: var(--spacing-3);
 }
 
+.work-hero__note {
+  font-size: var(--text-xs);
+  color: var(--color-on-bg-variant);
+  opacity: 0.7;
+  margin-bottom: var(--spacing-4);
+}
 .work-hero__sub {
   font-size: var(--text-sm);
   color: var(--color-on-bg-variant);
