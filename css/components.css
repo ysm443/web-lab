@@ -1616,10 +1616,6 @@
 }
 .work-concept-inline .work-meta {
   border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-}
-.work-concept-inline .work-meta__row {
-  border-bottom: none;
 }
 
 /* ── SP スクリーン一覧 ── */
