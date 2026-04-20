@@ -292,7 +292,7 @@ function _initWorksReel() {
    ※ set した要素には必ず fromTo を使う（to は使わない）
 ============================================================ */
 function _setInitialStates() {
-  gsap.set(['.section__head', '.works-item:not(.works-item--placeholder)', '.contact-form'], {
+  gsap.set(['.section__head', '.works-item:not(.works-item--placeholder)', '.contact-form', '.contact-index'], {
     opacity: 0
   });
 
@@ -304,16 +304,20 @@ function _setInitialStates() {
     }
   );
 
+  // Hero CTA ボタン
+  gsap.set('.hero__cta', { opacity: 0 });
+
   // banner figures（双方向 ScrollTrigger で制御）
   gsap.set('.banner-gallery__row figure', { opacity: 0, y: 40 });
 
   // Works 個別ページ要素
   gsap.set(
     [
-      '.work-hero__tags',
-      '.work-hero__title',
-      '.work-hero__sub',
-      '.work-hero__link',
+      '.work-hero .inner',
+      '.work-hero__line',
+      '.work-pc',
+      '.work-overview__side',
+      '.work-screens__row',
       '.work-section__image',
       '.work-section__text'
     ],
@@ -325,7 +329,7 @@ function _setInitialStates() {
    Hero 入場
 ============================================================ */
 function _initHeroAnimation() {
-  const heroEls = ['.hero__label', '.hero__name', '.hero__title', '.hero__copy'];
+  const heroEls = ['.hero__label', '.hero__name', '.hero__title', '.hero__copy', '.hero__cta'];
   const existing = heroEls.filter((s) => document.querySelector(s));
   if (!existing.length) return;
 
@@ -448,49 +452,121 @@ function _initWorksAnimation() {
 ============================================================ */
 function _initContactAnimation() {
   const form = document.querySelector('.contact-form');
-  if (!form) return;
-
-  gsap.fromTo(
-    form,
-    { opacity: 0, y: 20 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: form,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
+  if (form) {
+    gsap.fromTo(
+      form,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: form,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
       }
-    }
-  );
+    );
+  }
+
+  const contactIndex = document.querySelector('.contact-index');
+  if (contactIndex) {
+    gsap.fromTo(
+      contactIndex,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: contactIndex,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  }
 }
 
 /* ============================================================
    Works 個別ページ — ヒーロー + 左右交互セクション
 ============================================================ */
 function _initWorkSectionsAnimation() {
-  // ページヒーロー要素
-  const workHeroEls = [
-    '.work-hero__title',
-    '.work-hero__tags',
-    '.work-hero__sub',
-    '.work-hero__link'
-  ].filter((s) => document.querySelector(s));
-
-  if (workHeroEls.length) {
+  // ページヒーロー（inner + 区切り線を同じタイミングで一括フェード）
+  const workHeroInner = document.querySelector('.work-hero .inner');
+  const heroLine = document.querySelector('.work-hero__line');
+  const heroTargets = [workHeroInner, heroLine].filter(Boolean);
+  if (heroTargets.length) {
     gsap.fromTo(
-      workHeroEls,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: 'back.out(1.2)',
-        stagger: 0.12
-      }
+      heroTargets,
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }
     );
+  }
+
+  // Work overview — PC画像 + 右カラム（同一トリガーで左右同時入場）
+  const overviewGrid = document.querySelector('.work-overview__grid');
+  if (overviewGrid) {
+    const pc = document.querySelector('.work-pc');
+    const side = document.querySelector('.work-overview__side');
+    const screensRow = document.querySelector('.work-screens__row');
+
+    if (pc) {
+      gsap.fromTo(
+        pc,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: overviewGrid,
+            start: 'top 82%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    }
+
+    if (side) {
+      gsap.fromTo(
+        side,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.12,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: overviewGrid,
+            start: 'top 82%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    }
+
+    if (screensRow) {
+      gsap.fromTo(
+        screensRow,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: screensRow,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    }
   }
 
   // 左右交互セクション
