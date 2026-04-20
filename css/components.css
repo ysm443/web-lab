@@ -1594,6 +1594,7 @@
 .work-overview__left {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 .work-overview__side {
   display: flex;
@@ -1625,11 +1626,10 @@
 .work-screens__row {
   margin-top: var(--spacing-8);
   border-top: 1px solid var(--color-border);
-  padding-top: var(--spacing-8);
   display: flex;
   gap: var(--spacing-5);
   overflow-x: auto;
-  padding: 4px 4px var(--spacing-2);
+  padding: var(--spacing-8) 4px var(--spacing-2);
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
 }
