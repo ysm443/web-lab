@@ -1784,7 +1784,7 @@
   border-top: 1px solid var(--color-border);
 }
 .work-concept .work-meta {
-  border-top: none;
+  border-top: 1px solid var(--color-border);
 }
 
 /* footer__logo をリンクにする場合 */
