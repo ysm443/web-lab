@@ -160,6 +160,7 @@
   padding: 6px var(--spacing-4);
   border-radius: var(--shape-full);
   white-space: nowrap;
+  margin-left: var(--spacing-6);
   transition: background 0.25s cubic-bezier(0.2, 0, 0, 1);
 }
 .header__cta:hover { background: var(--color-accent-hover); }
