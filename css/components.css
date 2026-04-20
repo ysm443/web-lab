@@ -222,6 +222,7 @@
   @media (max-width: 767px) {
     .header__menu-btn {
       display: flex;
+      margin-left: auto; /* nav が fixed でフロー外に出るため自前で右寄せ */
       position: relative;
       z-index: var(--z-header); /* nav(z-header-1)より前面に出す */
     }
