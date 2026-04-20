@@ -463,6 +463,12 @@
     font-size: var(--text-sm);
     color: var(--color-on-bg-variant);
     line-height: var(--lh-relaxed);
+    margin-bottom: var(--spacing-2);
+  }
+  .works-item__tech {
+    font-size: var(--text-xs);
+    color: var(--color-on-bg-variant);
+    line-height: var(--lh-relaxed);
     margin-bottom: var(--spacing-5);
   }
 
@@ -525,8 +531,11 @@
     .works-item__desc {
       order: 3;
     }
-    .works-item__more {
+    .works-item__tech {
       order: 4;
+    }
+    .works-item__more {
+      order: 5;
     }
   }
 
@@ -1040,6 +1049,11 @@
   }
   .work-hero__sub {
     font-size: var(--text-sm);
+    color: var(--color-on-bg-variant);
+    margin-bottom: var(--spacing-2);
+  }
+  .work-hero__tech {
+    font-size: var(--text-xs);
     color: var(--color-on-bg-variant);
     margin-bottom: var(--spacing-5);
   }
@@ -1555,12 +1569,63 @@
     color: var(--color-on-bg-variant);
     margin-bottom: var(--spacing-4);
   }
+  .contact-price__sub-label {
+    font-size: var(--text-xs);
+    font-family: var(--font-ja);
+    font-weight: var(--fw-medium);
+    color: var(--color-on-bg);
+    margin-top: var(--spacing-4);
+    margin-bottom: var(--spacing-1);
+  }
+  .contact-price__target-desc {
+    font-size: var(--text-xs);
+    color: var(--color-on-bg-variant);
+    line-height: var(--lh-relaxed);
+  }
+  .contact-price__item-note {
+    font-size: var(--text-xs);
+    color: var(--color-on-bg-variant);
+    margin-top: var(--spacing-3);
+  }
+  .contact-price__banner-list {
+    margin: var(--spacing-3) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+  .contact-price__banner-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    font-size: var(--text-xs);
+  }
+  .contact-price__banner-row dt {
+    color: var(--color-on-bg);
+    font-weight: var(--fw-medium);
+    min-width: 6em;
+    flex-shrink: 0;
+  }
+  .contact-price__banner-row dd {
+    color: var(--color-on-bg-variant);
+    margin: 0;
+  }
+  .contact-price__item--banner {
+    grid-column: 1 / -1;
+  }
+  .contact-price__item--banner .contact-price__consult-desc {
+    margin-top: var(--spacing-4);
+    padding-top: var(--spacing-3);
+    border-top: 1px solid var(--color-border);
+  }
   .contact-price__includes {
     list-style: none;
-    padding: var(--spacing-3) 0 var(--spacing-4);
+    padding: var(--spacing-2) 0 var(--spacing-3);
     margin: 0;
     border-top: 1px solid var(--color-border);
-    flex: 1;
+  }
+  .contact-price__sub-label + .contact-price__includes {
+    border-top: none;
+    padding-top: var(--spacing-1);
   }
   .contact-price__includes li {
     font-size: var(--text-xs);
@@ -1584,6 +1649,11 @@
     color: var(--color-on-bg-variant);
     border-top: 1px solid var(--color-border);
     padding-top: var(--spacing-3);
+  }
+  .contact-price__duration-note {
+    font-size: var(--text-xs);
+    color: var(--color-on-bg-variant);
+    margin-top: var(--spacing-1);
   }
   .contact-price__item--consult .contact-price__amount {
     margin-bottom: var(--spacing-3);
@@ -1616,6 +1686,61 @@
     }
   }
 
+  /* ご紹介・初回特典 */
+  .contact-price__benefits {
+    margin-top: var(--spacing-6);
+    padding: var(--spacing-5) var(--spacing-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--shape-md);
+    background: var(--color-surface);
+  }
+  .contact-price__benefits-title {
+    font-family: var(--font-ja);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--color-on-bg);
+    margin-bottom: var(--spacing-4);
+  }
+  .contact-price__benefits-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+  .contact-price__benefits-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-3);
+    font-size: var(--text-sm);
+  }
+  .contact-price__benefits-label {
+    font-weight: var(--fw-medium);
+    color: var(--color-on-bg);
+    flex-shrink: 0;
+  }
+  .contact-price__benefits-desc {
+    color: var(--color-on-bg-variant);
+    flex: 1;
+  }
+  .contact-price__benefits-amount {
+    font-family: var(--font-en);
+    font-weight: var(--fw-bold);
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+  @media (max-width: 599px) {
+    .contact-price__benefits-item {
+      flex-wrap: wrap;
+      gap: var(--spacing-1);
+    }
+    .contact-price__benefits-desc {
+      width: 100%;
+    }
+    .contact-price__benefits-amount {
+      margin-left: auto;
+    }
+  }
+
   /* ④ FAQ */
   .contact-faq {
     max-width: 760px;
@@ -1628,40 +1753,72 @@
     gap: var(--spacing-3);
   }
   .contact-faq__item {
-    padding: var(--spacing-5) var(--spacing-6);
     border: 1px solid var(--color-border);
     border-radius: var(--shape-md);
     background: var(--color-surface);
   }
   .contact-faq__q {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    padding: var(--spacing-5) var(--spacing-6);
     font-family: var(--font-ja);
     font-size: var(--text-sm);
     font-weight: var(--fw-medium);
     color: var(--color-on-bg);
-    padding-left: var(--spacing-6);
+    padding-left: calc(var(--spacing-6) + 1.5rem);
     position: relative;
-    margin-bottom: var(--spacing-3);
+    cursor: pointer;
+  }
+  .contact-faq__q::-webkit-details-marker {
+    display: none;
   }
   .contact-faq__q::before {
     content: 'Q.';
     position: absolute;
-    left: 0;
+    left: var(--spacing-6);
     font-family: var(--font-en);
     font-weight: var(--fw-bold);
     color: var(--color-accent);
   }
+  .contact-faq__q::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-right: 1.5px solid var(--color-on-bg-variant);
+    border-bottom: 1.5px solid var(--color-on-bg-variant);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  details[open] .contact-faq__q::after {
+    transform: rotate(-135deg);
+  }
   .contact-faq__a {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.35s ease;
+  }
+  details[open] .contact-faq__a {
+    grid-template-rows: 1fr;
+  }
+  .contact-faq__a-inner {
+    overflow: hidden;
+    min-height: 0;
     font-size: var(--text-sm);
     color: var(--color-on-bg-variant);
     line-height: var(--lh-relaxed);
-    padding-left: var(--spacing-6);
+    padding: 0 var(--spacing-6) var(--spacing-5) calc(var(--spacing-6) + 1.5rem);
     position: relative;
-    margin-left: 0;
   }
-  .contact-faq__a::before {
+  .contact-faq__a-inner::before {
     content: 'A.';
     position: absolute;
-    left: 0;
+    left: var(--spacing-6);
     font-family: var(--font-en);
     font-weight: var(--fw-bold);
     color: var(--color-on-bg-variant);

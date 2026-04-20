@@ -26,6 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
 // → DOMContentLoaded 時点でのページ高さ不足による誤発火を防ぐ
 window.addEventListener('load', () => {
   if (typeof initGsapScroll === 'function') initGsapScroll();
+
+  // 別ページから #hash 付きで遷移してきた場合の対応
+  // （Lenis 初期化がブラウザのネイティブ hash スクロールを上書きするため）
+  const hash = window.location.hash;
+  if (hash && window._lenis) {
+    const target = document.querySelector(hash);
+    if (target) {
+      setTimeout(() => {
+        window._lenis.scrollTo(target, { offset: -64, immediate: true });
+      }, 50);
+    }
+  }
 });
 
 /* ============================================================
