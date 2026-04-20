@@ -49,7 +49,7 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <a href="#contact" class="header__cta">
+        <a href="https://line.me/R/ti/p/@753yvdok" target="_blank" rel="noopener noreferrer" class="header__cta">
           LINEで相談
           <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
@@ -81,7 +81,7 @@
             ひとりで完結するWebデザイナーです。
           </p>
           <div class="hero__cta">
-            <a href="#contact" class="btn-primary">LINEで気軽に相談する</a>
+            <a href="https://line.me/R/ti/p/@753yvdok" target="_blank" rel="noopener noreferrer" class="btn-primary">LINEで気軽に相談する</a>
             <a href="#works" class="btn-ghost">制作実績を見る</a>
           </div>
         </div>
@@ -512,7 +512,7 @@
           <p class="cta-section__body">
             その段階からでも問題ありません。<br />曖昧な輪郭を、伝わる形に変換します。
           </p>
-          <a href="#contact" class="cta-section__btn">相談してみる</a>
+          <a href="./contact.html" class="cta-section__btn">相談してみる</a>
         </div>
       </section>
 
@@ -680,121 +680,13 @@
             <p class="section__label">Contact</p>
             <h2 class="section__title">お問い合わせ</h2>
           </div>
-
-          <form class="contact-form" novalidate>
-            <div class="form-row">
-              <label class="form-label" for="contact-name"
-                >お名前<span class="form-required">*</span></label
-              >
-              <div class="form-control">
-                <input
-                  type="text"
-                  id="contact-name"
-                  name="name"
-                  placeholder="山田 太郎"
-                  autocomplete="name"
-                />
-              </div>
+          <div class="contact-index">
+            <p class="contact-index__body">料金目安・制作の流れ・お問い合わせフォームはこちら。<br />LINEでも気軽にご相談いただけます。</p>
+            <div class="contact-index__btns">
+              <a href="./contact.html" class="btn-primary">詳しいご相談・料金はこちら</a>
+              <a href="https://line.me/R/ti/p/@753yvdok" target="_blank" rel="noopener noreferrer" class="btn-ghost">LINEで気軽に相談する</a>
             </div>
-
-            <div class="form-row">
-              <label class="form-label" for="contact-kana"
-                >ふりがな<span class="form-required">*</span></label
-              >
-              <div class="form-control">
-                <input type="text" id="contact-kana" name="kana" placeholder="やまだ たろう" />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <label class="form-label" for="contact-company">社名 / 屋号</label>
-              <div class="form-control">
-                <input
-                  type="text"
-                  id="contact-company"
-                  name="company"
-                  placeholder="株式会社〇〇"
-                  autocomplete="organization"
-                />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <label class="form-label" for="contact-email"
-                >メールアドレス<span class="form-required">*</span></label
-              >
-              <div class="form-control">
-                <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  placeholder="example@mail.com"
-                  autocomplete="email"
-                />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <p class="form-label">ご希望の内容<span class="form-required">*</span></p>
-              <div class="form-control">
-                <div class="form-checks">
-                  <label class="form-check">
-                    <input type="checkbox" name="type" value="web" />
-                    <span>WEBサイト作成について</span>
-                  </label>
-                  <label class="form-check">
-                    <input type="checkbox" name="type" value="cms" />
-                    <span>CMS運用について（WordPress等）</span>
-                  </label>
-                  <label class="form-check">
-                    <input type="checkbox" name="type" value="ec" />
-                    <span>ECサイト委託業務について（Shopify・Amazon・楽天等）</span>
-                  </label>
-                  <label class="form-check">
-                    <input type="checkbox" name="type" value="music" />
-                    <span>作曲・編曲・Mixについて</span>
-                  </label>
-                  <label class="form-check">
-                    <input type="checkbox" name="type" value="other" />
-                    <span>その他</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <label class="form-label" for="contact-schedule">
-                希望のスケジュール
-                <span class="form-note">制作相談の場合</span>
-              </label>
-              <div class="form-control">
-                <input
-                  type="text"
-                  id="contact-schedule"
-                  name="schedule"
-                  placeholder="例: 1ヶ月後に公開希望"
-                />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <label class="form-label" for="contact-message"
-                >お問い合わせ内容<span class="form-required">*</span></label
-              >
-              <div class="form-control">
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  rows="6"
-                  placeholder="ご相談内容をご記入ください"
-                ></textarea>
-              </div>
-            </div>
-
-            <div class="form-submit">
-              <button type="submit" class="contact-submit">送信する</button>
-            </div>
-          </form>
+          </div>
         </div>
       </section>
     </main>

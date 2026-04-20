@@ -1140,6 +1140,23 @@
   background: var(--color-bg);
   border-top: 1px solid var(--color-border);
 }
+.contact-index {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+.contact-index__body {
+  font-size: var(--text-sm);
+  color: var(--color-on-bg-variant);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--spacing-8);
+}
+.contact-index__btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-3);
+}
 
 .contact-form {
   max-width: 760px;
@@ -1310,6 +1327,215 @@
   .form-label {
     padding-top: 0;
   }
+}
+
+/* ============================================================
+   Contact Page
+============================================================ */
+.contact-page {
+  padding-block: var(--spacing-16) var(--spacing-20);
+}
+.contact-page .section__head {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-12);
+}
+
+/* 共通セクションタイトル */
+.contact-section__title {
+  font-family: var(--font-en);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-on-bg);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--spacing-2);
+}
+.contact-section__note {
+  font-size: var(--text-xs);
+  color: var(--color-on-bg-variant);
+  margin-bottom: var(--spacing-6);
+}
+
+/* ① 相談方法 */
+.contact-method {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-16);
+}
+.contact-method__lead {
+  font-size: var(--text-sm);
+  color: var(--color-on-bg-variant);
+  margin-bottom: var(--spacing-6);
+}
+.contact-method__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4);
+}
+.contact-method__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--shape-md);
+  background: var(--color-surface);
+  transition: border-color 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+.contact-method__card:hover {
+  border-color: var(--color-accent);
+}
+.contact-method__card--line {
+  border-color: #06C755;
+  background: #f0fdf4;
+}
+.contact-method__card--line:hover {
+  border-color: #05a847;
+}
+.contact-method__card-icon {
+  color: var(--color-on-bg-variant);
+}
+.contact-method__card--line .contact-method__card-icon {
+  color: #06C755;
+}
+.contact-method__card-title {
+  font-size: var(--text-md);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-bg);
+  font-family: var(--font-ja);
+}
+.contact-method__card-desc {
+  font-size: var(--text-sm);
+  color: var(--color-on-bg-variant);
+  line-height: var(--lh-relaxed);
+}
+.contact-method__card-badge {
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  font-size: var(--text-xs);
+  font-family: var(--font-ja);
+  color: #166534;
+  background: #dcfce7;
+  padding: 2px var(--spacing-2);
+  border-radius: var(--shape-full);
+}
+@media (max-width: 600px) {
+  .contact-method__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ② 料金目安 */
+.contact-price {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-16);
+}
+.contact-price__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-3);
+}
+.contact-price__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-5) var(--spacing-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--shape-md);
+  background: var(--color-surface);
+}
+.contact-price__label {
+  font-size: var(--text-sm);
+  font-family: var(--font-ja);
+  color: var(--color-on-bg-variant);
+}
+.contact-price__amount {
+  font-family: var(--font-en);
+  font-size: var(--text-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-on-bg);
+  letter-spacing: var(--tracking-tight);
+}
+.contact-price__amount span {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-regular);
+}
+@media (max-width: 600px) {
+  .contact-price__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ③ 制作の流れ */
+.contact-flow {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: var(--spacing-16);
+}
+.contact-flow__steps {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+}
+.contact-flow__step {
+  flex: 1;
+  padding: var(--spacing-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--shape-md);
+  background: var(--color-surface);
+}
+.contact-flow__arrow {
+  display: flex;
+  align-items: center;
+  padding-top: var(--spacing-8);
+  color: var(--color-on-bg-variant);
+  flex-shrink: 0;
+}
+.contact-flow__num {
+  font-family: var(--font-en);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-accent);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--spacing-2);
+}
+.contact-flow__name {
+  font-family: var(--font-ja);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-bg);
+  margin-bottom: var(--spacing-2);
+}
+.contact-flow__desc {
+  font-size: var(--text-xs);
+  color: var(--color-on-bg-variant);
+  line-height: var(--lh-relaxed);
+}
+@media (max-width: 767px) {
+  .contact-flow__steps {
+    flex-direction: column;
+    gap: 0;
+  }
+  .contact-flow__arrow {
+    padding-top: 0;
+    padding-inline: var(--spacing-6);
+    transform: rotate(90deg);
+    align-self: flex-start;
+  }
+}
+
+/* ④ フォームラッパー */
+.contact-form-wrap {
+  max-width: 760px;
+  margin-inline: auto;
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--color-border);
+}
+.contact-form-wrap .contact-section__title {
+  margin-bottom: var(--spacing-6);
 }
 
 /* ============================================================
