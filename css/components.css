@@ -65,7 +65,7 @@
 .header__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
   width: min(var(--site-max), 100% - 48px);
   margin-inline: auto;
@@ -115,6 +115,9 @@
 }
 .header__logo:hover { color: var(--color-accent); }
 
+.header__nav {
+  margin-left: auto;
+}
 .header__nav ul {
   display: flex;
   gap: var(--spacing-8);
