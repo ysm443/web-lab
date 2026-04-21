@@ -136,8 +136,10 @@
   .header__logo span {
     color: var(--color-accent);
   }
-  .header__logo:hover {
-    color: var(--color-accent);
+  @media (hover: hover) and (pointer: fine) {
+    .header__logo:hover {
+      color: var(--color-accent);
+    }
   }
 
   .header__nav {
@@ -169,11 +171,15 @@
     transform-origin: left;
     transition: transform 0.3s cubic-bezier(0.05, 0.7, 0.1, 1);
   }
-  .header__nav a:hover {
-    color: var(--color-on-bg);
+  @media (hover: hover) and (pointer: fine) {
+    .header__nav a:hover {
+      color: var(--color-on-bg);
+    }
   }
-  .header__nav a:hover::after {
-    transform: scaleX(1);
+  @media (hover: hover) and (pointer: fine) {
+    .header__nav a:hover::after {
+      transform: scaleX(1);
+    }
   }
 
   /* Header CTA ボタン */
@@ -192,8 +198,10 @@
     margin-left: var(--spacing-6);
     transition: background 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .header__cta:hover {
-    background: var(--color-accent-hover);
+  @media (hover: hover) and (pointer: fine) {
+    .header__cta:hover {
+      background: var(--color-accent-hover);
+    }
   }
   @media (max-width: 767px) {
     .header__cta {
@@ -278,8 +286,10 @@
     border-radius: var(--shape-full);
     transition: background 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .btn-primary:hover {
-    background: var(--color-accent-hover);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+      background: var(--color-accent-hover);
+    }
   }
 
   .btn-ghost {
@@ -297,8 +307,10 @@
       border-color 0.25s cubic-bezier(0.2, 0, 0, 1),
       color 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .btn-ghost:hover {
-    border-color: var(--color-on-bg);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-ghost:hover {
+      border-color: var(--color-on-bg);
+    }
   }
 
   /* ============================================================
@@ -363,8 +375,10 @@
     text-decoration: none;
     transition: opacity 0.15s cubic-bezier(0.2, 0, 0, 1);
   }
-  a.footer__logo:hover {
-    opacity: 0.7;
+  @media (hover: hover) and (pointer: fine) {
+    a.footer__logo:hover {
+      opacity: 0.7;
+    }
   }
 
   /* ============================================================
@@ -398,9 +412,11 @@
     pointer-events: auto;
     transform: translateY(0);
   }
-  .back-to-top:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+  @media (hover: hover) and (pointer: fine) {
+    .back-to-top:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
   }
 
   /* ============================================================
@@ -427,8 +443,10 @@
     color: var(--color-accent);
     transition: opacity 0.15s cubic-bezier(0.2, 0, 0, 1);
   }
-  .work-hero__label a:hover {
-    opacity: 0.7;
+  @media (hover: hover) and (pointer: fine) {
+    .work-hero__label a:hover {
+      opacity: 0.7;
+    }
   }
   .work-hero__label .sep {
     margin-inline: var(--spacing-3);
@@ -484,9 +502,11 @@
       background 0.25s cubic-bezier(0.2, 0, 0, 1),
       color 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .work-hero__link:hover {
-    background: var(--color-accent);
-    color: var(--color-bg);
+  @media (hover: hover) and (pointer: fine) {
+    .work-hero__link:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
   }
 
   /* Work sections（左右交互） */
@@ -604,8 +624,10 @@
     color: var(--color-accent);
     transition: opacity 0.15s cubic-bezier(0.2, 0, 0, 1);
   }
-  .work-nav__name:hover {
-    opacity: 0.7;
+  @media (hover: hover) and (pointer: fine) {
+    .work-nav__name:hover {
+      opacity: 0.7;
+    }
   }
   .work-nav__contact {
     font-family: var(--font-en);
@@ -619,9 +641,11 @@
       border-color 0.25s cubic-bezier(0.2, 0, 0, 1),
       color 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .work-nav__contact:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+  @media (hover: hover) and (pointer: fine) {
+    .work-nav__contact:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
   }
 
   /* ============================================================
@@ -718,8 +742,10 @@
     border-radius: var(--shape-sm);
     transition: background 0.15s cubic-bezier(0.2, 0, 0, 1);
   }
-  .form-check:hover {
-    background: var(--color-surface);
+  @media (hover: hover) and (pointer: fine) {
+    .form-check:hover {
+      background: var(--color-surface);
+    }
   }
 
   /* カスタムチェックボックス */
@@ -778,8 +804,10 @@
     border-radius: var(--shape-full);
     transition: background 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .contact-submit:hover {
-    background: var(--color-accent);
+  @media (hover: hover) and (pointer: fine) {
+    .contact-submit:hover {
+      background: var(--color-accent);
+    }
   }
 
   @media (max-width: 1024px) {
@@ -1076,6 +1104,46 @@
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     margin-bottom: var(--spacing-2);
+  }
+
+  /* ============================================================
+     Touch feedback (:active) — タッチデバイスでの押下フィードバック
+  ============================================================ */
+  @media (hover: none) and (pointer: coarse) {
+    a:active,
+    button:active {
+      opacity: 0.7;
+    }
+    .btn:active,
+    .btn--primary:active,
+    .btn--outline:active,
+    .btn--ghost:active,
+    .btn--line:active,
+    .btn--text:active,
+    .btn-primary:active,
+    .btn-ghost:active,
+    .contact-submit:active,
+    .header__cta:active,
+    .back-to-top:active,
+    .work-hero__link:active,
+    .work-nav__contact:active,
+    .cta-section__btn:active,
+    .about__contact:active,
+    .works-item:active,
+    .works-reel__slide:active,
+    .wl-card:active,
+    .contact-method__card:active,
+    .business__card:active,
+    .interview__card:active,
+    .recruit__card:active,
+    .menu-card:active,
+    .menu__card:active,
+    .feature-card:active,
+    .service-card:active,
+    .staff__card:active,
+    .modal-close:active {
+      transform: scale(0.98);
+    }
   }
 
 } /* end @layer components */

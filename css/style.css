@@ -107,9 +107,11 @@
     height: auto;
     transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
   }
-  .works-item:hover .works-item__img svg,
-  .works-item:hover .works-item__img img {
-    transform: scale(1.04);
+  @media (hover: hover) and (pointer: fine) {
+    .works-item:hover .works-item__img svg,
+    .works-item:hover .works-item__img img {
+      transform: scale(1.04);
+    }
   }
 
   /* テキスト */
@@ -189,8 +191,10 @@
     transform-origin: left;
     transition: transform 0.3s cubic-bezier(0.05, 0.7, 0.1, 1);
   }
-  .works-item:hover .works-item__more::after {
-    transform: scaleX(1);
+  @media (hover: hover) and (pointer: fine) {
+    .works-item:hover .works-item__more::after {
+      transform: scaleX(1);
+    }
   }
 
   /* プレースホルダー */
@@ -257,8 +261,10 @@
   .works-all-btn__text {
     transition: opacity 0.15s cubic-bezier(0.2, 0, 0, 1);
   }
-  .works-all-btn:hover .works-all-btn__text {
-    opacity: 0.7;
+  @media (hover: hover) and (pointer: fine) {
+    .works-all-btn:hover .works-all-btn__text {
+      opacity: 0.7;
+    }
   }
 
   .works-all-btn__circle {
@@ -287,8 +293,10 @@
     transition: stroke-dasharray 0.6s ease;
   }
 
-  .works-all-btn:hover .works-all-btn__ring-fg {
-    stroke-dasharray: 100 100;
+  @media (hover: hover) and (pointer: fine) {
+    .works-all-btn:hover .works-all-btn__ring-fg {
+      stroke-dasharray: 100 100;
+    }
   }
 
   .works-all-btn__arrow {
@@ -351,8 +359,10 @@
     margin-bottom: var(--spacing-3);
     transition: box-shadow 0.3s ease;
   }
-  .works-reel__slide:hover .works-reel__thumb {
-    box-shadow: 12px 12px 36px rgba(0, 0, 0, 0.16);
+  @media (hover: hover) and (pointer: fine) {
+    .works-reel__slide:hover .works-reel__thumb {
+      box-shadow: 12px 12px 36px rgba(0, 0, 0, 0.16);
+    }
   }
   .works-reel__thumb svg,
   .works-reel__thumb img {
@@ -461,9 +471,11 @@
       background 0.25s cubic-bezier(0.2, 0, 0, 1),
       color 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .cta-section__btn:hover {
-    background: var(--color-accent);
-    color: var(--color-bg);
+  @media (hover: hover) and (pointer: fine) {
+    .cta-section__btn:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
   }
 
   /* ============================================================
@@ -541,9 +553,11 @@
       background 0.25s cubic-bezier(0.2, 0, 0, 1),
       color 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .about__contact:hover {
-    background: var(--color-accent);
-    color: var(--color-bg);
+  @media (hover: hover) and (pointer: fine) {
+    .about__contact:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
   }
 
   /* ============================================================
@@ -701,15 +715,19 @@
     background: var(--color-surface);
     transition: border-color 0.25s cubic-bezier(0.2, 0, 0, 1);
   }
-  .contact-method__card:hover {
-    border-color: var(--color-accent);
+  @media (hover: hover) and (pointer: fine) {
+    .contact-method__card:hover {
+      border-color: var(--color-accent);
+    }
   }
   .contact-method__card--line {
     border-color: #06c755;
     background: #f0fdf4;
   }
-  .contact-method__card--line:hover {
-    border-color: #05a847;
+  @media (hover: hover) and (pointer: fine) {
+    .contact-method__card--line:hover {
+      border-color: #05a847;
+    }
   }
   .contact-method__card-icon {
     color: var(--color-on-bg-variant);
@@ -1137,9 +1155,11 @@
    prefers-reduced-motion
 ============================================================ */
   @media (prefers-reduced-motion: reduce) {
-    .works-item:hover .works-item__img svg,
-    .works-item:hover .works-item__img img {
-      transform: none;
+    @media (hover: hover) and (pointer: fine) {
+      .works-item:hover .works-item__img svg,
+      .works-item:hover .works-item__img img {
+        transform: none;
+      }
     }
   }
 
@@ -1335,8 +1355,10 @@
     transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
   }
 
-  .wl-card:hover .wl-card__img img {
-    transform: scale(1.04);
+  @media (hover: hover) and (pointer: fine) {
+    .wl-card:hover .wl-card__img img {
+      transform: scale(1.04);
+    }
   }
 
   .wl-card__body {
@@ -1438,4 +1460,44 @@
       max-width: 300px;
     }
   }
+  /* ============================================================
+     Touch feedback (:active) — タッチデバイスでの押下フィードバック
+  ============================================================ */
+  @media (hover: none) and (pointer: coarse) {
+    a:active,
+    button:active {
+      opacity: 0.7;
+    }
+    .btn:active,
+    .btn--primary:active,
+    .btn--outline:active,
+    .btn--ghost:active,
+    .btn--line:active,
+    .btn--text:active,
+    .btn-primary:active,
+    .btn-ghost:active,
+    .contact-submit:active,
+    .header__cta:active,
+    .back-to-top:active,
+    .work-hero__link:active,
+    .work-nav__contact:active,
+    .cta-section__btn:active,
+    .about__contact:active,
+    .works-item:active,
+    .works-reel__slide:active,
+    .wl-card:active,
+    .contact-method__card:active,
+    .business__card:active,
+    .interview__card:active,
+    .recruit__card:active,
+    .menu-card:active,
+    .menu__card:active,
+    .feature-card:active,
+    .service-card:active,
+    .staff__card:active,
+    .modal-close:active {
+      transform: scale(0.98);
+    }
+  }
+
 } /* end @layer components */
