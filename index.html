@@ -24,8 +24,7 @@
     <link rel="stylesheet" href="./css/index.css" />
     <!-- FOUC防止: GSAP アニメーション前の初期状態を HTML パース時に確保 -->
     <style>
-      .works-reel,
-      .cta-section {
+      .works-reel {
         opacity: 0;
       }
     </style>
@@ -46,33 +45,8 @@
           <ul>
             <li><a href="#works">Works</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="./contact.html">Contact</a></li>
           </ul>
         </nav>
-        <a
-          href="https://line.me/R/ti/p/@753yvdok"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="header__cta"
-        >
-          LINEで相談
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="11"
-            height="11"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-            <polyline points="15 3 21 3 21 9" />
-            <line x1="10" y1="14" x2="21" y2="3" />
-          </svg>
-        </a>
         <button
           class="header__menu-btn"
           type="button"
@@ -100,14 +74,7 @@
             ひとりで完結するWebデザイナーです。
           </p>
           <div class="hero__cta">
-            <a
-              href="https://line.me/R/ti/p/@753yvdok"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-primary"
-              >LINEで気軽に相談する</a
-            >
-            <a href="#works" class="btn-ghost">制作実績を見る</a>
+            <a href="#works" class="btn-primary">制作実績を見る</a>
           </div>
         </div>
 
@@ -521,19 +488,6 @@
       </section>
 
       <!-- ===================================================
-         CTA
-      =================================================== -->
-      <section class="section cta-section">
-        <div class="inner">
-          <p class="cta-section__heading">「これ、どう形にすればいい？」</p>
-          <p class="cta-section__body">
-            その段階からでも問題ありません。<br />曖昧な輪郭を、伝わる形に変換します。
-          </p>
-          <a href="./contact.html" class="cta-section__btn">相談してみる</a>
-        </div>
-      </section>
-
-      <!-- ===================================================
          About
       =================================================== -->
       <section class="section about" id="about">
@@ -688,32 +642,6 @@
         </div>
       </section>
 
-      <!-- ===================================================
-         Contact
-      =================================================== -->
-      <section class="section contact" id="contact">
-        <div class="inner">
-          <div class="section__head">
-            <p class="section__label">Contact</p>
-            <h2 class="section__title">お問い合わせ</h2>
-          </div>
-          <div class="contact-index">
-            <p class="contact-index__body">
-              料金目安・制作の流れ・お問い合わせフォームはこちら。<br />LINEでも気軽にご相談いただけます。
-            </p>
-            <div class="contact-index__btns">
-              <a href="./contact.html" class="btn-primary">詳しいご相談・料金はこちら</a>
-              <a
-                href="https://line.me/R/ti/p/@753yvdok"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-ghost"
-                >LINEで気軽に相談する</a
-              >
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
     <!-- ===================================================
